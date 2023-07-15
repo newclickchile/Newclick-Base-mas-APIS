@@ -1,32 +1,32 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
-const Pagination = (theme: Theme) => {
+const Pagination = () => {
   return {
     MuiPaginationItem: {
       styleOverrides: {
-        outlined: {
+        outlined: ({ theme }: OwnerStateThemeType) => ({
           borderColor: `rgba(${theme.palette.customColors.main}, 0.22)`
-        },
-        outlinedPrimary: {
+        }),
+        outlinedPrimary: ({ theme }: OwnerStateThemeType) => ({
           '&.Mui-selected': {
             backgroundColor: hexToRGBA(theme.palette.primary.main, 0.12),
             '&:hover': {
               backgroundColor: `${hexToRGBA(theme.palette.primary.main, 0.2)} !important`
             }
           }
-        },
-        outlinedSecondary: {
+        }),
+        outlinedSecondary: ({ theme }: OwnerStateThemeType) => ({
           '&.Mui-selected': {
             backgroundColor: hexToRGBA(theme.palette.secondary.main, 0.12),
             '&:hover': {
               backgroundColor: `${hexToRGBA(theme.palette.secondary.main, 0.2)} !important`
             }
           }
-        }
+        })
       }
     }
   }

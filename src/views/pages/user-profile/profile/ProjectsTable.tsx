@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import { DataGrid } from '@mui/x-data-grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import AvatarGroup from '@mui/material/AvatarGroup'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import LinearProgress from '@mui/material/LinearProgress'
 
 // ** Third Party Imports
@@ -46,7 +46,7 @@ const renderName = (row: ProjectTableRowType) => {
   }
 }
 
-const columns = [
+const columns: GridColDef[] = [
   {
     flex: 0.1,
     field: 'name',
@@ -140,7 +140,7 @@ const ProfileTable = () => {
   // ** State
   const [data, setData] = useState([])
   const [value, setValue] = useState<string>('')
-  const [pageSize, setPageSize] = useState<number>(7)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
 
   useEffect(() => {
     axios.get('/pages/profile-table', { params: { q: value } }).then(response => {
@@ -171,10 +171,10 @@ const ProfileTable = () => {
         rows={data}
         columns={columns}
         checkboxSelection
-        pageSize={pageSize}
-        disableSelectionOnClick
-        rowsPerPageOptions={[5, 7, 10]}
-        onPageSizeChange={size => setPageSize(size)}
+        disableRowSelectionOnClick
+        pageSizeOptions={[5, 7, 10]}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
       />
     </Card>
   ) : null

@@ -1,12 +1,14 @@
 // ** React Imports
 import { SyntheticEvent, useState } from 'react'
 
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
-import MuiLink from '@mui/material/Link'
 import TabPanel from '@mui/lab/TabPanel'
 import Switch from '@mui/material/Switch'
 import Button from '@mui/material/Button'
@@ -92,7 +94,7 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
                   <Grid item xs={6} sm={3}>
                     <TextField
                       fullWidth
-                      label='CVV'
+                      label='CVC'
                       placeholder='654'
                       InputProps={{
                         endAdornment: (
@@ -226,9 +228,9 @@ const StepPayment = ({ handleNext }: { handleNext: () => void }) => {
             <Typography sx={{ mb: 4, color: 'text.secondary' }}>Mobile : +1 906 568 2332</Typography>
             <Typography
               href='/'
-              component={MuiLink}
+              component={Link}
               onClick={e => e.preventDefault()}
-              sx={{ fontWeight: 600, color: 'primary.main' }}
+              sx={{ fontWeight: 600, color: 'primary.main', textDecoration: 'none' }}
             >
               Change address
             </Typography>

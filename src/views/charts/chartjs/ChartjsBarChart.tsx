@@ -41,8 +41,6 @@ const ChartjsBarChart = (props: BarProp) => {
     scales: {
       x: {
         grid: {
-          borderColor,
-          drawBorder: false,
           color: borderColor
         },
         ticks: { color: labelColor }
@@ -51,8 +49,6 @@ const ChartjsBarChart = (props: BarProp) => {
         min: 0,
         max: 400,
         grid: {
-          borderColor,
-          drawBorder: false,
           color: borderColor
         },
         ticks: {

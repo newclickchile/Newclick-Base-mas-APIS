@@ -1,16 +1,14 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
-
-// ** Theme Type Import
+// ** Type Imports
+import { OwnerStateThemeType } from './'
 import { Skin } from 'src/@core/layouts/types'
 
-const Autocomplete = (theme: Theme, skin: Skin) => {
+const Autocomplete = (skin: Skin) => {
   return {
     MuiAutocomplete: {
       styleOverrides: {
-        paper: {
+        paper: ({ theme }: OwnerStateThemeType) => ({
           ...(skin === 'bordered' && { boxShadow: 'none', border: `1px solid ${theme.palette.divider}` })
-        }
+        })
       }
     }
   }

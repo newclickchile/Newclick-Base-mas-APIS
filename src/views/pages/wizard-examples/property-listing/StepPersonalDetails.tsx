@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, MouseEvent, ChangeEvent } from 'react'
+import { useState, ChangeEvent } from 'react'
 
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
@@ -72,9 +72,6 @@ const StepPersonalDetails = () => {
   const handleTogglePasswordView = () => {
     setShowValues(!showValues)
   }
-  const handleMousePasswordView = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   const handleRadioChange = (prop: string | ChangeEvent<HTMLInputElement>) => {
     if (typeof prop === 'string') {
@@ -122,8 +119,8 @@ const StepPersonalDetails = () => {
                 <IconButton
                   edge='end'
                   onClick={handleTogglePasswordView}
+                  onMouseDown={e => e.preventDefault()}
                   aria-label='toggle password visibility'
-                  onMouseDown={handleMousePasswordView}
                 >
                   <Icon icon={showValues ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                 </IconButton>

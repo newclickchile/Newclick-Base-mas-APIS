@@ -8,10 +8,10 @@ import { useRouter } from 'next/router'
 // ** MUI Imports
 import Chip from '@mui/material/Chip'
 import ListItem from '@mui/material/ListItem'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { styled, useTheme } from '@mui/material/styles'
 import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton'
 
 // ** Configs Import
@@ -61,14 +61,15 @@ const MenuNavLink = styled(ListItemButton)<
   }
 }))
 
-const MenuItemTextMetaWrapper = styled(Box)<BoxProps>({
+const MenuItemTextMetaWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   width: '100%',
   display: 'flex',
   alignItems: 'center',
+  gap: theme.spacing(2),
   justifyContent: 'space-between',
   transition: 'opacity .25s ease-in-out',
   ...(themeConfig.menuTextTruncate && { overflow: 'hidden' })
-})
+}))
 
 const VerticalNavLink = ({
   item,
@@ -82,24 +83,12 @@ const VerticalNavLink = ({
   navigationBorderWidth
 }: Props) => {
   // ** Hooks
-  const theme = useTheme()
   const router = useRouter()
 
   // ** Vars
-  const { mode, navCollapsed } = settings
+  const { navCollapsed } = settings
 
   const icon = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon
-
-  const conditionalColors = () => {
-    if (mode === 'semi-dark') {
-      return {
-        color: `rgba(${theme.palette.customColors.dark}, 0.87)`,
-        '&:hover': {
-          backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.04)`
-        }
-      }
-    } else return {}
-  }
 
   const isNavLinkActive = () => {
     if (router.pathname === item.path || handleURLQueries(router, item.path)) {
@@ -134,7 +123,6 @@ const VerticalNavLink = ({
           }}
           sx={{
             py: 2.25,
-            ...conditionalColors(),
             ...(item.disabled ? { pointerEvents: 'none' } : { cursor: 'pointer' }),
             pl: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24) / 8 : 5.5,
             pr: navCollapsed && !navHover ? ((collapsedNavWidth - navigationBorderWidth - 24) / 2 - 5) / 4 : 3.5
@@ -176,7 +164,6 @@ const VerticalNavLink = ({
                 label={item.badgeContent}
                 color={item.badgeColor || 'primary'}
                 sx={{
-                  ml: 1.25,
                   height: 20,
                   fontWeight: 500,
                   '& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' }

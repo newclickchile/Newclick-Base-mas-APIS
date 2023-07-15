@@ -1,7 +1,4 @@
-// ** React Imports
-import { SyntheticEvent } from 'react'
-
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
@@ -87,7 +84,7 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
                       href='/'
                       variant='h6'
                       component={Link}
-                      onClick={(e: SyntheticEvent) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
                     >
                       {item.title}
@@ -178,7 +175,7 @@ const Projects = ({ data }: { data: ProjectsTabType[] }) => {
                     <Box
                       href='/'
                       component={Link}
-                      onClick={(e: SyntheticEvent) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',

@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import { DataGrid, GridColumns, GridRenderCellParams } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 
 // ** Custom Components
 import CustomChip from 'src/@core/components/mui/chip'
@@ -64,7 +64,7 @@ const escapeRegExp = (value: string) => {
   return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 }
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
   {
     flex: 0.275,
     minWidth: 290,
@@ -90,9 +90,11 @@ const columns: GridColumns = [
   },
   {
     flex: 0.2,
+    type: 'date',
     minWidth: 120,
     headerName: 'Date',
     field: 'start_date',
+    valueGetter: params => new Date(params.value),
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
         {params.row.start_date}
@@ -145,9 +147,9 @@ const columns: GridColumns = [
 const TableColumns = () => {
   // ** States
   const [data] = useState<DataGridRowType[]>(rows)
-  const [pageSize, setPageSize] = useState<number>(7)
   const [searchText, setSearchText] = useState<string>('')
   const [filteredData, setFilteredData] = useState<DataGridRowType[]>([])
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
 
   const handleSearch = (searchValue: string) => {
     setSearchText(searchValue)
@@ -171,12 +173,12 @@ const TableColumns = () => {
       <DataGrid
         autoHeight
         columns={columns}
-        pageSize={pageSize}
-        rowsPerPageOptions={[7, 10, 25, 50]}
-        components={{ Toolbar: QuickSearchToolbar }}
+        pageSizeOptions={[7, 10, 25, 50]}
+        paginationModel={paginationModel}
+        slots={{ toolbar: QuickSearchToolbar }}
+        onPaginationModelChange={setPaginationModel}
         rows={filteredData.length ? filteredData : data}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-        componentsProps={{
+        slotProps={{
           baseButton: {
             variant: 'outlined'
           },

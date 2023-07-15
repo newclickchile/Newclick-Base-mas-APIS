@@ -1,4 +1,4 @@
-// ** MUI Import
+// ** MUI Imports
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
@@ -32,7 +32,7 @@ const ImgShoe = styled('img')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius
 }))
 
-const TimelineRight = () => {
+const TimelineOutlined = () => {
   return (
     <Timeline>
       <TimelineItem>
@@ -177,4 +177,4 @@ const TimelineRight = () => {
   )
 }
 
-export default TimelineRight
+export default TimelineOutlined

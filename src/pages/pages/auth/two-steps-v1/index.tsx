@@ -1,6 +1,9 @@
 // ** React Imports
 import { ReactNode, ChangeEvent, useState, KeyboardEvent } from 'react'
 
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -37,7 +40,7 @@ const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
 }))
 
-const LinkStyled = styled('a')(({ theme }) => ({
+const LinkStyled = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   marginLeft: theme.spacing(1),
   color: theme.palette.primary.main

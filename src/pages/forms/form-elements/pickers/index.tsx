@@ -1,6 +1,9 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
+import { styled } from '@mui/material/styles'
 import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
@@ -31,6 +34,11 @@ import PickersMonthYearDropdowns from 'src/views/forms/form-elements/pickers/Pic
 // ** Source code imports
 import * as source from 'src/views/forms/form-elements/pickers/PickersSourceCode'
 
+const LinkStyled = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
+
 const ReactDatePicker = () => {
   // ** Hook
   const theme = useTheme()
@@ -44,9 +52,9 @@ const ReactDatePicker = () => {
           subtitle={<Typography variant='body2'>A simple and reusable datepicker component for React</Typography>}
           title={
             <Typography variant='h5'>
-              <Link href='https://github.com/Hacker0x01/react-datepicker/' target='_blank'>
+              <LinkStyled href='https://github.com/Hacker0x01/react-datepicker/' target='_blank'>
                 React DatePicker
-              </Link>
+              </LinkStyled>
             </Typography>
           }
         />

@@ -1,6 +1,9 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
 // ** Custom Components Imports
@@ -31,6 +34,11 @@ import * as source from 'src/views/components/swiper/SwiperSourceCode'
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
 
+const LinkStyled = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
+
 const Swiper = () => {
   // ** Hook
   const {
@@ -44,9 +52,9 @@ const Swiper = () => {
           subtitle={<Typography variant='body2'>Easily create sliders, carousels and much more</Typography>}
           title={
             <Typography variant='h5'>
-              <Link href='https://github.com/rcbyr/keen-slider' target='_blank'>
+              <LinkStyled href='https://github.com/rcbyr/keen-slider' target='_blank'>
                 Keen Slider
-              </Link>
+              </LinkStyled>
             </Typography>
           }
         />

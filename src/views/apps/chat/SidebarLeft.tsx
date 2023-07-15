@@ -1,7 +1,7 @@
 // ** React Imports
 import { useState, useEffect, ChangeEvent, ReactNode } from 'react'
 
-// ** Next Imports
+// ** Next Import
 import { useRouter } from 'next/router'
 
 // ** MUI Imports
@@ -175,7 +175,7 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                         sx={{
                           width: 38,
                           height: 38,
-                          ...(activeCondition && { border: theme => `2px solid ${theme.palette.common.white}` })
+                          outline: theme => `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
                         }}
                       />
                     ) : (
@@ -186,7 +186,7 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                           width: 38,
                           height: 38,
                           fontSize: '1rem',
-                          ...(activeCondition && { border: theme => `2px solid ${theme.palette.common.white}` })
+                          outline: theme => `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
                         }}
                       >
                         {getInitials(chat.fullName)}
@@ -288,7 +288,8 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                           sx={{
                             width: 38,
                             height: 38,
-                            ...(activeCondition && { border: theme => `2px solid ${theme.palette.common.white}` })
+                            outline: theme =>
+                              `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
                           }}
                         />
                       ) : (
@@ -299,7 +300,8 @@ const SidebarLeft = (props: ChatSidebarLeftType) => {
                             width: 38,
                             height: 38,
                             fontSize: '1rem',
-                            ...(activeCondition && { border: theme => `2px solid ${theme.palette.common.white}` })
+                            outline: theme =>
+                              `2px solid ${activeCondition ? theme.palette.common.white : 'transparent'}`
                           }}
                         >
                           {getInitials(contact.fullName)}

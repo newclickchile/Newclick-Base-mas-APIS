@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent, forwardRef, MouseEvent, useState } from 'react'
+import { ChangeEvent, forwardRef, useState } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -57,9 +57,6 @@ const FormLayoutsSeparator = () => {
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   // Handle Confirm Password
   const handleConfirmChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -67,9 +64,6 @@ const FormLayoutsSeparator = () => {
   }
   const handleClickShowConfirmPassword = () => {
     setValues({ ...values, showPassword2: !values.showPassword2 })
-  }
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   // Handle Select
@@ -109,7 +103,7 @@ const FormLayoutsSeparator = () => {
                       <IconButton
                         edge='end'
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                       >
                         <Icon icon={values.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -132,9 +126,9 @@ const FormLayoutsSeparator = () => {
                     <InputAdornment position='end'>
                       <IconButton
                         edge='end'
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                         onClick={handleClickShowConfirmPassword}
-                        onMouseDown={handleMouseDownConfirmPassword}
                       >
                         <Icon icon={values.showPassword2 ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                       </IconButton>
@@ -206,7 +200,7 @@ const FormLayoutsSeparator = () => {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Phone No.' placeholder='+1-123-456-8790' />
+              <TextField fullWidth type='number' label='Phone No.' placeholder='123-456-7890' />
             </Grid>
           </Grid>
         </CardContent>

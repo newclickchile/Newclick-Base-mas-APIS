@@ -1,3 +1,42 @@
+export const ToastCustomPositionJSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** MUI Imports
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
+
+// ** Third Party Components
+import toast from 'react-hot-toast'
+
+const ToastCustomPosition = () => {
+  const handleClick = () => {
+    return toast.success('Always at the bottom.', {
+      position: 'bottom-right'
+    })
+  }
+
+  return (
+    <Box
+      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+    >
+      <Icon icon='mdi:view-grid-plus-outline' fontSize='2rem' />
+      <Typography sx={{ mb: 4, fontWeight: 600 }}>Custom Position</Typography>
+      <Typography sx={{ mb: 3 }}>You can change the toast's position as you like.</Typography>
+      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
+        Position
+      </Button>
+    </Box>
+  )
+}
+
+export default ToastCustomPosition
+`}</code>
+  </pre>
+)
+
 export const ToastBlankJSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** MUI Imports
@@ -27,6 +66,39 @@ const ToastSimple = () => {
 }
 
 export default ToastSimple
+`}</code>
+  </pre>
+)
+
+export const ToastEmojiJSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** MUI Imports
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
+
+// ** Third Party Components
+import toast from 'react-hot-toast'
+
+const ToastEmoji = () => {
+  return (
+    <Box
+      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+    >
+      <Icon icon='mdi:sticker-emoji' fontSize='2rem' />
+      <Typography sx={{ mb: 4, fontWeight: 600 }}>Emoji</Typography>
+      <Typography sx={{ mb: 3 }}>Add any emoji instead of an icon</Typography>
+      <Button sx={{ mb: 8 }} variant='contained' onClick={() => toast('Good Job!', { icon: '👏' })}>
+        Emoji
+      </Button>
+    </Box>
+  )
+}
+
+export default ToastEmoji
 `}</code>
   </pre>
 )
@@ -90,7 +162,7 @@ export default ToastCustom
   </pre>
 )
 
-export const ToastCustomPositionJSXCode = (
+export const ToastPromiseJSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** MUI Imports
 import Box from '@mui/material/Box'
@@ -103,10 +175,22 @@ import Icon from 'src/@core/components/icon'
 // ** Third Party Components
 import toast from 'react-hot-toast'
 
-const ToastCustomPosition = () => {
+const ToastPromise = () => {
   const handleClick = () => {
-    return toast.success('Always at the bottom.', {
-      position: 'bottom-right'
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() < 0.5) {
+          resolve('foo')
+        } else {
+          reject('fox')
+        }
+      }, 1000)
+    })
+
+    return toast.promise(myPromise, {
+      loading: 'Loading',
+      success: 'Got the data',
+      error: 'Error when fetching'
     })
   }
 
@@ -114,83 +198,17 @@ const ToastCustomPosition = () => {
     <Box
       sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
     >
-      <Icon icon='mdi:view-grid-plus-outline' fontSize='2rem' />
-      <Typography sx={{ mb: 4, fontWeight: 600 }}>Custom Position</Typography>
-      <Typography sx={{ mb: 3 }}>You can change the toast's position as you like.</Typography>
+      <Icon icon='mdi:timer-sand' fontSize='2rem' />
+      <Typography sx={{ mb: 4, fontWeight: 600 }}>Promise</Typography>
+      <Typography sx={{ mb: 3 }}>Update automatically when promise resolves / fails.</Typography>
       <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
-        Position
+        Promise
       </Button>
     </Box>
   )
 }
 
-export default ToastCustomPosition
-`}</code>
-  </pre>
-)
-
-export const ToastErrorJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Third Party Components
-import toast from 'react-hot-toast'
-
-const ToastError = () => {
-  return (
-    <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
-    >
-      <Icon icon='mdi:close' fontSize='2rem' />
-      <Typography sx={{ mb: 4, fontWeight: 600 }}>Error</Typography>
-      <Typography sx={{ mb: 3 }}>Creates a notification with an animated error icon.</Typography>
-      <Button sx={{ mb: 8 }} color='error' variant='contained' onClick={() => toast.error("This didn't work.")}>
-        Error
-      </Button>
-    </Box>
-  )
-}
-
-export default ToastError
-`}</code>
-  </pre>
-)
-
-export const ToastEmojiJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Third Party Components
-import toast from 'react-hot-toast'
-
-const ToastEmoji = () => {
-  return (
-    <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
-    >
-      <Icon icon='mdi:sticker-emoji' fontSize='2rem' />
-      <Typography sx={{ mb: 4, fontWeight: 600 }}>Emoji</Typography>
-      <Typography sx={{ mb: 3 }}>Add any emoji instead of an icon</Typography>
-      <Button sx={{ mb: 8 }} variant='contained' onClick={() => toast('Good Job!', { icon: '👏' })}>
-        Emoji
-      </Button>
-    </Box>
-  )
-}
-
-export default ToastEmoji
+export default ToastPromise
 `}</code>
   </pre>
 )
@@ -318,7 +336,7 @@ export default ToastThemed
   </pre>
 )
 
-export const ToastPromiseJSXCode = (
+export const ToastErrorJSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** MUI Imports
 import Box from '@mui/material/Box'
@@ -331,40 +349,22 @@ import Icon from 'src/@core/components/icon'
 // ** Third Party Components
 import toast from 'react-hot-toast'
 
-const ToastPromise = () => {
-  const handleClick = () => {
-    const myPromise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (Math.random() < 0.5) {
-          resolve('foo')
-        } else {
-          reject('fox')
-        }
-      }, 1000)
-    })
-
-    return toast.promise(myPromise, {
-      loading: 'Loading',
-      success: 'Got the data',
-      error: 'Error when fetching'
-    })
-  }
-
+const ToastError = () => {
   return (
     <Box
       sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
     >
-      <Icon icon='mdi:timer-sand' fontSize='2rem' />
-      <Typography sx={{ mb: 4, fontWeight: 600 }}>Promise</Typography>
-      <Typography sx={{ mb: 3 }}>Update automatically when promise resolves / fails.</Typography>
-      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
-        Promise
+      <Icon icon='mdi:close' fontSize='2rem' />
+      <Typography sx={{ mb: 4, fontWeight: 600 }}>Error</Typography>
+      <Typography sx={{ mb: 3 }}>Creates a notification with an animated error icon.</Typography>
+      <Button sx={{ mb: 8 }} color='error' variant='contained' onClick={() => toast.error("This didn't work.")}>
+        Error
       </Button>
     </Box>
   )
 }
 
-export default ToastPromise
+export default ToastError
 `}</code>
   </pre>
 )
@@ -398,6 +398,45 @@ const ToastSimple = () => {
 }
 
 export default ToastSimple
+`}</code>
+  </pre>
+)
+
+export const ToastCustomPositionTSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** MUI Imports
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
+
+// ** Third Party Components
+import toast from 'react-hot-toast'
+
+const ToastCustomPosition = () => {
+  const handleClick = () => {
+    return toast.success('Always at the bottom.', {
+      position: 'bottom-right'
+    })
+  }
+
+  return (
+    <Box
+      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
+    >
+      <Icon icon='mdi:view-grid-plus-outline' fontSize='2rem' />
+      <Typography sx={{ mb: 4, fontWeight: 600 }}>Custom Position</Typography>
+      <Typography sx={{ mb: 3 }}>You can change the toast's position as you like.</Typography>
+      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
+        Position
+      </Button>
+    </Box>
+  )
+}
+
+export default ToastCustomPosition
 `}</code>
   </pre>
 )
@@ -533,7 +572,7 @@ export default ToastMultiLine
   </pre>
 )
 
-export const ToastCustomPositionTSXCode = (
+export const ToastSuccessTSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** MUI Imports
 import Box from '@mui/material/Box'
@@ -546,28 +585,22 @@ import Icon from 'src/@core/components/icon'
 // ** Third Party Components
 import toast from 'react-hot-toast'
 
-const ToastCustomPosition = () => {
-  const handleClick = () => {
-    return toast.success('Always at the bottom.', {
-      position: 'bottom-right'
-    })
-  }
-
+const ToastSuccess = () => {
   return (
     <Box
       sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
     >
-      <Icon icon='mdi:view-grid-plus-outline' fontSize='2rem' />
-      <Typography sx={{ mb: 4, fontWeight: 600 }}>Custom Position</Typography>
-      <Typography sx={{ mb: 3 }}>You can change the toast's position as you like.</Typography>
-      <Button sx={{ mb: 8 }} variant='contained' onClick={handleClick}>
-        Position
+      <Icon icon='mdi:check-circle-outline' fontSize='2rem' />
+      <Typography sx={{ mb: 4, fontWeight: 600 }}>Success</Typography>
+      <Typography sx={{ mb: 3 }}>Creates a notification with an animated checkmark.</Typography>
+      <Button sx={{ mb: 8 }} color='success' variant='contained' onClick={() => toast.success('Successfully toasted!')}>
+        Success
       </Button>
     </Box>
   )
 }
 
-export default ToastCustomPosition
+export default ToastSuccess
 `}</code>
   </pre>
 )
@@ -703,39 +736,6 @@ const ToastEmoji = () => {
 }
 
 export default ToastEmoji
-`}</code>
-  </pre>
-)
-
-export const ToastSuccessTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Third Party Components
-import toast from 'react-hot-toast'
-
-const ToastSuccess = () => {
-  return (
-    <Box
-      sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column', '& svg': { mb: 2 } }}
-    >
-      <Icon icon='mdi:check-circle-outline' fontSize='2rem' />
-      <Typography sx={{ mb: 4, fontWeight: 600 }}>Success</Typography>
-      <Typography sx={{ mb: 3 }}>Creates a notification with an animated checkmark.</Typography>
-      <Button sx={{ mb: 8 }} color='success' variant='contained' onClick={() => toast.success('Successfully toasted!')}>
-        Success
-      </Button>
-    </Box>
-  )
-}
-
-export default ToastSuccess
 `}</code>
   </pre>
 )

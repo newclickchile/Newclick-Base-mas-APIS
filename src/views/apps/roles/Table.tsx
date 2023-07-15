@@ -8,9 +8,9 @@ import Link from 'next/link'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import { DataGrid } from '@mui/x-data-grid'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { SelectChangeEvent } from '@mui/material/Select'
 
 // ** Icon Imports
@@ -77,7 +77,7 @@ const renderClient = (row: UsersType) => {
   }
 }
 
-const columns = [
+const columns: GridColDef[] = [
   {
     flex: 0.2,
     minWidth: 230,
@@ -99,7 +99,7 @@ const columns = [
                 fontWeight: 600,
                 color: 'text.primary',
                 textDecoration: 'none',
-                '&:hover': { color: theme => theme.palette.primary.main }
+                '&:hover': { color: 'primary.main' }
               }}
             >
               {fullName}
@@ -189,7 +189,7 @@ const UserList = () => {
   // ** State
   const [plan, setPlan] = useState<string>('')
   const [value, setValue] = useState<string>('')
-  const [pageSize, setPageSize] = useState<number>(10)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 })
 
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
@@ -224,10 +224,10 @@ const UserList = () => {
             rows={store.data}
             columns={columns}
             checkboxSelection
-            pageSize={pageSize}
-            disableSelectionOnClick
-            rowsPerPageOptions={[10, 25, 50]}
-            onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+            disableRowSelectionOnClick
+            pageSizeOptions={[10, 25, 50]}
+            paginationModel={paginationModel}
+            onPaginationModelChange={setPaginationModel}
           />
         </Card>
       </Grid>

@@ -40,16 +40,14 @@ const ChartjsHorizontalBarChart = (props: HorizontalBarProps) => {
         min: 0,
         grid: {
           drawTicks: false,
-          drawBorder: false,
           color: borderColor
         },
         ticks: { color: labelColor }
       },
       y: {
         grid: {
-          borderColor,
           display: false,
-          drawBorder: false
+          color: borderColor
         },
         ticks: { color: labelColor }
       }

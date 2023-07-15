@@ -1,6 +1,7 @@
 // ** MUI Imports
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
@@ -15,8 +16,10 @@ const ReactHotToast = styled(Box)<BoxProps>(({ theme }) => {
       left: `${theme.spacing(6)} !important`,
       right: `${theme.spacing(6)} !important`,
       bottom: `${theme.spacing(6)} !important`,
-      zIndex: `${theme.zIndex.drawer - 1} !important`,
-      top: layout === 'horizontal' && !navHidden ? '139px !important' : '75px !important'
+      top: layout === 'horizontal' && !navHidden ? '139px !important' : '75px !important',
+      zIndex: useMediaQuery(theme.breakpoints.down('lg'))
+        ? `${theme.zIndex.drawer - 1} !important`
+        : `${theme.zIndex.drawer + 1} !important`
     },
     '& .react-hot-toast': {
       fontWeight: 400,

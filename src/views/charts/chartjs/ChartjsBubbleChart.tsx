@@ -35,8 +35,6 @@ const ChartjsBubbleChart = (props: BubbleProps) => {
         min: 0,
         max: 140,
         grid: {
-          borderColor,
-          drawBorder: false,
           color: borderColor
         },
         ticks: {
@@ -48,8 +46,6 @@ const ChartjsBubbleChart = (props: BubbleProps) => {
         min: 0,
         max: 400,
         grid: {
-          borderColor,
-          drawBorder: false,
           color: borderColor
         },
         ticks: {

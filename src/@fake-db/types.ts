@@ -1,6 +1,10 @@
 // Type Imports
 import { ThemeColor } from 'src/@core/layouts/types'
-import { OptionsMenuType } from 'src/@core/components/option-menu/types'
+import {
+  CardStatsCharacterProps,
+  CardStatsHorizontalProps,
+  CardStatsVerticalProps
+} from 'src/@core/components/card-statistics/types'
 
 // Template Search
 //----------------
@@ -35,37 +39,10 @@ export type FaqType = {
 
 // Card Statistics Page
 //-------------------------------
-export type CardStatsHorizontalType = {
-  icon: string
-  title: string
-  stats: string
-  color?: ThemeColor
-  trendNumber: string
-  trend?: 'positive' | 'negative'
-}
-export type CardStatsVerticalType = {
-  icon: string
-  title: string
-  stats: string
-  subtitle: string
-  color?: ThemeColor
-  trendNumber: string
-  trend?: 'positive' | 'negative'
-  optionsMenuProps?: OptionsMenuType
-}
-export type CardStatsCharacterType = {
-  src: string
-  title: string
-  stats: string
-  chipText: string
-  trendNumber: string
-  chipColor?: ThemeColor
-  trend?: 'positive' | 'negative'
-}
 export type CardStatsType = {
-  statsVertical: CardStatsVerticalType[]
-  statsCharacter: CardStatsCharacterType[]
-  statsHorizontal: CardStatsHorizontalType[]
+  statsVertical: CardStatsVerticalProps[]
+  statsCharacter: CardStatsCharacterProps[]
+  statsHorizontal: CardStatsHorizontalProps[]
 }
 
 // User Profile pages

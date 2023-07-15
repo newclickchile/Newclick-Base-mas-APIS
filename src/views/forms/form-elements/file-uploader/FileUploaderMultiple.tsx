@@ -1,9 +1,11 @@
 // ** React Imports
-import { Fragment, useState, SyntheticEvent } from 'react'
+import { Fragment, useState } from 'react'
+
+// ** Next Import
+import Link from 'next/link'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
 import List from '@mui/material/List'
 import Button from '@mui/material/Button'
 import ListItem from '@mui/material/ListItem'
@@ -88,10 +90,6 @@ const FileUploaderMultiple = () => {
     </ListItem>
   ))
 
-  const handleLinkClick = (event: SyntheticEvent) => {
-    event.preventDefault()
-  }
-
   const handleRemoveAllFiles = () => {
     setFiles([])
   }
@@ -104,9 +102,9 @@ const FileUploaderMultiple = () => {
           <Img alt='Upload img' src='/images/misc/upload.png' />
           <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: ['center', 'center', 'inherit'] }}>
             <HeadingTypography variant='h5'>Drop files here or click to upload.</HeadingTypography>
-            <Typography color='textSecondary'>
+            <Typography color='textSecondary' sx={{ '& a': { color: 'primary.main', textDecoration: 'none' } }}>
               Drop files here or click{' '}
-              <Link href='/' onClick={handleLinkClick}>
+              <Link href='/' onClick={e => e.preventDefault()}>
                 browse
               </Link>{' '}
               thorough your machine

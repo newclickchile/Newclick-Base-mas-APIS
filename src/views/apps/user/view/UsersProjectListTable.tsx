@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import { DataGrid } from '@mui/x-data-grid'
 import { styled } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import CardHeader from '@mui/material/CardHeader'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import LinearProgress from '@mui/material/LinearProgress'
 
 // ** Third Party Imports
@@ -28,7 +28,7 @@ const Img = styled('img')(({ theme }) => ({
   marginRight: theme.spacing(3)
 }))
 
-const columns = [
+const columns: GridColDef[] = [
   {
     flex: 0.3,
     minWidth: 230,
@@ -92,8 +92,8 @@ const columns = [
 const InvoiceListTable = () => {
   // ** State
   const [value, setValue] = useState<string>('')
-  const [pageSize, setPageSize] = useState<number>(7)
   const [data, setData] = useState<ProjectListDataType[]>([])
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
 
   useEffect(() => {
     axios
@@ -120,10 +120,10 @@ const InvoiceListTable = () => {
         autoHeight
         rows={data}
         columns={columns}
-        pageSize={pageSize}
-        disableSelectionOnClick
-        rowsPerPageOptions={[7, 10, 25, 50]}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        disableRowSelectionOnClick
+        pageSizeOptions={[7, 10, 25, 50]}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
       />
     </Card>
   )

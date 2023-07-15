@@ -57,21 +57,9 @@ const Drawer = (props: Props) => {
   const theme = useTheme()
 
   // ** Vars
-  const { mode, navCollapsed } = settings
+  const { navCollapsed } = settings
 
-  const drawerColors = () => {
-    if (mode === 'semi-dark') {
-      return {
-        backgroundColor: 'customColors.darkBg',
-        '& .MuiTypography-root, & svg': {
-          color: `rgba(${theme.palette.customColors.dark}, 0.87)`
-        }
-      }
-    } else
-      return {
-        backgroundColor: 'background.default'
-      }
-  }
+  let flag = true
 
   // Drawer Props for Mobile & Tablet screens
   const MobileDrawerProps = {
@@ -89,10 +77,16 @@ const Drawer = (props: Props) => {
     onOpen: () => null,
     onClose: () => null,
     onMouseEnter: () => {
-      setNavHover(true)
+      // Declared flag to resolve first time flicker issue while trying to collapse the menu
+      if (flag || navCollapsed) {
+        setNavHover(true)
+        flag = false
+      }
     },
     onMouseLeave: () => {
-      setNavHover(false)
+      if (navCollapsed) {
+        setNavHover(false)
+      }
     }
   }
 
@@ -115,7 +109,7 @@ const Drawer = (props: Props) => {
       {...(hidden ? { ...MobileDrawerProps } : { ...DesktopDrawerProps })}
       PaperProps={{
         sx: {
-          ...drawerColors(),
+          backgroundColor: 'background.default',
           width: navCollapsed && !navHover ? collapsedNavWidth : navWidth,
           ...(!hidden && navCollapsed && navHover ? { boxShadow: 9 } : {}),
           borderRight: navigationBorderWidth === 0 ? 0 : `${navigationBorderWidth}px solid ${theme.palette.divider}`,

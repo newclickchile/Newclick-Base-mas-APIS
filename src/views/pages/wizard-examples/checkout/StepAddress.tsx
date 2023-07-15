@@ -1,7 +1,7 @@
 // ** React Imports
-import { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Imports
@@ -50,7 +50,7 @@ const data: CustomRadioBasicData[] = [
             href='/'
             component={Link}
             sx={{ mr: 3, color: 'primary.main', textDecoration: 'none' }}
-            onClick={(e: SyntheticEvent) => {
+            onClick={e => {
               e.preventDefault()
               e.stopPropagation()
             }}
@@ -61,7 +61,7 @@ const data: CustomRadioBasicData[] = [
             href='/'
             component={Link}
             sx={{ color: 'primary.main', textDecoration: 'none' }}
-            onClick={(e: SyntheticEvent) => {
+            onClick={e => {
               e.preventDefault()
               e.stopPropagation()
             }}
@@ -89,7 +89,7 @@ const data: CustomRadioBasicData[] = [
             href='/'
             component={Link}
             sx={{ mr: 3, color: 'primary.main', textDecoration: 'none' }}
-            onClick={(e: SyntheticEvent) => {
+            onClick={e => {
               e.preventDefault()
               e.stopPropagation()
             }}
@@ -100,7 +100,7 @@ const data: CustomRadioBasicData[] = [
             href='/'
             component={Link}
             sx={{ color: 'primary.main', textDecoration: 'none' }}
-            onClick={(e: SyntheticEvent) => {
+            onClick={e => {
               e.preventDefault()
               e.stopPropagation()
             }}

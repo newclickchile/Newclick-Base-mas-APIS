@@ -26,7 +26,7 @@ const PickersCustomization = ({ popperPlacement }: { popperPlacement: ReactDateP
         <DatePicker
           id='custom-format'
           selected={dateFormat}
-          dateFormat='MMMM d, yyyy h:mm aa'
+          dateFormat='MMMM d, yyyy'
           popperPlacement={popperPlacement}
           onChange={(date: Date) => setDateFormat(date)}
           customInput={<CustomInput label='Custom Date Format' />}

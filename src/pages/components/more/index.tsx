@@ -1,9 +1,12 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
-import Link from '@mui/material/Link'
 import Alert from '@mui/material/Alert'
 import Table from '@mui/material/Table'
+import { styled } from '@mui/material/styles'
 import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
 import TableCell from '@mui/material/TableCell'
@@ -14,6 +17,11 @@ import TableContainer from '@mui/material/TableContainer'
 
 // ** Data Imports
 import componentData from 'src/@fake-db/components/data'
+
+const LinkStyled = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
 
 const Misc = () => {
   return (
@@ -39,9 +47,9 @@ const Misc = () => {
                     <TableRow key={index} sx={{ '&:last-of-type .MuiTableCell-root ': { border: 0 } }}>
                       <TableCell>{data.component}</TableCell>
                       <TableCell>
-                        <Link href={data.link} target='_blank'>
+                        <LinkStyled href={data.link} target='_blank'>
                           {data.link}
-                        </Link>
+                        </LinkStyled>
                       </TableCell>
                     </TableRow>
                   ))}

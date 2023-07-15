@@ -28,6 +28,10 @@ export default [
     link: 'https://mui.com/material-ui/react-drawer/'
   },
   {
+    component: 'Icons',
+    link: 'https://mui.com/material-ui/icons/'
+  },
+  {
     component: 'Link',
     link: 'https://mui.com/material-ui/react-link/'
   },
@@ -42,10 +46,6 @@ export default [
   {
     component: 'Popper',
     link: 'https://mui.com/material-ui/react-popper/'
-  },
-  {
-    component: 'Progress',
-    link: 'https://mui.com/material-ui/react-progress/'
   },
   {
     component: 'Speed Dial',

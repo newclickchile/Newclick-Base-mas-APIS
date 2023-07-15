@@ -1,11 +1,13 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, useState, SyntheticEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
+
+// ** Next Import
+import Link from 'next/link'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import CardHeader from '@mui/material/CardHeader'
@@ -52,10 +54,6 @@ const FormLayoutsBasic = () => {
     setConfirmPassValues({ ...confirmPassValues, showPassword: !confirmPassValues.showPassword })
   }
 
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
-
   return (
     <Card>
       <CardHeader title='Basic' />
@@ -89,7 +87,7 @@ const FormLayoutsBasic = () => {
                       <IconButton
                         edge='end'
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                       >
                         <Icon icon={values.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -117,7 +115,7 @@ const FormLayoutsBasic = () => {
                       <IconButton
                         edge='end'
                         onClick={handleClickConfirmPassShow}
-                        onMouseDown={handleMouseDownPassword}
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                       >
                         <Icon icon={confirmPassValues.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -143,9 +141,15 @@ const FormLayoutsBasic = () => {
                 <Button type='submit' variant='contained' size='large'>
                   Get Started!
                 </Button>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& a': { color: 'primary.main', textDecoration: 'none' }
+                  }}
+                >
                   <Typography sx={{ mr: 2 }}>Already have an account?</Typography>
-                  <Link href='/' onClick={(e: SyntheticEvent) => e.preventDefault()}>
+                  <Link href='/' onClick={e => e.preventDefault()}>
                     Log in
                   </Link>
                 </Box>

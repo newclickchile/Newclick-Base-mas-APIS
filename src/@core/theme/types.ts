@@ -8,6 +8,7 @@ declare module '@mui/material/styles' {
       darkBg: string
       lightBg: string
       trackBg: string
+      avatarBg: string
       tableHeaderBg: string
       primaryGradient: string
     }
@@ -21,6 +22,7 @@ declare module '@mui/material/styles' {
       darkBg?: string
       lightBg?: string
       trackBg?: string
+      avatarBg?: string
       tableHeaderBg?: string
       primaryGradient?: string
     }

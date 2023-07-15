@@ -1,7 +1,4 @@
-// ** React Imports
-import { SyntheticEvent } from 'react'
-
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
@@ -77,7 +74,7 @@ const Teams = ({ data }: { data: TeamsTabType[] }) => {
                             href='/'
                             key={index}
                             component={Link}
-                            onClick={(e: SyntheticEvent) => e.preventDefault()}
+                            onClick={e => e.preventDefault()}
                             sx={{
                               textDecoration: 'none',
                               '&:not(:last-of-type)': { mr: 3 },

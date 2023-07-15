@@ -48,25 +48,41 @@ const TableHeader = (props: TableHeaderProps) => {
         </Button>
       </Box>
       <Dialog fullWidth maxWidth='sm' onClose={handleDialogToggle} open={open}>
-        <DialogTitle sx={{ pt: 12, mx: 'auto', textAlign: 'center' }}>
+        <DialogTitle
+          sx={{
+            textAlign: 'center',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <Typography variant='h5' component='span' sx={{ mb: 2 }}>
             Add New Permission
           </Typography>
           <Typography variant='body2'>Permissions you may use and assign to your users.</Typography>
         </DialogTitle>
-        <DialogContent sx={{ pb: 12, mx: 'auto' }}>
+        <DialogContent
+          sx={{
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <Box
             component='form'
             onSubmit={e => onSubmit(e)}
-            sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
+            sx={{
+              mt: 4,
+              mx: 'auto',
+              width: '100%',
+              maxWidth: 360,
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column'
+            }}
           >
-            <TextField
-              fullWidth
-              label='Permission Name'
-              sx={{ mb: 1, maxWidth: 360 }}
-              placeholder='Enter Permission Name'
-            />
-            <FormControlLabel control={<Checkbox />} label='Set as core permission' />
+            <TextField fullWidth sx={{ mb: 1 }} label='Permission Name' placeholder='Enter Permission Name' />
+            <Box sx={{ width: '100%', display: 'flex' }}>
+              <FormControlLabel control={<Checkbox />} label='Set as core permission' />
+            </Box>
             <Box className='demo-space-x' sx={{ '& > :last-child': { mr: '0 !important' } }}>
               <Button size='large' type='submit' variant='contained'>
                 Create Permission

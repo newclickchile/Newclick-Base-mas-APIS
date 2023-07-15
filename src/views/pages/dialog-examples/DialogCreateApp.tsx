@@ -150,11 +150,10 @@ const DialogCreateApp = () => {
       >
         <DialogContent
           sx={{
-            pt: { xs: 8, sm: 12.5 },
-            pr: { xs: 5, sm: 12 },
-            pb: { xs: 5, sm: 9.5 },
-            pl: { xs: 4, sm: 11 },
-            position: 'relative'
+            position: 'relative',
+            pr: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pl: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(11)} !important`],
+            py: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
           }}
         >
           <IconButton size='small' onClick={handleClose} sx={{ position: 'absolute', right: '1rem', top: '1rem' }}>
@@ -245,23 +244,23 @@ const DialogCreateApp = () => {
                   }
                 />
               </TabList>
-              <TabPanel value='detailsTab' sx={{ flexGrow: 1 }}>
+              <TabPanel value='detailsTab' sx={{ flexGrow: 1, p: '0 !important' }}>
                 <DialogTabDetails />
                 {renderTabFooter()}
               </TabPanel>
-              <TabPanel value='frameworkTab' sx={{ flexGrow: 1 }}>
+              <TabPanel value='frameworkTab' sx={{ flexGrow: 1, p: '0 !important' }}>
                 <DialogTabFramework />
                 {renderTabFooter()}
               </TabPanel>
-              <TabPanel value='DatabaseTab' sx={{ flexGrow: 1 }}>
+              <TabPanel value='DatabaseTab' sx={{ flexGrow: 1, p: '0 !important' }}>
                 <DialogTabDatabase />
                 {renderTabFooter()}
               </TabPanel>
-              <TabPanel value='paymentTab' sx={{ flexGrow: 1 }}>
+              <TabPanel value='paymentTab' sx={{ flexGrow: 1, p: '0 !important' }}>
                 <DialogTabBilling />
                 {renderTabFooter()}
               </TabPanel>
-              <TabPanel value='submitTab' sx={{ flexGrow: 1 }}>
+              <TabPanel value='submitTab' sx={{ flexGrow: 1, p: '0 !important' }}>
                 <Box sx={{ textAlign: 'center' }}>
                   <Typography variant='h6' sx={{ mb: 2 }}>
                     Submit 🥳

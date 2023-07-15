@@ -47,7 +47,7 @@ const HeaderTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   transition: 'opacity .25s ease-in-out, margin .25s ease-in-out'
 }))
 
-const StyledLink = styled(Link)({
+const LinkStyled = styled(Link)({
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none'
@@ -95,7 +95,7 @@ const VerticalNavHeader = (props: Props) => {
       {userNavMenuBranding ? (
         userNavMenuBranding(props)
       ) : (
-        <StyledLink href='/'>
+        <LinkStyled href='/'>
           <svg
             width={30}
             height={25}
@@ -158,7 +158,7 @@ const VerticalNavHeader = (props: Props) => {
           <HeaderTitle variant='h6' sx={{ ...menuCollapsedStyles, ...(navCollapsed && !navHover ? {} : { ml: 3 }) }}>
             {themeConfig.templateName}
           </HeaderTitle>
-        </StyledLink>
+        </LinkStyled>
       )}
 
       {hidden ? (

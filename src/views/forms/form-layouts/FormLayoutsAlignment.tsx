@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -48,9 +48,6 @@ const FormLayoutsAlignment = () => {
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   return (
     <Card>
@@ -78,7 +75,7 @@ const FormLayoutsAlignment = () => {
                       <IconButton
                         edge='end'
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                       >
                         <Icon icon={values.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -88,14 +85,10 @@ const FormLayoutsAlignment = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                label='Remember me'
-                control={<Checkbox name='form-layouts-alignment-checkbox' />}
-                sx={{ '& .MuiButtonBase-root': { pt: 0, pb: 0 } }}
-              />
+            <Grid item xs={12} sx={{ pt: theme => `${theme.spacing(2)} !important` }}>
+              <FormControlLabel label='Remember me' control={<Checkbox name='form-layouts-alignment-checkbox' />} />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ pt: theme => `${theme.spacing(2)} !important` }}>
               <Button size='large' type='submit' variant='contained' sx={{ width: '100%' }}>
                 Login
               </Button>

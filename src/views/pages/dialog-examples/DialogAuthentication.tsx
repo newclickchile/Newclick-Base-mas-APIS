@@ -83,7 +83,13 @@ const DialogAuthentication = () => {
         onBackdropClick={handleClose}
         TransitionComponent={Transition}
       >
-        <DialogContent sx={{ px: { xs: 8, sm: 15 }, py: { xs: 8, sm: 12.5 }, position: 'relative' }}>
+        <DialogContent
+          sx={{
+            position: 'relative',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            py: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <IconButton size='small' onClick={handleClose} sx={{ position: 'absolute', right: '1rem', top: '1rem' }}>
             <Icon icon='mdi:close' />
           </IconButton>
@@ -112,8 +118,19 @@ const DialogAuthentication = () => {
                     `1px solid ${authType === 'app' ? theme.palette.primary.main : theme.palette.divider}`
                 }}
               >
-                <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', '& svg': { mr: 3 } }}>
-                  <Icon icon='mdi:cog-outline' fontSize={35} />
+                <Box
+                  sx={{
+                    rowGap: 1.5,
+                    columnGap: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    textAlign: ['center', 'start'],
+                    flexDirection: ['column', 'row']
+                  }}
+                >
+                  <Box sx={{ display: 'flex' }}>
+                    <Icon icon='mdi:cog-outline' fontSize={35} />
+                  </Box>
                   <div>
                     <Typography
                       variant='h6'
@@ -141,8 +158,19 @@ const DialogAuthentication = () => {
                     `1px solid ${authType === 'sms' ? theme.palette.primary.main : theme.palette.divider}`
                 }}
               >
-                <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', '& svg': { mr: 3 } }}>
-                  <Icon icon='mdi:message-outline' fontSize={35} />
+                <Box
+                  sx={{
+                    rowGap: 1.5,
+                    columnGap: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    textAlign: ['center', 'start'],
+                    flexDirection: ['column', 'row']
+                  }}
+                >
+                  <Box sx={{ display: 'flex' }}>
+                    <Icon icon='mdi:message-outline' fontSize={35} />
+                  </Box>
                   <div>
                     <Typography
                       variant='h6'
@@ -186,7 +214,13 @@ const DialogAuthentication = () => {
         TransitionComponent={Transition}
         onBackdropClick={handleAuthDialogClose}
       >
-        <DialogContent sx={{ px: { xs: 8, sm: 15 }, py: { xs: 8, sm: 12.5 }, position: 'relative' }}>
+        <DialogContent
+          sx={{
+            position: 'relative',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            py: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <IconButton
             size='small'
             onClick={handleAuthDialogClose}
@@ -203,7 +237,7 @@ const DialogAuthentication = () => {
                   <Typography variant='body2'>
                     Enter your mobile phone number with country code and we will send you a verification code.
                   </Typography>
-                  <TextField fullWidth sx={{ my: 4 }} label='Mobile Number' placeholder='+1 123 456 7890' />
+                  <TextField fullWidth sx={{ my: 4 }} type='number' label='Mobile Number' placeholder='123 456 7890' />
                   <Grid container spacing={6}>
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <Button variant='outlined' color='secondary' onClick={handleAuthDialogClose} sx={{ mr: 4 }}>

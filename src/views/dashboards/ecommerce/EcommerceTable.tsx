@@ -236,7 +236,7 @@ const columns: GridColDef[] = [
 const EcommerceTable = () => {
   return (
     <Card>
-      <DataGrid autoHeight hideFooter rows={rows} columns={columns} disableSelectionOnClick pagination={undefined} />
+      <DataGrid autoHeight hideFooter rows={rows} columns={columns} disableRowSelectionOnClick pagination={undefined} />
     </Card>
   )
 }

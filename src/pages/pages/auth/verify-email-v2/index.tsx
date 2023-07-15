@@ -1,6 +1,9 @@
 // ** React Imports
 import { ReactNode } from 'react'
 
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Components
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -61,7 +64,7 @@ const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   }
 }))
 
-const LinkStyled = styled('a')(({ theme }) => ({
+const LinkStyled = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   marginLeft: theme.spacing(1),
   color: theme.palette.primary.main

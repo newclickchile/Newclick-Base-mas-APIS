@@ -1,7 +1,7 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
+import { ChangeEvent, ReactNode, useState } from 'react'
 
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
@@ -72,10 +72,6 @@ const LoginV1 = () => {
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
-  }
-
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   return (
@@ -176,7 +172,7 @@ const LoginV1 = () => {
                     <IconButton
                       edge='end'
                       onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
+                      onMouseDown={e => e.preventDefault()}
                       aria-label='toggle password visibility'
                     >
                       <Icon icon={values.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -204,36 +200,21 @@ const LoginV1 = () => {
             </Box>
             <Divider sx={{ my: theme => `${theme.spacing(5)} !important` }}>or</Divider>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <IconButton
-                href='/'
-                component={Link}
-                sx={{ color: '#497ce2' }}
-                onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
-              >
+              <IconButton href='/' component={Link} sx={{ color: '#497ce2' }} onClick={e => e.preventDefault()}>
                 <Icon icon='mdi:facebook' />
               </IconButton>
-              <IconButton
-                href='/'
-                component={Link}
-                sx={{ color: '#1da1f2' }}
-                onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
-              >
+              <IconButton href='/' component={Link} sx={{ color: '#1da1f2' }} onClick={e => e.preventDefault()}>
                 <Icon icon='mdi:twitter' />
               </IconButton>
               <IconButton
                 href='/'
                 component={Link}
-                onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
+                onClick={e => e.preventDefault()}
                 sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : 'grey.300') }}
               >
                 <Icon icon='mdi:github' />
               </IconButton>
-              <IconButton
-                href='/'
-                component={Link}
-                sx={{ color: '#db4437' }}
-                onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
-              >
+              <IconButton href='/' component={Link} sx={{ color: '#db4437' }} onClick={e => e.preventDefault()}>
                 <Icon icon='mdi:google' />
               </IconButton>
             </Box>

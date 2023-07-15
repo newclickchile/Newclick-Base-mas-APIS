@@ -12,7 +12,7 @@ import MuiTabList, { TabListProps } from '@mui/lab/TabList'
 
 // Styled TabList component
 const TabList = styled(MuiTabList)<TabListProps>(({ theme }) => ({
-  border: 0,
+  borderRight: 0,
   '& .MuiTabs-indicator': {
     display: 'none'
   },

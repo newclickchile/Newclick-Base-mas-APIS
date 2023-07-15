@@ -1,8 +1,10 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
-import MuiLink from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import Rating from '@mui/material/Rating'
 import Divider from '@mui/material/Divider'
@@ -94,9 +96,9 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
                     href='/'
-                    component={MuiLink}
+                    component={Link}
                     onClick={e => e.preventDefault()}
-                    sx={{ mr: 4, color: 'primary.main' }}
+                    sx={{ mr: 4, color: 'primary.main', textDecoration: 'none' }}
                   >
                     Google
                   </Typography>
@@ -141,9 +143,9 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
                     href='/'
-                    component={MuiLink}
+                    component={Link}
                     onClick={e => e.preventDefault()}
-                    sx={{ mr: 4, color: 'primary.main' }}
+                    sx={{ mr: 4, color: 'primary.main', textDecoration: 'none' }}
                   >
                     Apple
                   </Typography>
@@ -187,7 +189,12 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
             border: theme => `1px solid ${theme.palette.divider}`
           }}
         >
-          <Typography href='' component={MuiLink} onClick={e => e.preventDefault()} sx={{ color: 'primary.main' }}>
+          <Typography
+            href='/'
+            component={Link}
+            onClick={e => e.preventDefault()}
+            sx={{ color: 'primary.main', textDecoration: 'none' }}
+          >
             Add more products from wishlist
           </Typography>
           <Icon icon='mdi:chevron-right' />
@@ -209,9 +216,9 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
               <Typography
                 href='/'
                 variant='body2'
-                component={MuiLink}
+                component={Link}
                 onClick={e => e.preventDefault()}
-                sx={{ color: 'primary.main', fontWeight: 600 }}
+                sx={{ color: 'primary.main', fontWeight: 600, textDecoration: 'none' }}
               >
                 Add a gift wrap
               </Typography>
@@ -252,9 +259,9 @@ const StepCart = ({ handleNext }: { handleNext: () => void }) => {
                 <Typography
                   href='/'
                   variant='body2'
-                  component={MuiLink}
+                  component={Link}
                   onClick={e => e.preventDefault()}
-                  sx={{ display: 'block', fontWeight: 600, color: 'primary.main' }}
+                  sx={{ display: 'block', fontWeight: 600, color: 'primary.main', textDecoration: 'none' }}
                 >
                   Apply Coupon
                 </Typography>

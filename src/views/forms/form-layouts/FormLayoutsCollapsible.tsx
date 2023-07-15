@@ -104,7 +104,7 @@ const FormLayoutsCollapsible = () => {
               <TextField fullWidth label='Full Name' placeholder='Leonard Carter' />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField fullWidth label='Phone No.' placeholder='+1-123-456-8790' />
+              <TextField fullWidth type='number' label='Phone No.' placeholder='123-456-7890' />
             </Grid>
             <Grid item xs={12}>
               <TextField multiline rows={3} fullWidth label='Address' placeholder='1456, Liberty Street' />
@@ -177,8 +177,8 @@ const FormLayoutsCollapsible = () => {
             />
             <Box sx={{ width: '100%' }}>
               <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Typography sx={{ fontWeight: 600 }}>Standard 3-5 Days</Typography>
-                <Typography sx={{ fontWeight: 700 }}>Free</Typography>
+                <Typography sx={{ fontWeight: 500 }}>Standard 3-5 Days</Typography>
+                <Typography sx={{ fontWeight: 500 }}>Free</Typography>
               </Box>
               <Typography variant='body2'>Friday, 15 Nov - Monday, 18 Nov</Typography>
             </Box>
@@ -196,8 +196,8 @@ const FormLayoutsCollapsible = () => {
             />
             <Box sx={{ width: '100%' }}>
               <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Typography sx={{ fontWeight: 600 }}>Express</Typography>
-                <Typography sx={{ fontWeight: 700 }}>$5.00</Typography>
+                <Typography sx={{ fontWeight: 500 }}>Express</Typography>
+                <Typography sx={{ fontWeight: 500 }}>$5.00</Typography>
               </Box>
               <Typography variant='body2'>Friday, 15 Nov - Sunday, 17 Nov</Typography>
             </Box>
@@ -215,8 +215,8 @@ const FormLayoutsCollapsible = () => {
             />
             <Box sx={{ width: '100%' }}>
               <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Typography sx={{ fontWeight: 600 }}>Overnight</Typography>
-                <Typography sx={{ fontWeight: 700 }}>$10.00</Typography>
+                <Typography sx={{ fontWeight: 500 }}>Overnight</Typography>
+                <Typography sx={{ fontWeight: 500 }}>$10.00</Typography>
               </Box>
               <Typography variant='body2'>Friday, 15 Nov - Saturday, 16 Nov</Typography>
             </Box>

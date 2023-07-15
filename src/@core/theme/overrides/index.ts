@@ -1,8 +1,14 @@
 // ** MUI Imports
 import { Theme } from '@mui/material/styles'
+import { ComponentsPropsList } from '@mui/material'
 
 // ** Type Import
 import { Settings } from 'src/@core/context/settingsContext'
+
+export type OwnerStateThemeType = {
+  theme: Theme
+  ownerState: ComponentsPropsList[keyof ComponentsPropsList] & Record<string, unknown>
+}
 
 // ** Overrides Imports
 import MuiCard from './card'
@@ -11,6 +17,7 @@ import MuiLink from './link'
 import MuiList from './list'
 import MuiMenu from './menu'
 import MuiTabs from './tabs'
+import FabButton from './fab'
 import MuiInput from './input'
 import MuiPaper from './paper'
 import MuiTable from './table'
@@ -31,35 +38,38 @@ import MuiTimeline from './timeline'
 import MuiAccordion from './accordion'
 import MuiPagination from './pagination'
 import MuiTypography from './typography'
+import MuiBreadcrumb from './breadcrumbs'
 import MuiAutocomplete from './autocomplete'
 import MuiToggleButton from './toggleButton'
 
-const Overrides = (theme: Theme, settings: Settings) => {
-  const { skin } = settings
+const Overrides = (settings: Settings) => {
+  const { skin, mode } = settings
 
-  const button = MuiButton(theme)
-  const chip = MuiChip(theme)
-  const list = MuiList(theme)
-  const tabs = MuiTabs(theme)
-  const input = MuiInput(theme)
-  const tables = MuiTable(theme)
-  const alerts = MuiAlerts(theme)
-  const rating = MuiRating(theme)
-  const avatars = MuiAvatar(theme)
-  const divider = MuiDivider(theme)
-  const menu = MuiMenu(theme, skin)
-  const tooltip = MuiTooltip(theme)
-  const cards = MuiCard(theme, skin)
-  const backdrop = MuiBackdrop(theme)
-  const dataGrid = MuiDataGrid(theme)
-  const switches = MuiSwitches(theme)
-  const timeline = MuiTimeline(theme)
-  const accordion = MuiAccordion(theme)
-  const dialog = MuiDialog(theme, skin)
-  const pagination = MuiPagination(theme)
-  const popover = MuiPopover(theme, skin)
-  const snackbar = MuiSnackbar(theme, skin)
-  const autocomplete = MuiAutocomplete(theme, skin)
+  const chip = MuiChip()
+  const list = MuiList()
+  const tabs = MuiTabs()
+  const input = MuiInput()
+  const tables = MuiTable()
+  const menu = MuiMenu(skin)
+  const button = MuiButton()
+  const rating = MuiRating()
+  const cards = MuiCard(skin)
+  const avatars = MuiAvatar()
+  const divider = MuiDivider()
+  const tooltip = MuiTooltip()
+  const fabButton = FabButton()
+  const alerts = MuiAlerts(mode)
+  const dialog = MuiDialog(skin)
+  const backdrop = MuiBackdrop()
+  const dataGrid = MuiDataGrid()
+  const switches = MuiSwitches()
+  const timeline = MuiTimeline()
+  const popover = MuiPopover(skin)
+  const accordion = MuiAccordion()
+  const snackbar = MuiSnackbar(skin)
+  const pagination = MuiPagination()
+  const breadcrumb = MuiBreadcrumb()
+  const autocomplete = MuiAutocomplete(skin)
 
   return Object.assign(
     chip,
@@ -86,6 +96,8 @@ const Overrides = (theme: Theme, settings: Settings) => {
     timeline,
     accordion,
     MuiSelect,
+    fabButton,
+    breadcrumb,
     pagination,
     autocomplete,
     MuiTypography,

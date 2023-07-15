@@ -26,19 +26,22 @@ const renderList = (arr: ProfileTabCommonType[]) => {
           key={index}
           sx={{
             display: 'flex',
-            alignItems: 'center',
             '&:not(:last-of-type)': { mb: 4 },
             '& svg': { color: 'text.secondary' }
           }}
         >
-          <Icon icon={item.icon} />
+          <Box sx={{ display: 'flex', mr: 2 }}>
+            <Icon icon={item.icon} />
+          </Box>
 
-          <Typography sx={{ mx: 2, fontWeight: 600, color: 'text.secondary' }}>
-            {`${item.property.charAt(0).toUpperCase() + item.property.slice(1)}:`}
-          </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>
-            {item.value.charAt(0).toUpperCase() + item.value.slice(1)}
-          </Typography>
+          <Box sx={{ columnGap: 2, display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+            <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>
+              {`${item.property.charAt(0).toUpperCase() + item.property.slice(1)}:`}
+            </Typography>
+            <Typography sx={{ color: 'text.secondary' }}>
+              {item.value.charAt(0).toUpperCase() + item.value.slice(1)}
+            </Typography>
+          </Box>
         </Box>
       )
     })

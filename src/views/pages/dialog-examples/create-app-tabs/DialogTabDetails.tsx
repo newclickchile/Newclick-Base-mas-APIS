@@ -10,6 +10,9 @@ import Typography from '@mui/material/Typography'
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
+// ** Config Import
+import themeConfig from 'src/configs/themeConfig'
+
 // ** Custom Avatar Component
 import CustomAvatar from 'src/@core/components/mui/avatar'
 
@@ -22,7 +25,7 @@ const TabDetails = () => {
 
   return (
     <div>
-      <TextField fullWidth sx={{ mb: 4 }} label='Application Name' placeholder='Materio Admin' />
+      <TextField fullWidth sx={{ mb: 4 }} label='Application Name' placeholder={`${themeConfig.templateName} Admin`} />
       <Typography variant='h6' sx={{ mb: 4 }}>
         Category
       </Typography>

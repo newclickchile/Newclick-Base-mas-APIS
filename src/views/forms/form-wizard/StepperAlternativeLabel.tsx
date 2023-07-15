@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent, Fragment, MouseEvent, useState } from 'react'
+import { ChangeEvent, Fragment, useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -106,9 +106,6 @@ const StepperAlternativeLabel = () => {
   const handleClickShowPassword = () => {
     setState({ ...state, showPassword: !state.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   // Handle Confirm Password
   const handleConfirmChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -116,9 +113,6 @@ const StepperAlternativeLabel = () => {
   }
   const handleClickShowConfirmPassword = () => {
     setState({ ...state, showPassword2: !state.showPassword2 })
-  }
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   // Handle Language
@@ -164,7 +158,7 @@ const StepperAlternativeLabel = () => {
                       <IconButton
                         edge='end'
                         onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                       >
                         <Icon icon={state.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -187,9 +181,9 @@ const StepperAlternativeLabel = () => {
                     <InputAdornment position='end'>
                       <IconButton
                         edge='end'
+                        onMouseDown={e => e.preventDefault()}
                         aria-label='toggle password visibility'
                         onClick={handleClickShowConfirmPassword}
-                        onMouseDown={handleMouseDownConfirmPassword}
                       >
                         <Icon icon={state.showPassword2 ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                       </IconButton>

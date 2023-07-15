@@ -173,7 +173,13 @@ const DialogShareProject = () => {
         TransitionComponent={Transition}
         onBackdropClick={() => setShow(false)}
       >
-        <DialogContent sx={{ px: { xs: 8, sm: 15 }, py: { xs: 8, sm: 12.5 }, position: 'relative' }}>
+        <DialogContent
+          sx={{
+            position: 'relative',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            py: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <IconButton
             size='small'
             onClick={() => setShow(false)}
@@ -199,7 +205,7 @@ const DialogShareProject = () => {
             id='add-members'
             options={options}
             ListboxComponent={List}
-            getOptionLabel={option => option.name}
+            getOptionLabel={option => option.name || ''}
             renderInput={params => <TextField {...params} size='small' placeholder='Add project members...' />}
             renderOption={(props, option) => (
               <ListItem {...props}>

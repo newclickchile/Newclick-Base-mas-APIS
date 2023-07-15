@@ -52,7 +52,7 @@ const FormLayoutsIcons = () => {
                 fullWidth
                 type='number'
                 label='Phone No.'
-                placeholder='+1-123-456-8790'
+                placeholder='123-456-7890'
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position='start'>

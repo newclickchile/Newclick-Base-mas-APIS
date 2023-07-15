@@ -312,6 +312,86 @@ export default ButtonsIcons
   </pre>
 )
 
+export const ButtonsOutlinedJSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** MUI Imports
+import Button from '@mui/material/Button'
+
+const ButtonsOutlined = () => {
+  return (
+    <div className='demo-space-x'>
+      <Button variant='outlined'>Primary</Button>
+      <Button variant='outlined' color='secondary'>
+        Secondary
+      </Button>
+      <Button variant='outlined' disabled>
+        Disabled
+      </Button>
+      <Button variant='outlined' href='#'>
+        Link
+      </Button>
+    </div>
+  )
+}
+
+export default ButtonsOutlined
+`}</code>
+  </pre>
+)
+
+export const ButtonsWithIconAndLabelJSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** MUI Imports
+import Button from '@mui/material/Button'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
+
+const ButtonsWithIconAndLabel = () => {
+  return (
+    <div className='demo-space-x'>
+      <Button variant='contained' endIcon={<Icon icon='mdi:send' />}>
+        Send
+      </Button>
+      <Button variant='contained' color='secondary' startIcon={<Icon icon='mdi:delete-outline' />}>
+        Delete
+      </Button>
+    </div>
+  )
+}
+
+export default ButtonsWithIconAndLabel
+`}</code>
+  </pre>
+)
+
+export const ButtonsTextJSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** MUI Imports
+import Button from '@mui/material/Button'
+
+const ButtonsText = () => {
+  return (
+    <div className='demo-space-x'>
+      <Button variant='text'>Primary</Button>
+      <Button variant='text' color='secondary'>
+        Secondary
+      </Button>
+      <Button variant='text' disabled>
+        Disabled
+      </Button>
+      <Button variant='text' href='#'>
+        Link
+      </Button>
+    </div>
+  )
+}
+
+export default ButtonsText
+`}</code>
+  </pre>
+)
+
 export const ButtonsSizesJSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** React Imports
@@ -383,109 +463,56 @@ export default ButtonsSizes
   </pre>
 )
 
-export const ButtonsOutlinedJSXCode = (
+export const ButtonsColorsTSXCode = (
   <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
+    <code className='language-jsx'>{`// ** React Imports
+import { Fragment } from 'react'
+
+// ** MUI Imports
 import Button from '@mui/material/Button'
 
-const ButtonsOutlined = () => {
+const ButtonsColors = () => {
   return (
-    <div className='demo-space-x'>
-      <Button variant='outlined'>Primary</Button>
-      <Button variant='outlined' color='secondary'>
-        Secondary
-      </Button>
-      <Button variant='outlined' disabled>
-        Disabled
-      </Button>
-      <Button variant='outlined' href='#'>
-        Link
-      </Button>
-    </div>
+    <Fragment>
+      <div className='demo-space-x'>
+        <Button color='success'>Success</Button>
+        <Button color='error'>Error</Button>
+        <Button color='warning'>Warning</Button>
+        <Button color='info'>Info</Button>
+      </div>
+      <div className='demo-space-x'>
+        <Button variant='outlined' color='success'>
+          Success
+        </Button>
+        <Button variant='outlined' color='error'>
+          Error
+        </Button>
+        <Button variant='outlined' color='warning'>
+          Warning
+        </Button>
+        <Button variant='outlined' color='info'>
+          Info
+        </Button>
+      </div>
+      <div className='demo-space-x'>
+        <Button variant='contained' color='success'>
+          Success
+        </Button>
+        <Button variant='contained' color='error'>
+          Error
+        </Button>
+        <Button variant='contained' color='warning'>
+          Warning
+        </Button>
+        <Button variant='contained' color='info'>
+          Info
+        </Button>
+      </div>
+    </Fragment>
   )
 }
 
-export default ButtonsOutlined
-`}</code>
-  </pre>
-)
-
-export const ButtonsTextJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
-import Button from '@mui/material/Button'
-
-const ButtonsText = () => {
-  return (
-    <div className='demo-space-x'>
-      <Button variant='text'>Primary</Button>
-      <Button variant='text' color='secondary'>
-        Secondary
-      </Button>
-      <Button variant='text' disabled>
-        Disabled
-      </Button>
-      <Button variant='text' href='#'>
-        Link
-      </Button>
-    </div>
-  )
-}
-
-export default ButtonsText
-`}</code>
-  </pre>
-)
-
-export const ButtonsWithIconAndLabelJSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
-import Button from '@mui/material/Button'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-const ButtonsWithIconAndLabel = () => {
-  return (
-    <div className='demo-space-x'>
-      <Button variant='contained' endIcon={<Icon icon='mdi:send' />}>
-        Send
-      </Button>
-      <Button variant='contained' color='secondary' startIcon={<Icon icon='mdi:delete-outline' />}>
-        Delete
-      </Button>
-    </div>
-  )
-}
-
-export default ButtonsWithIconAndLabel
-`}</code>
-  </pre>
-)
-
-export const ButtonsContainedTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** MUI Imports
-import Button from '@mui/material/Button'
-
-const ButtonsContained = () => {
-  return (
-    <div className='demo-space-x'>
-      <Button variant='contained'>Primary</Button>
-      <Button variant='contained' color='secondary'>
-        Secondary
-      </Button>
-      <Button variant='contained' disabled>
-        Disabled
-      </Button>
-      <Button variant='contained' href='#'>
-        Link
-      </Button>
-    </div>
-  )
-}
-
-export default ButtonsContained
+export default ButtonsColors
 `}</code>
   </pre>
 )
@@ -570,60 +597,6 @@ const ButtonsFab = () => {
 }
 
 export default ButtonsFab
-`}</code>
-  </pre>
-)
-
-export const ButtonsColorsTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
-import { Fragment } from 'react'
-
-// ** MUI Imports
-import Button from '@mui/material/Button'
-
-const ButtonsColors = () => {
-  return (
-    <Fragment>
-      <div className='demo-space-x'>
-        <Button color='success'>Success</Button>
-        <Button color='error'>Error</Button>
-        <Button color='warning'>Warning</Button>
-        <Button color='info'>Info</Button>
-      </div>
-      <div className='demo-space-x'>
-        <Button variant='outlined' color='success'>
-          Success
-        </Button>
-        <Button variant='outlined' color='error'>
-          Error
-        </Button>
-        <Button variant='outlined' color='warning'>
-          Warning
-        </Button>
-        <Button variant='outlined' color='info'>
-          Info
-        </Button>
-      </div>
-      <div className='demo-space-x'>
-        <Button variant='contained' color='success'>
-          Success
-        </Button>
-        <Button variant='contained' color='error'>
-          Error
-        </Button>
-        <Button variant='contained' color='warning'>
-          Warning
-        </Button>
-        <Button variant='contained' color='info'>
-          Info
-        </Button>
-      </div>
-    </Fragment>
-  )
-}
-
-export default ButtonsColors
 `}</code>
   </pre>
 )
@@ -745,6 +718,77 @@ export default ButtonsFabSizes
   </pre>
 )
 
+export const ButtonsSizesTSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** React Imports
+import { Fragment } from 'react'
+
+// ** MUI Imports
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
+
+const ButtonsSizes = () => {
+  return (
+    <Fragment>
+      <div className='demo-space-x'>
+        <Button variant='text' size='small'>
+          Small
+        </Button>
+        <Button variant='text' size='medium'>
+          Medium
+        </Button>
+        <Button variant='text' size='large'>
+          Large
+        </Button>
+      </div>
+      <div className='demo-space-x'>
+        <Button variant='outlined' size='small'>
+          Small
+        </Button>
+        <Button variant='outlined' size='medium'>
+          Medium
+        </Button>
+        <Button variant='outlined' size='large'>
+          Large
+        </Button>
+      </div>
+      <div className='demo-space-x'>
+        <Button variant='contained' size='small'>
+          Small
+        </Button>
+        <Button variant='contained' size='medium'>
+          Medium
+        </Button>
+        <Button variant='contained' size='large'>
+          Large
+        </Button>
+      </div>
+      <div className='demo-space-x'>
+        <IconButton aria-label='capture screenshot' color='secondary' size='small'>
+          <Icon icon='mdi:camera-iris' fontSize='inherit' />
+        </IconButton>
+        <IconButton aria-label='capture screenshot' color='secondary'>
+          <Icon icon='mdi:camera-iris' fontSize={20} />
+        </IconButton>
+        <IconButton aria-label='capture screenshot' color='secondary'>
+          <Icon icon='mdi:camera-iris' />
+        </IconButton>
+        <IconButton aria-label='capture screenshot' color='secondary' size='large'>
+          <Icon icon='mdi:camera-iris' fontSize={35} />
+        </IconButton>
+      </div>
+    </Fragment>
+  )
+}
+
+export default ButtonsSizes
+`}</code>
+  </pre>
+)
+
 export const ButtonsWithIconAndLabelTSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** MUI Imports
@@ -825,73 +869,29 @@ export default ButtonsOutlined
   </pre>
 )
 
-export const ButtonsSizesTSXCode = (
+export const ButtonsContainedTSXCode = (
   <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** React Imports
-import { Fragment } from 'react'
-
-// ** MUI Imports
+    <code className='language-jsx'>{`// ** MUI Imports
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
 
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-const ButtonsSizes = () => {
+const ButtonsContained = () => {
   return (
-    <Fragment>
-      <div className='demo-space-x'>
-        <Button variant='text' size='small'>
-          Small
-        </Button>
-        <Button variant='text' size='medium'>
-          Medium
-        </Button>
-        <Button variant='text' size='large'>
-          Large
-        </Button>
-      </div>
-      <div className='demo-space-x'>
-        <Button variant='outlined' size='small'>
-          Small
-        </Button>
-        <Button variant='outlined' size='medium'>
-          Medium
-        </Button>
-        <Button variant='outlined' size='large'>
-          Large
-        </Button>
-      </div>
-      <div className='demo-space-x'>
-        <Button variant='contained' size='small'>
-          Small
-        </Button>
-        <Button variant='contained' size='medium'>
-          Medium
-        </Button>
-        <Button variant='contained' size='large'>
-          Large
-        </Button>
-      </div>
-      <div className='demo-space-x'>
-        <IconButton aria-label='capture screenshot' color='secondary' size='small'>
-          <Icon icon='mdi:camera-iris' fontSize='inherit' />
-        </IconButton>
-        <IconButton aria-label='capture screenshot' color='secondary'>
-          <Icon icon='mdi:camera-iris' fontSize={20} />
-        </IconButton>
-        <IconButton aria-label='capture screenshot' color='secondary'>
-          <Icon icon='mdi:camera-iris' />
-        </IconButton>
-        <IconButton aria-label='capture screenshot' color='secondary' size='large'>
-          <Icon icon='mdi:camera-iris' fontSize={35} />
-        </IconButton>
-      </div>
-    </Fragment>
+    <div className='demo-space-x'>
+      <Button variant='contained'>Primary</Button>
+      <Button variant='contained' color='secondary'>
+        Secondary
+      </Button>
+      <Button variant='contained' disabled>
+        Disabled
+      </Button>
+      <Button variant='contained' href='#'>
+        Link
+      </Button>
+    </div>
   )
 }
 
-export default ButtonsSizes
+export default ButtonsContained
 `}</code>
   </pre>
 )

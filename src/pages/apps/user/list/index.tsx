@@ -11,7 +11,6 @@ import Card from '@mui/material/Card'
 import Menu from '@mui/material/Menu'
 import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
-import { DataGrid } from '@mui/x-data-grid'
 import { styled } from '@mui/material/styles'
 import MenuItem from '@mui/material/MenuItem'
 import IconButton from '@mui/material/IconButton'
@@ -20,6 +19,7 @@ import CardHeader from '@mui/material/CardHeader'
 import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import CardContent from '@mui/material/CardContent'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 // ** Icon Imports
@@ -80,7 +80,7 @@ const userStatusObj: UserStatusType = {
   inactive: 'secondary'
 }
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const LinkStyled = styled(Link)(({ theme }) => ({
   fontWeight: 600,
   fontSize: '1rem',
   cursor: 'pointer',
@@ -171,7 +171,7 @@ const RowOptions = ({ id }: { id: number | string }) => {
   )
 }
 
-const columns = [
+const columns: GridColDef[] = [
   {
     flex: 0.2,
     minWidth: 230,
@@ -184,7 +184,7 @@ const columns = [
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {renderClient(row)}
           <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-            <StyledLink href='/apps/user/view/overview/'>{fullName}</StyledLink>
+            <LinkStyled href='/apps/user/view/overview/'>{fullName}</LinkStyled>
             <Typography noWrap variant='caption'>
               {`@${username}`}
             </Typography>
@@ -268,8 +268,8 @@ const UserList = ({ apiData }: InferGetStaticPropsType<typeof getStaticProps>) =
   const [plan, setPlan] = useState<string>('')
   const [value, setValue] = useState<string>('')
   const [status, setStatus] = useState<string>('')
-  const [pageSize, setPageSize] = useState<number>(10)
   const [addUserOpen, setAddUserOpen] = useState<boolean>(false)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 })
 
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
@@ -393,10 +393,10 @@ const UserList = ({ apiData }: InferGetStaticPropsType<typeof getStaticProps>) =
             rows={store.data}
             columns={columns}
             checkboxSelection
-            pageSize={pageSize}
-            disableSelectionOnClick
-            rowsPerPageOptions={[10, 25, 50]}
-            onPageSizeChange={(newPageSize: number) => setPageSize(newPageSize)}
+            disableRowSelectionOnClick
+            pageSizeOptions={[10, 25, 50]}
+            paginationModel={paginationModel}
+            onPaginationModelChange={setPaginationModel}
           />
         </Card>
       </Grid>

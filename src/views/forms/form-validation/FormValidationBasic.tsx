@@ -1,5 +1,5 @@
 // ** React Imports
-import { forwardRef, MouseEvent, useState, ChangeEvent } from 'react'
+import { forwardRef, useState, ChangeEvent } from 'react'
 
 // ** MUI Imports
 import Card from '@mui/material/Card'
@@ -89,10 +89,6 @@ const FormValidationBasic = () => {
 
   const handleClickShowPassword = () => {
     setState({ ...state, showPassword: !state.showPassword })
-  }
-
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   const onSubmit = () => toast.success('Form Submitted')
@@ -201,7 +197,7 @@ const FormValidationBasic = () => {
                           <IconButton
                             edge='end'
                             onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            onMouseDown={e => e.preventDefault()}
                             aria-label='toggle password visibility'
                           >
                             <Icon icon={state.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -350,7 +346,7 @@ const FormValidationBasic = () => {
               </FormControl>
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} sx={{ pt: theme => `${theme.spacing(2)} !important` }}>
               <FormControl>
                 <Controller
                   name='checkbox'

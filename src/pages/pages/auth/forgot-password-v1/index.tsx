@@ -1,7 +1,7 @@
 // ** React Imports
-import { ReactNode, SyntheticEvent } from 'react'
+import { ReactNode } from 'react'
 
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
@@ -42,10 +42,6 @@ const LinkStyled = styled(Link)(({ theme }) => ({
 const ForgotPasswordV1 = () => {
   // ** Hook
   const theme = useTheme()
-
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault()
-  }
 
   return (
     <Box className='content-center'>
@@ -132,7 +128,7 @@ const ForgotPasswordV1 = () => {
               Enter your email and we&prime;ll send you instructions to reset your password
             </Typography>
           </Box>
-          <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             <TextField autoFocus type='email' label='Email' sx={{ display: 'flex', mb: 4 }} />
             <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 5.25 }}>
               Send reset link

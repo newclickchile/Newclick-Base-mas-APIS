@@ -13,7 +13,7 @@ import themeConfig from 'src/configs/themeConfig'
 // ** Hook
 import { useSettings } from 'src/@core/hooks/useSettings'
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const LinkStyled = styled(Link)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
@@ -43,7 +43,7 @@ const BlankLayoutAppBar = () => {
           minHeight: `${(theme.mixins.toolbar.minHeight as number) - (skin === 'bordered' ? 1 : 0)}px !important`
         }}
       >
-        <StyledLink href='/'>
+        <LinkStyled href='/'>
           <svg
             width={30}
             height={25}
@@ -114,7 +114,7 @@ const BlankLayoutAppBar = () => {
           >
             {themeConfig.templateName}
           </Typography>
-        </StyledLink>
+        </LinkStyled>
       </Toolbar>
     </AppBar>
   )

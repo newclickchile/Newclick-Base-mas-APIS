@@ -1,80 +1,80 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
-const Timeline = (theme: Theme) => {
+const Timeline = () => {
   return {
     MuiTimelineItem: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '&:not(:last-of-type)': {
             '& .MuiTimelineContent-root': {
               marginBottom: theme.spacing(4)
             }
           }
-        }
+        })
       }
     },
     MuiTimelineConnector: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           backgroundColor: theme.palette.divider
-        }
+        })
       }
     },
     MuiTimelineContent: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           marginTop: theme.spacing(0.5)
-        }
+        })
       }
     },
     MuiTimelineDot: {
       styleOverrides: {
-        filledPrimary: {
+        filledPrimary: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.primary.main, 0.12)}`
-        },
-        filledSecondary: {
+        }),
+        filledSecondary: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.secondary.main, 0.12)}`
-        },
-        filledSuccess: {
+        }),
+        filledSuccess: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.success.main, 0.12)}`
-        },
-        filledError: {
+        }),
+        filledError: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.error.main, 0.12)}`
-        },
-        filledWarning: {
+        }),
+        filledWarning: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.warning.main, 0.12)}`
-        },
-        filledInfo: {
+        }),
+        filledInfo: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.info.main, 0.12)}`
-        },
-        filledGrey: {
+        }),
+        filledGrey: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: `0 0 0 3px ${hexToRGBA(theme.palette.grey[400], 0.12)}`
-        },
-        outlinedPrimary: {
+        }),
+        outlinedPrimary: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.primary.main }
-        },
-        outlinedSecondary: {
+        }),
+        outlinedSecondary: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.secondary.main }
-        },
-        outlinedSuccess: {
+        }),
+        outlinedSuccess: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.success.main }
-        },
-        outlinedError: {
+        }),
+        outlinedError: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.error.main }
-        },
-        outlinedWarning: {
+        }),
+        outlinedWarning: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.warning.main }
-        },
-        outlinedInfo: {
+        }),
+        outlinedInfo: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.info.main }
-        },
-        outlinedGrey: {
+        }),
+        outlinedGrey: ({ theme }: OwnerStateThemeType) => ({
           '& svg': { color: theme.palette.grey[400] }
-        }
+        })
       }
     }
   }

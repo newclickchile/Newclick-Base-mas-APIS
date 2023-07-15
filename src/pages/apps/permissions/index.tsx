@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
-import { DataGrid } from '@mui/x-data-grid'
 import Checkbox from '@mui/material/Checkbox'
 import FormGroup from '@mui/material/FormGroup'
 import TextField from '@mui/material/TextField'
@@ -17,6 +16,7 @@ import Typography from '@mui/material/Typography'
 import AlertTitle from '@mui/material/AlertTitle'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
 // ** Icon Imports
@@ -56,7 +56,7 @@ const colors: Colors = {
   'restricted-user': 'error'
 }
 
-const defaultColumns = [
+const defaultColumns: GridColDef[] = [
   {
     flex: 0.25,
     field: 'name',
@@ -94,9 +94,9 @@ const defaultColumns = [
 const PermissionsTable = () => {
   // ** State
   const [value, setValue] = useState<string>('')
-  const [pageSize, setPageSize] = useState<number>(10)
   const [editValue, setEditValue] = useState<string>('')
   const [editDialogOpen, setEditDialogOpen] = useState<boolean>(false)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 })
 
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
@@ -126,7 +126,7 @@ const PermissionsTable = () => {
     e.preventDefault()
   }
 
-  const columns = [
+  const columns: GridColDef[] = [
     ...defaultColumns,
     {
       flex: 0.15,
@@ -167,22 +167,33 @@ const PermissionsTable = () => {
               autoHeight
               rows={store.data}
               columns={columns}
-              pageSize={pageSize}
-              disableSelectionOnClick
-              rowsPerPageOptions={[10, 25, 50]}
-              onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+              disableRowSelectionOnClick
+              pageSizeOptions={[10, 25, 50]}
+              paginationModel={paginationModel}
+              onPaginationModelChange={setPaginationModel}
             />
           </Card>
         </Grid>
       </Grid>
       <Dialog maxWidth='sm' fullWidth onClose={handleDialogToggle} open={editDialogOpen}>
-        <DialogTitle sx={{ mx: 'auto', textAlign: 'center' }}>
+        <DialogTitle
+          sx={{
+            textAlign: 'center',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <Typography variant='h5' component='span' sx={{ mb: 2 }}>
             Edit Permission
           </Typography>
           <Typography variant='body2'>Edit permission as per your requirements.</Typography>
         </DialogTitle>
-        <DialogContent sx={{ mx: 'auto' }}>
+        <DialogContent
+          sx={{
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <Alert severity='warning' sx={{ maxWidth: '500px' }}>
             <AlertTitle>Warning!</AlertTitle>
             By editing the permission name, you might break the system permissions functionality. Please ensure you're

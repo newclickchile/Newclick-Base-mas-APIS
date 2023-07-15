@@ -1,41 +1,41 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
-const List = (theme: Theme) => {
+const List = () => {
   return {
     MuiListItemIcon: {
       styleOverrides: {
-        root: {
-          minWidth: 0,
+        root: ({ theme }: OwnerStateThemeType) => ({
+          minWidth: '0 !important',
           marginRight: theme.spacing(2.25),
           color: theme.palette.text.secondary
-        }
+        })
       }
     },
     MuiListItemAvatar: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           minWidth: 0,
           marginRight: theme.spacing(4)
-        }
+        })
       }
     },
     MuiListItemText: {
       styleOverrides: {
-        dense: {
+        dense: ({ theme }: OwnerStateThemeType) => ({
           '& .MuiListItemText-primary': {
             color: theme.palette.text.primary
           }
-        }
+        })
       }
     },
     MuiListSubheader: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           fontWeight: 600,
           textTransform: 'uppercase',
           color: theme.palette.text.primary
-        }
+        })
       }
     }
   }

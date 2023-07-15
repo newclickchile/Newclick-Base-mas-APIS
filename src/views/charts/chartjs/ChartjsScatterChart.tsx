@@ -44,9 +44,7 @@ const ChartjsScatterChart = (props: ScatterProps) => {
         min: 0,
         max: 140,
         grid: {
-          borderColor,
           drawTicks: false,
-          drawBorder: false,
           color: borderColor
         },
         ticks: {
@@ -58,9 +56,7 @@ const ChartjsScatterChart = (props: ScatterProps) => {
         min: 0,
         max: 400,
         grid: {
-          borderColor,
           drawTicks: false,
-          drawBorder: false,
           color: borderColor
         },
         ticks: {

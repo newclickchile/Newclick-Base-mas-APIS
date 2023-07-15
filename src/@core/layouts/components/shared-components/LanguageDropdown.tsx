@@ -1,3 +1,6 @@
+// ** React Import
+import { useEffect } from 'react'
+
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
@@ -25,6 +28,11 @@ const LanguageDropdown = ({ settings, saveSettings }: Props) => {
   const handleLangItemClick = (lang: 'en' | 'fr' | 'ar') => {
     i18n.changeLanguage(lang)
   }
+
+  // ** Change html `lang` attribute when changing locale
+  useEffect(() => {
+    document.documentElement.setAttribute('lang', i18n.language)
+  }, [i18n.language])
 
   return (
     <OptionsMenu

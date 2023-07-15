@@ -19,6 +19,10 @@ const CalendarWrapper = styled(Box)<BoxProps>(({ theme }) => {
     '& .fc': {
       zIndex: 1,
 
+      '.fc-col-header, .fc-daygrid-body, .fc-scrollgrid-sync-table, .fc-timegrid-body, .fc-timegrid-body table': {
+        width: '100% !important'
+      },
+
       // ** Toolbar
       '& .fc-toolbar': {
         flexWrap: 'wrap',
@@ -124,7 +128,7 @@ const CalendarWrapper = styled(Box)<BoxProps>(({ theme }) => {
           marginRight: theme.spacing(4),
           fontSize: theme.typography.h6.fontSize
         },
-        '.fc-button:empty, & .fc-toolbar-chunk:empty': {
+        '.fc-button:empty:not(.fc-sidebarToggle-button), & .fc-toolbar-chunk:empty': {
           display: 'none'
         }
       },
@@ -134,6 +138,9 @@ const CalendarWrapper = styled(Box)<BoxProps>(({ theme }) => {
         borderColor: theme.palette.divider,
         '&.fc-col-header-cell': {
           borderLeft: 0
+        },
+        '&[role="presentation"]': {
+          borderRightWidth: 0
         }
       },
 

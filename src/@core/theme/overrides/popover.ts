@@ -1,19 +1,17 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
-
-// ** Theme Type Import
+// ** Type Imports
+import { OwnerStateThemeType } from './'
 import { Skin } from 'src/@core/layouts/types'
 
-const Popover = (theme: Theme, skin: Skin) => {
+const Popover = (skin: Skin) => {
   return {
     MuiPopover: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '& .MuiPopover-paper': {
             boxShadow: theme.shadows[skin === 'bordered' ? 0 : 6],
             ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
           }
-        }
+        })
       }
     }
   }

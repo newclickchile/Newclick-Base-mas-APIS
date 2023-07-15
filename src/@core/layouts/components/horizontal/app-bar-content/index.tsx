@@ -20,7 +20,7 @@ interface Props {
   appBarBranding: NonNullable<NonNullable<LayoutProps['horizontalLayoutProps']>['appBar']>['branding']
 }
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const LinkStyled = styled(Link)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
@@ -39,7 +39,7 @@ const AppBarContent = (props: Props) => {
       {userAppBarBranding ? (
         userAppBarBranding(props)
       ) : (
-        <StyledLink href='/'>
+        <LinkStyled href='/'>
           <svg
             width={30}
             height={25}
@@ -110,7 +110,7 @@ const AppBarContent = (props: Props) => {
           >
             {themeConfig.templateName}
           </Typography>
-        </StyledLink>
+        </LinkStyled>
       )}
       {userAppBarContent ? userAppBarContent(props) : null}
     </Box>

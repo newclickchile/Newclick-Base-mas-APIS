@@ -350,7 +350,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: 'mdi:google-circles-extended'
     },
     {
-      
+
       title: 'Cards',
       icon: 'mdi:credit-card-outline',
       children: [
@@ -381,7 +381,7 @@ const navigation = (): VerticalNavItemsType => {
       ]
     },
     {
-      badgeContent: '18',
+      badgeContent: '19',
       title: 'Components',
       icon: 'mdi:archive-outline',
       badgeColor: 'primary',
@@ -429,6 +429,10 @@ const navigation = (): VerticalNavItemsType => {
         {
           title: 'Pagination',
           path: '/components/pagination'
+        },
+        {
+          title: 'Progress',
+          path: '/components/progress'
         },
         {
           title: 'Ratings',
@@ -573,8 +577,8 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       path: '/acl',
-      action: 'read',
-      subject: 'acl-page',
+      // action: 'read',
+      // subject: 'acl-page',
       icon: 'mdi:shield-outline',
       title: 'Access Control'
     },

@@ -1,6 +1,6 @@
 // ** MUI Imports
 import Divider from '@mui/material/Divider'
-import { styled, useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 import MuiListSubheader, { ListSubheaderProps } from '@mui/material/ListSubheader'
 
@@ -44,40 +44,14 @@ const VerticalNavSectionTitle = (props: Props) => {
   // ** Props
   const { item, navHover, settings, collapsedNavWidth, navigationBorderWidth } = props
 
-  // ** Hook
-  const theme = useTheme()
-
   // ** Vars
-  const { mode, navCollapsed } = settings
-
-  const conditionalColors = () => {
-    if (mode === 'semi-dark') {
-      return {
-        '& .MuiTypography-root': {
-          color: `rgba(${theme.palette.customColors.dark}, 0.38)`
-        },
-        '& .MuiDivider-root:before, & .MuiDivider-root:after, & hr': {
-          borderColor: `rgba(${theme.palette.customColors.dark}, ${navCollapsed && !navHover ? 0.3 : 0.12})`
-        }
-      }
-    } else {
-      return {
-        '& .MuiTypography-root': {
-          color: 'text.disabled'
-        },
-        '& .MuiDivider-root:before, & .MuiDivider-root:after, & hr': {
-          borderColor: `rgba(${theme.palette.customColors.main}, ${navCollapsed && !navHover ? 0.3 : 0.12})`
-        }
-      }
-    }
-  }
+  const { navCollapsed } = settings
 
   return (
     <CanViewNavSectionTitle navTitle={item}>
       <ListSubheader
         className='nav-section-title'
         sx={{
-          ...conditionalColors(),
           ...(navCollapsed && !navHover
             ? {
                 py: 3.5,
@@ -90,10 +64,13 @@ const VerticalNavSectionTitle = (props: Props) => {
         <Divider
           textAlign='left'
           sx={{
-            m: 0,
+            m: '0 !important',
             lineHeight: 'normal',
             ...(navCollapsed && !navHover
-              ? { width: 22 }
+              ? {
+                  width: 22,
+                  borderColor: theme => `rgba(${theme.palette.customColors.main}, 0.3)`
+                }
               : {
                   width: '100%',
                   textTransform: 'uppercase',
@@ -103,7 +80,7 @@ const VerticalNavSectionTitle = (props: Props) => {
           }}
         >
           {navCollapsed && !navHover ? null : (
-            <TypographyHeaderText noWrap>
+            <TypographyHeaderText noWrap sx={{ color: 'text.disabled' }}>
               <Translations text={item.sectionTitle} />
             </TypographyHeaderText>
           )}

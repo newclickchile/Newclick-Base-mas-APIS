@@ -1,4 +1,4 @@
-// ** MUI Import
+// ** MUI Imports
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import Switch from '@mui/material/Switch'

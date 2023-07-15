@@ -7,7 +7,7 @@ import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridColumnVisibilityModel, GridRenderCellParams } from '@mui/x-data-grid'
 
 // ** Third Party Components
 import toast from 'react-hot-toast'
@@ -77,8 +77,8 @@ const getFullName = (params: GridRenderCellParams) =>
 
 const TableColumns = () => {
   // ** States
-  const [pageSize, setPageSize] = useState<number>(7)
-  const [hideNameColumn, setHideNameColumn] = useState(false)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
+  const [hideNameColumn, setHideNameColumn] = useState<GridColumnVisibilityModel>({ full_name: true })
 
   const columns: GridColDef[] = [
     {
@@ -86,7 +86,6 @@ const TableColumns = () => {
       minWidth: 290,
       field: 'full_name',
       headerName: 'Name',
-      hide: hideNameColumn,
       renderCell: (params: GridRenderCellParams) => {
         const { row } = params
 
@@ -107,9 +106,11 @@ const TableColumns = () => {
     },
     {
       flex: 0.175,
+      type: 'date',
       minWidth: 120,
       headerName: 'Date',
       field: 'start_date',
+      valueGetter: params => new Date(params.value),
       renderCell: (params: GridRenderCellParams) => (
         <Typography variant='body2' sx={{ color: 'text.primary' }}>
           {params.row.start_date}
@@ -178,7 +179,11 @@ const TableColumns = () => {
         title='Column'
         action={
           <div>
-            <Button size='small' variant='contained' onClick={() => setHideNameColumn(!hideNameColumn)}>
+            <Button
+              size='small'
+              variant='contained'
+              onClick={() => setHideNameColumn({ full_name: !hideNameColumn['full_name'] })}
+            >
               Toggle Name Column
             </Button>
           </div>
@@ -188,10 +193,12 @@ const TableColumns = () => {
         autoHeight
         rows={rows}
         columns={columns}
-        pageSize={pageSize}
-        disableSelectionOnClick
-        rowsPerPageOptions={[7, 10, 25, 50]}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        disableRowSelectionOnClick
+        pageSizeOptions={[7, 10, 25, 50]}
+        paginationModel={paginationModel}
+        columnVisibilityModel={hideNameColumn}
+        onPaginationModelChange={setPaginationModel}
+        onColumnVisibilityModelChange={newValue => setHideNameColumn(newValue)}
       />
     </Card>
   )

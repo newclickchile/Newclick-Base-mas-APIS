@@ -1,7 +1,7 @@
 // ** React Imports
 import { useState, ChangeEvent } from 'react'
 
-// ** Next Imports
+// ** Next Import
 import { useRouter } from 'next/router'
 
 // ** MUI Imports
@@ -109,7 +109,7 @@ const HelpCenterLandingHeader = ({ data, allArticles }: Props) => {
         onClose={() => setOpen(false)}
         sx={{ my: 4.5, '& + .MuiAutocomplete-popper .MuiAutocomplete-listbox': { maxHeight: 250 } }}
         getOptionLabel={(option: HelpCenterSubcategoryArticlesType | unknown) =>
-          (option as HelpCenterSubcategoryArticlesType).title
+          (option as HelpCenterSubcategoryArticlesType).title || ''
         }
         isOptionEqualToValue={(option: HelpCenterSubcategoryArticlesType | unknown, value) =>
           value === (option as HelpCenterSubcategoryArticlesType)

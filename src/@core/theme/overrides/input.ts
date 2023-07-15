@@ -1,18 +1,18 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
-const input = (theme: Theme) => {
+const input = () => {
   return {
     MuiInputLabel: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           color: theme.palette.text.secondary
-        }
+        })
       }
     },
     MuiInput: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '&:before': {
             borderBottom: `1px solid rgba(${theme.palette.customColors.main}, 0.22)`
           },
@@ -22,12 +22,12 @@ const input = (theme: Theme) => {
           '&.Mui-disabled:before': {
             borderBottomStyle: 'solid'
           }
-        }
+        })
       }
     },
     MuiFilledInput: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           backgroundColor: `rgba(${theme.palette.customColors.main}, 0.04)`,
           '&:hover:not(.Mui-disabled)': {
             backgroundColor: `rgba(${theme.palette.customColors.main}, 0.08)`
@@ -38,12 +38,12 @@ const input = (theme: Theme) => {
           '&:hover:not(.Mui-disabled):before': {
             borderBottom: `1px solid rgba(${theme.palette.customColors.main}, 0.32)`
           }
-        }
+        })
       }
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
             borderColor: `rgba(${theme.palette.customColors.main}, 0.32)`
           },
@@ -56,7 +56,7 @@ const input = (theme: Theme) => {
           '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.text.disabled
           }
-        }
+        })
       }
     }
   }

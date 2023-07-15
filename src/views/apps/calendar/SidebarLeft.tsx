@@ -62,7 +62,7 @@ const SidebarLeft = (props: SidebarLeftType) => {
           keepMounted: true // Better open performance on mobile.
         }}
         sx={{
-          zIndex: 2,
+          zIndex: 3,
           display: 'block',
           position: mdAbove ? 'static' : 'absolute',
           '& .MuiDrawer-paper': {

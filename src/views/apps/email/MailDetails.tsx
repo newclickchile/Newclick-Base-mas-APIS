@@ -489,12 +489,12 @@ const MailDetails = (props: MailDetailsType) => {
                             {
                               text: 'Reply',
                               menuItemProps: { sx: { '& svg': { mr: 2 } } },
-                              icon: <Icon icon='mdi:share-outline' fontSize={20} />
+                              icon: <Icon icon='mdi:reply-outline' fontSize={20} />
                             },
                             {
                               text: 'Forward',
                               menuItemProps: { sx: { '& svg': { mr: 2 } } },
-                              icon: <Icon icon='mdi:reply-outline' fontSize={20} />
+                              icon: <Icon icon='mdi:share-outline' fontSize={20} />
                             }
                           ]}
                         />

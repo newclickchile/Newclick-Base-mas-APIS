@@ -28,8 +28,6 @@ const ChartjsLineChart = (props: LineProps) => {
       x: {
         ticks: { color: labelColor },
         grid: {
-          borderColor,
-          drawBorder: false,
           color: borderColor
         }
       },
@@ -41,8 +39,6 @@ const ChartjsLineChart = (props: LineProps) => {
           color: labelColor
         },
         grid: {
-          borderColor,
-          drawBorder: false,
           color: borderColor
         }
       }

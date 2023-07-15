@@ -1,10 +1,12 @@
 // ** React Imports
-import { useState, SyntheticEvent } from 'react'
+import { useState } from 'react'
+
+// ** Next Import
+import Link from 'next/link'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import Link from '@mui/material/Link'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -41,7 +43,11 @@ const CardPlanUpgrade = () => {
           />
         }
       />
-      <CardContent>
+      <CardContent
+        sx={{
+          '& > a': { mt: 4, fontWeight: 500, mb: 4, fontSize: '0.75rem', color: 'primary.main', textDecoration: 'none' }
+        }}
+      >
         <Typography component='p' variant='caption' sx={{ mb: 3.5 }}>
           Please make the payment to start enjoying all the features of our premium plan as soon as possible.
         </Typography>
@@ -77,13 +83,15 @@ const CardPlanUpgrade = () => {
                 justifyContent: 'space-between'
               }}
             >
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  '& a': { fontWeight: 500, fontSize: '0.75rem', color: 'primary.main', textDecoration: 'none' }
+                }}
+              >
                 <Typography sx={{ fontWeight: 500, fontSize: '0.875rem' }}>Platinum</Typography>
-                <Link
-                  href='/'
-                  sx={{ fontWeight: 500, fontSize: '0.75rem' }}
-                  onClick={(e: SyntheticEvent) => e.preventDefault()}
-                >
+                <Link href='/' onClick={e => e.preventDefault()}>
                   Upgrade Plan
                 </Link>
               </Box>
@@ -166,11 +174,7 @@ const CardPlanUpgrade = () => {
           </Box>
         </Box>
 
-        <Link
-          href='/'
-          onClick={(e: SyntheticEvent) => e.preventDefault()}
-          sx={{ mt: 4, fontWeight: 500, mb: 4, fontSize: '0.75rem' }}
-        >
+        <Link href='/' onClick={e => e.preventDefault()}>
           Add Payment Method
         </Link>
 

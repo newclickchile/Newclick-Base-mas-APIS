@@ -1,7 +1,9 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import MuiLink from '@mui/material/Link'
 import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
 import { styled } from '@mui/material/styles'
@@ -78,20 +80,30 @@ const StepConfirmation = () => {
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
-        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex', textAlign: 'center', alignItems: 'center', flexDirection: 'column' }}>
           <Typography variant='h5' sx={{ mb: 4 }}>
             Thank You! 😇
           </Typography>
           <Typography sx={{ mb: 4, color: 'text.secondary' }}>
             Your order{' '}
-            <Box href='/' component={MuiLink} onClick={e => e.preventDefault()}>
+            <Box
+              href='/'
+              component={Link}
+              onClick={e => e.preventDefault()}
+              sx={{ color: 'primary.main', textDecoration: 'none' }}
+            >
               #1536548131
             </Box>{' '}
             has been placed!
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
             We sent an email to{' '}
-            <Box href='/' component={MuiLink} onClick={e => e.preventDefault()}>
+            <Box
+              href='/'
+              component={Link}
+              onClick={e => e.preventDefault()}
+              sx={{ color: 'primary.main', textDecoration: 'none' }}
+            >
               john.doe@example.com
             </Box>{' '}
             with your order confirmation and receipt.
@@ -160,9 +172,9 @@ const StepConfirmation = () => {
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
                     href='/'
-                    component={MuiLink}
+                    component={Link}
                     onClick={e => e.preventDefault()}
-                    sx={{ mr: 4, color: 'primary.main' }}
+                    sx={{ mr: 4, color: 'primary.main', textDecoration: 'none' }}
                   >
                     Google
                   </Typography>
@@ -191,9 +203,9 @@ const StepConfirmation = () => {
                   <Typography sx={{ mr: 2, color: 'text.disabled' }}>Sold By:</Typography>
                   <Typography
                     href='/'
-                    component={MuiLink}
+                    component={Link}
                     onClick={e => e.preventDefault()}
-                    sx={{ mr: 4, color: 'primary.main' }}
+                    sx={{ mr: 4, color: 'primary.main', textDecoration: 'none' }}
                   >
                     Apple
                   </Typography>

@@ -1,28 +1,28 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
-const DataGrid = (theme: Theme) => {
+const DataGrid = () => {
   return {
     MuiDataGrid: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           border: 0,
           color: theme.palette.text.primary,
           '& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within': {
             outline: 'none'
           }
-        },
-        toolbarContainer: {
+        }),
+        toolbarContainer: ({ theme }: OwnerStateThemeType) => ({
           paddingRight: `${theme.spacing(5)} !important`,
           paddingLeft: `${theme.spacing(3.25)} !important`
-        },
-        columnHeaders: {
-          lineHeight: '24px !important',
+        }),
+        columnHeaders: ({ theme }: OwnerStateThemeType) => ({
           backgroundColor: theme.palette.customColors.tableHeaderBg
-        },
-        columnHeader: {
+        }),
+        columnHeader: ({ theme }: OwnerStateThemeType) => ({
           '&:not(.MuiDataGrid-columnHeaderCheckbox)': {
-            padding: theme.spacing(4),
+            paddingLeft: theme.spacing(4),
+            paddingRight: theme.spacing(4),
             '&:first-of-type': {
               paddingLeft: theme.spacing(5)
             }
@@ -30,7 +30,7 @@ const DataGrid = (theme: Theme) => {
           '&:last-of-type': {
             paddingRight: theme.spacing(5)
           }
-        },
+        }),
         columnHeaderCheckbox: {
           maxWidth: '58px !important',
           minWidth: '58px !important'
@@ -44,9 +44,9 @@ const DataGrid = (theme: Theme) => {
           letterSpacing: '0.17px',
           textTransform: 'uppercase'
         },
-        columnSeparator: {
+        columnSeparator: ({ theme }: OwnerStateThemeType) => ({
           color: theme.palette.divider
-        },
+        }),
         row: {
           '&:last-child': {
             '& .MuiDataGrid-cell': {
@@ -54,11 +54,11 @@ const DataGrid = (theme: Theme) => {
             }
           }
         },
-        cell: {
-          lineHeight: '20px !important',
+        cell: ({ theme }: OwnerStateThemeType) => ({
           borderColor: theme.palette.divider,
           '&:not(.MuiDataGrid-cellCheckbox)': {
-            padding: theme.spacing(4),
+            paddingLeft: theme.spacing(4),
+            paddingRight: theme.spacing(4),
             '&:first-of-type': {
               paddingLeft: theme.spacing(5)
             }
@@ -69,39 +69,33 @@ const DataGrid = (theme: Theme) => {
           '&:focus, &:focus-within': {
             outline: 'none'
           }
-        },
+        }),
         cellCheckbox: {
           maxWidth: '58px !important',
           minWidth: '58px !important'
         },
-        editInputCell: {
+        editInputCell: ({ theme }: OwnerStateThemeType) => ({
           padding: 0,
           color: theme.palette.text.primary,
           '& .MuiInputBase-input': {
             padding: 0
           }
-        },
-        footerContainer: {
-          minHeight: '50px !important',
+        }),
+        footerContainer: ({ theme }: OwnerStateThemeType) => ({
           borderTop: `1px solid ${theme.palette.divider}`,
           '& .MuiTablePagination-toolbar': {
-            minHeight: '50px !important',
             paddingLeft: `${theme.spacing(4)} !important`,
             paddingRight: `${theme.spacing(4)} !important`
           },
           '& .MuiTablePagination-displayedRows, & .MuiTablePagination-selectLabel': {
             color: theme.palette.text.primary
           }
-        },
-        selectedRowCount: {
+        }),
+        selectedRowCount: ({ theme }: OwnerStateThemeType) => ({
           margin: 0,
           paddingLeft: theme.spacing(4),
           paddingRight: theme.spacing(4)
-        }
-      },
-      defaultProps: {
-        rowHeight: 50,
-        headerHeight: 54
+        })
       }
     }
   }

@@ -1,16 +1,16 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
-const Rating = (theme: Theme) => {
+const Rating = () => {
   return {
     MuiRating: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           color: theme.palette.warning.main,
           '& svg': {
             flexShrink: 0
           }
-        }
+        })
       }
     }
   }

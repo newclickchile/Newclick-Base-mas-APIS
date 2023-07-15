@@ -1,5 +1,8 @@
 // ** MUI Imports
-import { ThemeOptions } from '@mui/system'
+import { ThemeOptions } from '@mui/material'
+
+// ** To use core palette, uncomment the below import
+// import { PaletteMode } from '@mui/material'
 
 // ** To use core palette, uncomment the below import
 // import corePalette from 'src/@core/theme/palette'
@@ -15,7 +18,7 @@ const UserThemeOptions = (): ThemeOptions => {
   // const { mode, skin, themeColor } = settings
 
   // ** To use core palette, uncomment the below line
-  // const palette = corePalette(mode, skin, themeColor)
+  // const palette = corePalette(mode as PaletteMode, skin, themeColor)
 
   return {
     /*

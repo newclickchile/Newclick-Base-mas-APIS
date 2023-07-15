@@ -1,8 +1,8 @@
 // ** Type Imports
-import { PaletteMode } from '@mui/material'
+import { Palette } from '@mui/material'
 import { Skin, ThemeColor } from 'src/@core/layouts/types'
 
-const DefaultPalette = (mode: PaletteMode, skin: Skin, themeColor: ThemeColor) => {
+const DefaultPalette = (mode: Palette['mode'], skin: Skin, themeColor: ThemeColor): Palette => {
   // ** Vars
   const whiteColor = '#FFF'
   const lightColor = '58, 53, 65'
@@ -43,6 +43,7 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin, themeColor: ThemeColor) =
       primaryGradient: primaryGradient(),
       bodyBg: mode === 'light' ? '#F4F5FA' : '#28243D', // Same as palette.background.default but doesn't consider bordered skin
       trackBg: mode === 'light' ? '#F0F2F8' : '#474360',
+      avatarBg: mode === 'light' ? '#F0EFF0' : '#3F3B59',
       darkBg: skin === 'bordered' ? '#312D4B' : '#28243D',
       lightBg: skin === 'bordered' ? whiteColor : '#F4F5FA',
       tableHeaderBg: mode === 'light' ? '#F9FAFC' : '#3D3759'
@@ -122,7 +123,7 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin, themeColor: ThemeColor) =
       disabledBackground: `rgba(${mainColor}, 0.12)`,
       focus: `rgba(${mainColor}, 0.12)`
     }
-  }
+  } as Palette
 }
 
 export default DefaultPalette

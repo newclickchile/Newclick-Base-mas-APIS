@@ -1,6 +1,9 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
+import { styled } from '@mui/material/styles'
 import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
@@ -22,6 +25,11 @@ import ChartjsHorizontalBarChart from 'src/views/charts/chartjs/ChartjsHorizonta
 
 // ** Third Party Styles Import
 import 'chart.js/auto'
+
+const LinkStyled = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
 
 const ChartJS = () => {
   // ** Hook
@@ -56,9 +64,9 @@ const ChartJS = () => {
         <PageHeader
           title={
             <Typography variant='h5'>
-              <Link href='https://github.com/reactchartjs/react-chartjs-2' target='_blank'>
+              <LinkStyled href='https://github.com/reactchartjs/react-chartjs-2' target='_blank'>
                 React ChartJS 2
-              </Link>
+              </LinkStyled>
             </Typography>
           }
           subtitle={<Typography variant='body2'>React wrapper for Chart.js</Typography>}

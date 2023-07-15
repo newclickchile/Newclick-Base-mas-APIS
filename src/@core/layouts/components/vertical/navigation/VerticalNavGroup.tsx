@@ -8,10 +8,10 @@ import { useRouter } from 'next/router'
 import Chip from '@mui/material/Chip'
 import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 import ListItemIcon from '@mui/material/ListItemIcon'
-import { styled, useTheme } from '@mui/material/styles'
 import ListItemButton from '@mui/material/ListItemButton'
 
 // ** Third Party Imports
@@ -51,9 +51,11 @@ interface Props {
   setCurrentActiveGroup: (items: string[]) => void
 }
 
-const MenuItemTextWrapper = styled(Box)<BoxProps>(() => ({
+const MenuItemTextWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   width: '100%',
   display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
   justifyContent: 'space-between',
   transition: 'opacity .25s ease-in-out',
   ...(themeConfig.menuTextTruncate && { overflow: 'hidden' })
@@ -77,10 +79,9 @@ const VerticalNavGroup = (props: Props) => {
   } = props
 
   // ** Hooks & Vars
-  const theme = useTheme()
   const router = useRouter()
   const currentURL = router.asPath
-  const { direction, mode, navCollapsed, verticalNavToggleType } = settings
+  const { direction, navCollapsed, verticalNavToggleType } = settings
 
   // ** Accordion menu group open toggle
   const toggleActiveGroup = (item: NavGroup, parent: NavGroup | undefined) => {
@@ -178,32 +179,6 @@ const VerticalNavGroup = (props: Props) => {
 
   const menuGroupCollapsedStyles = navCollapsed && !navHover ? { opacity: 0 } : { opacity: 1 }
 
-  const conditionalColors = () => {
-    if (mode === 'semi-dark') {
-      return {
-        color: `rgba(${theme.palette.customColors.dark}, 0.87)`,
-        '&:hover': {
-          backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.04)`
-        },
-        '&.Mui-selected': {
-          backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.08)`,
-          '&:hover': {
-            backgroundColor: `rgba(${theme.palette.customColors.dark}, 0.12)`
-          }
-        }
-      }
-    } else {
-      return {
-        '&.Mui-selected': {
-          backgroundColor: 'action.hover',
-          '&:hover': {
-            backgroundColor: 'action.hover'
-          }
-        }
-      }
-    }
-  }
-
   return (
     <CanViewNavGroup navGroup={item}>
       <Fragment>
@@ -220,12 +195,17 @@ const VerticalNavGroup = (props: Props) => {
             sx={{
               py: 2.25,
               width: '100%',
-              ...conditionalColors(),
               borderTopRightRadius: 100,
               borderBottomRightRadius: 100,
               transition: 'padding-left .25s ease-in-out',
               pl: navCollapsed && !navHover ? (collapsedNavWidth - navigationBorderWidth - 24) / 8 : 5.5,
               pr: navCollapsed && !navHover ? ((collapsedNavWidth - navigationBorderWidth - 24) / 2 - 5) / 4 : 3.5,
+              '&.Mui-selected': {
+                backgroundColor: 'action.hover',
+                '&:hover': {
+                  backgroundColor: 'action.hover'
+                }
+              },
               '&.Mui-selected.Mui-focusVisible': {
                 backgroundColor: 'action.focus',
                 '&:hover': {
@@ -258,12 +238,11 @@ const VerticalNavGroup = (props: Props) => {
               <Box
                 className='menu-item-meta'
                 sx={{
-                  ml: 0.8,
                   display: 'flex',
                   alignItems: 'center',
                   '& svg': {
+                    color: 'text.primary',
                     transition: 'transform .25s ease-in-out',
-                    color: mode === 'semi-dark' ? `rgba(${theme.palette.customColors.dark}, 0.87)` : 'text.primary',
                     ...(groupActive.includes(item.title) && {
                       transform: direction === 'ltr' ? 'rotate(90deg)' : 'rotate(-90deg)'
                     })
@@ -275,7 +254,7 @@ const VerticalNavGroup = (props: Props) => {
                     label={item.badgeContent}
                     color={item.badgeColor || 'primary'}
                     sx={{
-                      mr: 0.8,
+                      mr: 1.5,
                       height: 20,
                       fontWeight: 500,
                       '& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' }

@@ -41,6 +41,7 @@ const PickersOptions = ({ popperPlacement }: { popperPlacement: ReactDatePickerP
       </div>
       <div>
         <DatePicker
+          weekLabel='Wk'
           showWeekNumbers
           id='picker-week-num'
           selected={dateWeekNum}
@@ -61,6 +62,8 @@ const PickersOptions = ({ popperPlacement }: { popperPlacement: ReactDatePickerP
       </div>
       <div>
         <DatePicker
+          showYearDropdown
+          showMonthDropdown
           selected={dateOpen}
           id='picker-open-date'
           popperPlacement={popperPlacement}

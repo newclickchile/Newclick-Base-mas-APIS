@@ -1,9 +1,17 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
 import { Theme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
+
+const LinkStyled = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
 
 const FooterContent = () => {
   // ** Var
@@ -17,27 +25,27 @@ const FooterContent = () => {
           ❤️
         </Box>
         {` by `}
-        <Link target='_blank' href='https://themeselection.com/'>
+        <LinkStyled target='_blank' href='https://themeselection.com/'>
           ThemeSelection
-        </Link>
+        </LinkStyled>
       </Typography>
       {hidden ? null : (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', '& :not(:last-child)': { mr: 4 } }}>
-          <Link target='_blank' href='https://themeselection.com/license/'>
+          <LinkStyled target='_blank' href='https://themeselection.com/license/'>
             License
-          </Link>
-          <Link target='_blank' href='https://themeselection.com/'>
+          </LinkStyled>
+          <LinkStyled target='_blank' href='https://themeselection.com/'>
             More Themes
-          </Link>
-          <Link
+          </LinkStyled>
+          <LinkStyled
             target='_blank'
             href='https://demos.themeselection.com/materio-mui-react-nextjs-admin-template/documentation'
           >
             Documentation
-          </Link>
-          <Link target='_blank' href='https://themeselection.com/support/'>
+          </LinkStyled>
+          <LinkStyled target='_blank' href='https://themeselection.com/support/'>
             Support
-          </Link>
+          </LinkStyled>
         </Box>
       )}
     </Box>

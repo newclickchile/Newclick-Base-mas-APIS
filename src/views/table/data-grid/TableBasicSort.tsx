@@ -61,8 +61,8 @@ const statusObj: StatusObj = {
 
 const TableSort = () => {
   // ** States
-  const [pageSize, setPageSize] = useState<number>(7)
   const [isNameSortable, setIsNameSortable] = useState(true)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
 
   const columns: GridColDef[] = [
     {
@@ -91,10 +91,12 @@ const TableSort = () => {
     },
     {
       flex: 0.2,
+      type: 'date',
       minWidth: 120,
       headerName: 'Date',
       field: 'start_date',
       sortable: isNameSortable,
+      valueGetter: params => new Date(params.value),
       renderCell: (params: GridRenderCellParams) => (
         <Typography variant='body2' sx={{ color: 'text.primary' }}>
           {params.row.start_date}
@@ -163,9 +165,9 @@ const TableSort = () => {
         autoHeight
         rows={rows}
         columns={columns}
-        pageSize={pageSize}
-        rowsPerPageOptions={[7, 10, 25, 50]}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        pageSizeOptions={[7, 10, 25, 50]}
+        paginationModel={paginationModel}
+        onPaginationModelChange={setPaginationModel}
       />
     </Card>
   )

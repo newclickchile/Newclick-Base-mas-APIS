@@ -165,7 +165,7 @@ const ComposePopup = (props: MailComposeType) => {
     setState: (val: FieldMenuItems[]) => void
   ) => {
     return (
-      <ListItem key={option.value} sx={{ cursor: 'pointer' }} onClick={() => setState([...array, option])}>
+      <ListItem {...props} key={option.value} sx={{ cursor: 'pointer' }} onClick={() => setState([...array, option])}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {option.src.length ? (
             <CustomAvatar src={option.src} alt={option.name} sx={{ mr: 3, width: 22, height: 22 }} />

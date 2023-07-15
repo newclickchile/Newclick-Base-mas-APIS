@@ -18,8 +18,8 @@ import InputLabel from '@mui/material/InputLabel'
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
 import CardContent from '@mui/material/CardContent'
-import { DataGrid, GridRowId } from '@mui/x-data-grid'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import { DataGrid, GridColDef, GridRowId } from '@mui/x-data-grid'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
@@ -70,7 +70,7 @@ interface CellType {
 }
 
 // ** Styled component for the link in the dataTable
-const StyledLink = styled(Link)(({ theme }) => ({
+const LinkStyled = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   color: theme.palette.primary.main
 }))
@@ -102,13 +102,13 @@ const renderClient = (row: InvoiceType) => {
   }
 }
 
-const defaultColumns = [
+const defaultColumns: GridColDef[] = [
   {
     flex: 0.1,
     field: 'id',
     minWidth: 80,
     headerName: '#',
-    renderCell: ({ row }: CellType) => <StyledLink href={`/apps/invoice/preview/${row.id}`}>{`#${row.id}`}</StyledLink>
+    renderCell: ({ row }: CellType) => <LinkStyled href={`/apps/invoice/preview/${row.id}`}>{`#${row.id}`}</LinkStyled>
   },
   {
     flex: 0.1,
@@ -219,11 +219,11 @@ const InvoiceList = () => {
   // ** State
   const [dates, setDates] = useState<Date[]>([])
   const [value, setValue] = useState<string>('')
-  const [pageSize, setPageSize] = useState<number>(10)
   const [statusValue, setStatusValue] = useState<string>('')
   const [endDateRange, setEndDateRange] = useState<DateType>(null)
   const [selectedRows, setSelectedRows] = useState<GridRowId[]>([])
   const [startDateRange, setStartDateRange] = useState<DateType>(null)
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 })
 
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
@@ -256,7 +256,7 @@ const InvoiceList = () => {
     setEndDateRange(end)
   }
 
-  const columns = [
+  const columns: GridColDef[] = [
     ...defaultColumns,
     {
       flex: 0.1,
@@ -325,8 +325,9 @@ const InvoiceList = () => {
                       <MenuItem value='downloaded'>Downloaded</MenuItem>
                       <MenuItem value='draft'>Draft</MenuItem>
                       <MenuItem value='paid'>Paid</MenuItem>
-                      <MenuItem value='past due'>Past Due</MenuItem>
                       <MenuItem value='partial payment'>Partial Payment</MenuItem>
+                      <MenuItem value='past due'>Past Due</MenuItem>
+                      <MenuItem value='sent'>Sent</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
@@ -365,11 +366,11 @@ const InvoiceList = () => {
               rows={store.data}
               columns={columns}
               checkboxSelection
-              disableSelectionOnClick
-              pageSize={Number(pageSize)}
-              rowsPerPageOptions={[10, 25, 50]}
-              onSelectionModelChange={rows => setSelectedRows(rows)}
-              onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+              disableRowSelectionOnClick
+              pageSizeOptions={[10, 25, 50]}
+              paginationModel={paginationModel}
+              onPaginationModelChange={setPaginationModel}
+              onRowSelectionModelChange={rows => setSelectedRows(rows)}
             />
           </Card>
         </Grid>

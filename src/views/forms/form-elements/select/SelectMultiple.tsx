@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -45,7 +45,7 @@ const SelectMultiple = () => {
     setPersonName(event.target.value as string[])
   }
 
-  const handleChangeMultipleNative = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeMultipleNative = (event: ChangeEvent<HTMLSelectElement>) => {
     const { options } = event.target
     const value: string[] = []
     for (let i = 0, l = options.length; i < l; i += 1) {

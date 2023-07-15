@@ -1,14 +1,14 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
-const Table = (theme: Theme) => {
+const Table = () => {
   return {
     MuiTableContainer: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: theme.shadows[0],
           borderTopColor: theme.palette.divider
-        }
+        })
       }
     },
     MuiTableHead: {
@@ -25,7 +25,7 @@ const Table = (theme: Theme) => {
     },
     MuiTableBody: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '& .MuiTableCell-body': {
             letterSpacing: '0.25px',
             color: theme.palette.text.secondary,
@@ -34,12 +34,12 @@ const Table = (theme: Theme) => {
               paddingBottom: theme.spacing(3.5)
             }
           }
-        }
+        })
       }
     },
     MuiTableRow: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '& .MuiTableCell-head:not(.MuiTableCell-paddingCheckbox):first-child, & .MuiTableCell-root:not(.MuiTableCell-paddingCheckbox):first-child ':
             {
               paddingLeft: theme.spacing(5)
@@ -47,20 +47,20 @@ const Table = (theme: Theme) => {
           '& .MuiTableCell-head:last-child, & .MuiTableCell-root:last-child': {
             paddingRight: theme.spacing(5)
           }
-        }
+        })
       }
     },
     MuiTableCell: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           borderBottom: `1px solid ${theme.palette.divider}`
-        },
-        paddingCheckbox: {
+        }),
+        paddingCheckbox: ({ theme }: OwnerStateThemeType) => ({
           paddingLeft: theme.spacing(2)
-        },
-        stickyHeader: {
+        }),
+        stickyHeader: ({ theme }: OwnerStateThemeType) => ({
           backgroundColor: theme.palette.customColors.tableHeaderBg
-        }
+        })
       }
     }
   }

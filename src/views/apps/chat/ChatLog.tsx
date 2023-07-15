@@ -44,10 +44,10 @@ const ChatLog = (props: ChatLogType) => {
     if (chatArea.current) {
       if (hidden) {
         // @ts-ignore
-        chatArea.current.scrollTop = Number.MAX_SAFE_INTEGER
+        chatArea.current.scrollTop = chatArea.current.scrollHeight
       } else {
         // @ts-ignore
-        chatArea.current._container.scrollTop = Number.MAX_SAFE_INTEGER
+        chatArea.current._container.scrollTop = chatArea.current._container.scrollHeight
       }
     }
   }
@@ -180,8 +180,10 @@ const ChatLog = (props: ChatLogType) => {
                       sx={{
                         boxShadow: 1,
                         borderRadius: 1,
+                        maxWidth: '100%',
                         width: 'fit-content',
                         fontSize: '0.875rem',
+                        wordWrap: 'break-word',
                         p: theme => theme.spacing(3, 4),
                         ml: isSender ? 'auto' : undefined,
                         borderTopLeftRadius: !isSender ? 0 : undefined,

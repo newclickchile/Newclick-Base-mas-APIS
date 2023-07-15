@@ -1,9 +1,12 @@
+// ** Next Import
+import Link from 'next/link'
+
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
-import Link from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
+import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
@@ -62,6 +65,11 @@ const icons = [
   'mdi:account-box-multiple-outline'
 ]
 
+const LinkStyled = styled(Link)(({ theme }) => ({
+  textDecoration: 'none',
+  color: theme.palette.primary.main
+}))
+
 const Icons = () => {
   const renderIconGrids = () => {
     return icons.map((icon, index) => {
@@ -84,9 +92,9 @@ const Icons = () => {
       <PageHeader
         title={
           <Typography variant='h5'>
-            <Link href='https://iconify.design/' target='_blank'>
+            <LinkStyled href='https://iconify.design/' target='_blank'>
               Iconify Design
-            </Link>
+            </LinkStyled>
           </Typography>
         }
         subtitle={<Typography variant='body2'>Modern unified SVG framework</Typography>}

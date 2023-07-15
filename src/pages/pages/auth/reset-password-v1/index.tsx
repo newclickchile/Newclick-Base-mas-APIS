@@ -1,7 +1,7 @@
 // ** React Imports
-import { useState, SyntheticEvent, ChangeEvent, MouseEvent, ReactNode } from 'react'
+import { useState, ChangeEvent, ReactNode } from 'react'
 
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
@@ -61,19 +61,12 @@ const ResetPasswordV1 = () => {
   // ** Hook
   const theme = useTheme()
 
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault()
-  }
-
   // Handle New Password
   const handleNewPasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value })
   }
   const handleClickShowNewPassword = () => {
     setValues({ ...values, showNewPassword: !values.showNewPassword })
-  }
-  const handleMouseDownNewPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   // Handle Confirm New Password
@@ -82,9 +75,6 @@ const ResetPasswordV1 = () => {
   }
   const handleClickShowConfirmNewPassword = () => {
     setValues({ ...values, showConfirmNewPassword: !values.showConfirmNewPassword })
-  }
-  const handleMouseDownConfirmNewPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   return (
@@ -170,7 +160,7 @@ const ResetPasswordV1 = () => {
             </Typography>
             <Typography variant='body2'>Your new password must be different from previously used passwords</Typography>
           </Box>
-          <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             <FormControl sx={{ display: 'flex', mb: 4 }}>
               <InputLabel htmlFor='auth-reset-password-new-password'>New Password</InputLabel>
               <OutlinedInput
@@ -185,8 +175,8 @@ const ResetPasswordV1 = () => {
                     <IconButton
                       edge='end'
                       onClick={handleClickShowNewPassword}
+                      onMouseDown={e => e.preventDefault()}
                       aria-label='toggle password visibility'
-                      onMouseDown={handleMouseDownNewPassword}
                     >
                       <Icon icon={values.showNewPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                     </IconButton>
@@ -206,9 +196,9 @@ const ResetPasswordV1 = () => {
                   <InputAdornment position='end'>
                     <IconButton
                       edge='end'
+                      onMouseDown={e => e.preventDefault()}
                       aria-label='toggle password visibility'
                       onClick={handleClickShowConfirmNewPassword}
-                      onMouseDown={handleMouseDownConfirmNewPassword}
                     >
                       <Icon icon={values.showConfirmNewPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                     </IconButton>

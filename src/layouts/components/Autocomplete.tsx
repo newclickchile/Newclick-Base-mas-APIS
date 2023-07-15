@@ -470,7 +470,7 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                 onInputChange={(event, value: string) => setSearchValue(value)}
                 onChange={(event, obj) => handleOptionClick(obj as AppBarSearchType)}
                 noOptionsText={<NoResult value={searchValue} setOpenDialog={setOpenDialog} />}
-                getOptionLabel={(option: AppBarSearchType | unknown) => (option as AppBarSearchType).title}
+                getOptionLabel={(option: AppBarSearchType | unknown) => (option as AppBarSearchType).title || ''}
                 groupBy={(option: AppBarSearchType | unknown) =>
                   searchValue.length ? categoryTitle[(option as AppBarSearchType).category] : ''
                 }

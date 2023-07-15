@@ -1,11 +1,13 @@
 // ** React Imports
-import { SyntheticEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
+// ** Next Import
+import Link from 'next/link'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
-import Link from '@mui/material/Link'
 import Table from '@mui/material/Table'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
@@ -118,14 +120,14 @@ const RolesCards = () => {
               </AvatarGroup>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
                 <Typography variant='h6'>{item.title}</Typography>
                 <Typography
                   href='/'
                   variant='body2'
                   component={Link}
-                  sx={{ color: 'primary.main' }}
-                  onClick={(e: SyntheticEvent) => {
+                  sx={{ color: 'primary.main', textDecoration: 'none' }}
+                  onClick={e => {
                     e.preventDefault()
                     handleClickOpen()
                     setDialogTitle('Edit')
@@ -181,13 +183,24 @@ const RolesCards = () => {
         </Card>
       </Grid>
       <Dialog fullWidth maxWidth='md' scroll='body' onClose={handleClose} open={open}>
-        <DialogTitle sx={{ textAlign: 'center' }}>
+        <DialogTitle
+          sx={{
+            textAlign: 'center',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <Typography variant='h5' component='span'>
             {`${dialogTitle} Role`}
           </Typography>
           <Typography variant='body2'>Set Role Permissions</Typography>
         </DialogTitle>
-        <DialogContent sx={{ p: { xs: 6, sm: 12 } }}>
+        <DialogContent
+          sx={{
+            pb: theme => `${theme.spacing(5)} !important`,
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`]
+          }}
+        >
           <Box sx={{ my: 4 }}>
             <FormControl fullWidth>
               <TextField label='Role Name' placeholder='Enter Role Name' />
@@ -294,7 +307,14 @@ const RolesCards = () => {
             </Table>
           </TableContainer>
         </DialogContent>
-        <DialogActions sx={{ pt: 0, display: 'flex', justifyContent: 'center' }}>
+        <DialogActions
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
           <Box className='demo-space-x'>
             <Button size='large' type='submit' variant='contained' onClick={handleClose}>
               Submit

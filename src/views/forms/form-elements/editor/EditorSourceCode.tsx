@@ -33,6 +33,18 @@ export default EditorUncontrolled
   </pre>
 )
 
+export const EditorUncontrolledTSXCode = (
+  <pre className='language-jsx'>
+    <code className='language-jsx'>{`// ** Component Import
+import ReactDraftWysiwyg from 'src/@core/components/react-draft-wysiwyg'
+
+const EditorUncontrolled = () => <ReactDraftWysiwyg />
+
+export default EditorUncontrolled
+`}</code>
+  </pre>
+)
+
 export const EditorControlledTSXCode = (
   <pre className='language-jsx'>
     <code className='language-jsx'>{`// ** React Imports
@@ -52,18 +64,6 @@ const EditorControlled = () => {
 }
 
 export default EditorControlled
-`}</code>
-  </pre>
-)
-
-export const EditorUncontrolledTSXCode = (
-  <pre className='language-jsx'>
-    <code className='language-jsx'>{`// ** Component Import
-import ReactDraftWysiwyg from 'src/@core/components/react-draft-wysiwyg'
-
-const EditorUncontrolled = () => <ReactDraftWysiwyg />
-
-export default EditorUncontrolled
 `}</code>
   </pre>
 )

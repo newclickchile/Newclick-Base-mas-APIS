@@ -133,7 +133,7 @@ const navigation: HorizontalNavItemsType = [
         icon: 'mdi:google-circles-extended'
       },
       {
-        
+
         title: 'Cards',
         icon: 'mdi:credit-card-outline',
         children: [
@@ -210,6 +210,10 @@ const navigation: HorizontalNavItemsType = [
           {
             title: 'Pagination',
             path: '/components/pagination'
+          },
+          {
+            title: 'Progress',
+            path: '/components/progress'
           },
           {
             title: 'Ratings',
@@ -593,8 +597,8 @@ const navigation: HorizontalNavItemsType = [
     children: [
       {
         path: '/acl',
-        action: 'read',
-        subject: 'acl-page',
+        // action: 'read',
+        // subject: 'acl-page',
         icon: 'mdi:shield-outline',
         title: 'Access Control'
       },

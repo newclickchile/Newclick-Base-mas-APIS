@@ -1,11 +1,9 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
-
-// ** Theme Type Import
+// ** Type Imports
+import { OwnerStateThemeType } from './'
 import { Skin } from 'src/@core/layouts/types'
 
-const Menu = (theme: Theme, skin: Skin) => {
-  const boxShadow = () => {
+const Menu = (skin: Skin) => {
+  const boxShadow = (theme: OwnerStateThemeType['theme']) => {
     if (skin === 'bordered') {
       return theme.shadows[0]
     } else if (theme.palette.mode === 'light') {
@@ -16,13 +14,13 @@ const Menu = (theme: Theme, skin: Skin) => {
   return {
     MuiMenu: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           '& .MuiMenu-paper': {
             borderRadius: 5,
-            boxShadow: boxShadow(),
+            boxShadow: boxShadow(theme),
             ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` })
           }
-        }
+        })
       }
     }
   }

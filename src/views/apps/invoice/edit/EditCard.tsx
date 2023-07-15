@@ -92,7 +92,7 @@ const RepeaterWrapper = styled(CardContent)<CardContentProps>(({ theme }) => ({
   paddingTop: theme.spacing(12),
   paddingBottom: theme.spacing(12),
   '& .repeater-wrapper + .repeater-wrapper': {
-    marginTop: theme.spacing(8)
+    marginTop: theme.spacing(12)
   }
 }))
 

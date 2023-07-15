@@ -247,13 +247,21 @@ const UserViewBilling = () => {
             onClose={handleUpgradePlansClose}
             aria-labelledby='user-view-plans'
             aria-describedby='user-view-plans-description'
-            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650, pt: 8, pb: 8 } }}
+            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650 } }}
           >
-            <DialogTitle id='user-view-plans' sx={{ textAlign: 'center', fontSize: '1.5rem !important' }}>
+            <DialogTitle
+              id='user-view-plans'
+              sx={{
+                textAlign: 'center',
+                fontSize: '1.5rem !important',
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
               Upgrade Plan
             </DialogTitle>
 
-            <DialogContent>
+            <DialogContent sx={{ px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`] }}>
               <DialogContentText variant='body2' sx={{ textAlign: 'center' }} id='user-view-plans-description'>
                 Choose the best plan for the user.
               </DialogContentText>
@@ -261,12 +269,12 @@ const UserViewBilling = () => {
 
             <DialogContent
               sx={{
-                pb: 8,
-                px: [6, 15],
                 display: 'flex',
                 alignItems: 'center',
                 flexWrap: ['wrap', 'nowrap'],
-                pt: theme => `${theme.spacing(2)} !important`
+                pt: theme => `${theme.spacing(2)} !important`,
+                pb: theme => `${theme.spacing(8)} !important`,
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`]
               }}
             >
               <FormControl fullWidth size='small' sx={{ mr: [0, 3], mb: [3, 0] }}>
@@ -290,7 +298,13 @@ const UserViewBilling = () => {
 
             <Divider sx={{ m: '0 !important' }} />
 
-            <DialogContent sx={{ pt: 8, pl: [6, 15], pr: [6, 15] }}>
+            <DialogContent
+              sx={{
+                pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(8)} !important`],
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
               <Typography sx={{ fontWeight: 500, mb: 2, fontSize: '0.875rem' }}>
                 User current plan is standard plan
               </Typography>
@@ -390,13 +404,26 @@ const UserViewBilling = () => {
             open={openEditCard}
             onClose={handleEditCardClose}
             aria-labelledby='user-view-billing-edit-card'
-            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650, p: [2, 10] } }}
+            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650 } }}
             aria-describedby='user-view-billing-edit-card-description'
           >
-            <DialogTitle id='user-view-billing-edit-card' sx={{ textAlign: 'center', fontSize: '1.5rem !important' }}>
+            <DialogTitle
+              id='user-view-billing-edit-card'
+              sx={{
+                textAlign: 'center',
+                fontSize: '1.5rem !important',
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
               {dialogTitle} Card
             </DialogTitle>
-            <DialogContent>
+            <DialogContent
+              sx={{
+                pb: theme => `${theme.spacing(5)} !important`,
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`]
+              }}
+            >
               <DialogContentText
                 variant='body2'
                 id='user-view-billing-edit-card-description'
@@ -492,8 +519,14 @@ const UserViewBilling = () => {
                 </Grid>
               </form>
             </DialogContent>
-            <DialogActions sx={{ justifyContent: 'center' }}>
-              <Button variant='contained' sx={{ mr: 1 }} onClick={handleEditCardClose}>
+            <DialogActions
+              sx={{
+                justifyContent: 'center',
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
+              <Button variant='contained' sx={{ mr: 2 }} onClick={handleEditCardClose}>
                 Submit
               </Button>
               <Button variant='outlined' color='secondary' onClick={handleEditCardClose}>
@@ -638,45 +671,57 @@ const UserViewBilling = () => {
             open={openAddressCard}
             onClose={() => setOpenAddressCard(false)}
             aria-labelledby='user-address-edit'
-            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650, p: [2, 10] } }}
+            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650 } }}
             aria-describedby='user-address-edit-description'
           >
-            <DialogTitle id='user-address-edit' sx={{ textAlign: 'center', fontSize: '1.5rem !important' }}>
+            <DialogTitle
+              id='user-address-edit'
+              sx={{
+                textAlign: 'center',
+                fontSize: '1.5rem !important',
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
               Edit Address
             </DialogTitle>
-            <DialogContent>
+            <DialogContent
+              sx={{
+                pb: theme => `${theme.spacing(8)} !important`,
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`]
+              }}
+            >
               <DialogContentText variant='body2' id='user-address-edit-description' sx={{ textAlign: 'center', mb: 7 }}>
                 Edit Address for future billing
               </DialogContentText>
               <form>
                 <Grid container spacing={6}>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small' defaultValue='ThemeSelection' label='Company Name' />
+                    <TextField fullWidth defaultValue='ThemeSelection' label='Company Name' />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField type='email' size='small' defaultValue='gertrude@gmail.com' label='Email' />
+                    <TextField fullWidth type='email' defaultValue='gertrude@gmail.com' label='Email' />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small' defaultValue='TAX-875623' label='Tax ID' />
+                    <TextField fullWidth defaultValue='TAX-875623' label='Tax ID' />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small' defaultValue='SDF754K77' label='VAT Number' />
+                    <TextField fullWidth defaultValue='SDF754K77' label='VAT Number' />
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
                       multiline
                       minRows={2}
-                      size='small'
                       label='Billing Address'
                       defaultValue='100 Water Plant Avenue, Building 1303 Wake Island'
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small' defaultValue='+1(609) 933-44-22' label='Contact' />
+                    <TextField fullWidth defaultValue='+1(609) 933-44-22' label='Contact' />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <FormControl size='small' fullWidth>
+                    <FormControl fullWidth>
                       <InputLabel id='country-select'>Country</InputLabel>
                       <Select labelId='country-select' defaultValue='usa' label='Country'>
                         <MenuItem value='usa'>USA</MenuItem>
@@ -688,16 +733,22 @@ const UserViewBilling = () => {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small' defaultValue='Capholim' label='State' />
+                    <TextField fullWidth defaultValue='Capholim' label='State' />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField type='number' size='small' defaultValue='403114' label='Zip Code' />
+                    <TextField fullWidth type='number' defaultValue='403114' label='Zip Code' />
                   </Grid>
                 </Grid>
               </form>
             </DialogContent>
-            <DialogActions sx={{ justifyContent: 'center' }}>
-              <Button variant='contained' sx={{ mr: 1 }} onClick={() => setOpenAddressCard(false)}>
+            <DialogActions
+              sx={{
+                justifyContent: 'center',
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
+              <Button variant='contained' sx={{ mr: 2 }} onClick={() => setOpenAddressCard(false)}>
                 Submit
               </Button>
               <Button variant='outlined' color='secondary' onClick={() => setOpenAddressCard(false)}>

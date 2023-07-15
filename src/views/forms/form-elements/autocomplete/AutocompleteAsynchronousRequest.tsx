@@ -64,7 +64,7 @@ const AutocompleteAsynchronousRequest = () => {
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
       id='autocomplete-asynchronous-request'
-      getOptionLabel={option => option.title}
+      getOptionLabel={option => option.title || ''}
       isOptionEqualToValue={(option, value) => option.title === value.title}
       renderInput={params => (
         <TextField
@@ -74,7 +74,7 @@ const AutocompleteAsynchronousRequest = () => {
             ...params.InputProps,
             endAdornment: (
               <Fragment>
-                {loading ? <CircularProgress color='inherit' size={20} /> : null}
+                {loading ? <CircularProgress size={20} /> : null}
                 {params.InputProps.endAdornment}
               </Fragment>
             )

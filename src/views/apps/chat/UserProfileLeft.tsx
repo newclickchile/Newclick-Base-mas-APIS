@@ -8,6 +8,7 @@ import Badge from '@mui/material/Badge'
 import Radio from '@mui/material/Radio'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
+import Switch from '@mui/material/Switch'
 import ListItem from '@mui/material/ListItem'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
@@ -155,7 +156,7 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
                   Settings
                 </Typography>
                 <List dense sx={{ p: 0, mb: 4 }}>
-                  <ListItem disablePadding>
+                  <ListItem disablePadding secondaryAction={<Switch defaultChecked />}>
                     <ListItemButton sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
                         <Icon icon='mdi:check-circle-outline' fontSize='1.375rem' />
@@ -163,7 +164,7 @@ const UserProfileLeft = (props: UserProfileLeftType) => {
                       <ListItemText primary='Two-step Verification' />
                     </ListItemButton>
                   </ListItem>
-                  <ListItem disablePadding>
+                  <ListItem disablePadding secondaryAction={<Switch defaultChecked />}>
                     <ListItemButton sx={{ px: 2 }}>
                       <ListItemIcon sx={{ mr: 2, color: 'text.primary' }}>
                         <Icon icon='mdi:bell-outline' fontSize='1.375rem' />

@@ -1,25 +1,25 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
-const Tooltip = (theme: Theme) => {
+const Tooltip = () => {
   return {
     MuiTooltip: {
       styleOverrides: {
-        tooltip: {
+        tooltip: ({ theme }: OwnerStateThemeType) => ({
           backgroundColor:
             theme.palette.mode === 'light'
-              ? hexToRGBA(theme.palette.grey[900], 0.9)
-              : hexToRGBA(theme.palette.grey[700], 0.9)
-        },
-        arrow: {
+              ? `rgba(${theme.palette.customColors.main}, 0.9)`
+              : hexToRGBA(theme.palette.customColors.trackBg, 0.9)
+        }),
+        arrow: ({ theme }: OwnerStateThemeType) => ({
           color:
             theme.palette.mode === 'light'
-              ? hexToRGBA(theme.palette.grey[900], 0.9)
-              : hexToRGBA(theme.palette.grey[700], 0.9)
-        }
+              ? `rgba(${theme.palette.customColors.main}, 0.9)`
+              : hexToRGBA(theme.palette.customColors.trackBg, 0.9)
+        })
       }
     }
   }

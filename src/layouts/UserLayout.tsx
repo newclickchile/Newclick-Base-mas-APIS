@@ -26,7 +26,7 @@ import { useSettings } from 'src/@core/hooks/useSettings'
 
 interface Props {
   children: ReactNode
-  contentHeightFixed: boolean
+  contentHeightFixed?: boolean
 }
 
 const UserLayout = ({ children, contentHeightFixed }: Props) => {

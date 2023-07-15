@@ -5,8 +5,7 @@ import Typography from '@mui/material/Typography'
 // ** Custom Components Imports
 import CardSnippet from 'src/@core/components/card-snippet'
 
-// ** Demo Components Imports
-import TextareaBasic from 'src/views/forms/form-elements/textarea/TextareaBasic'
+// ** Demo Component Import
 import TextareaVariant from 'src/views/forms/form-elements/textarea/TextareaVariant'
 
 // ** Source code imports
@@ -15,21 +14,6 @@ import * as source from 'src/views/forms/form-elements/textarea/TextareaSourceCo
 const Textarea = () => {
   return (
     <Grid container spacing={6} className='match-height'>
-      <Grid item xs={12}>
-        <CardSnippet
-          title='Basic Textarea'
-          code={{
-            tsx: source.TextareaBasicTSXCode,
-            jsx: source.TextareaBasicJSXCode
-          }}
-        >
-          <Typography sx={{ mb: 4 }}>
-            Use <code>minRows</code> prop with <code>TextareaAutosize</code> component to add minimum rows in textarea
-            and <code>maxRows</code> prop to add maximum rows.
-          </Typography>
-          <TextareaBasic />
-        </CardSnippet>
-      </Grid>
       <Grid item xs={12}>
         <CardSnippet
           title='Variants'

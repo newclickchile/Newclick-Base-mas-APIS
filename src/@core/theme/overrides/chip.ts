@@ -1,10 +1,10 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
 // ** Util Imports
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
-const Chip = (theme: Theme) => {
+const Chip = () => {
   return {
     MuiChip: {
       styleOverrides: {
@@ -13,69 +13,66 @@ const Chip = (theme: Theme) => {
             borderRadius: 4
           }
         },
-        outlined: {
+        outlined: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-colorDefault': {
             borderColor: `rgba(${theme.palette.customColors.main}, 0.22)`
           }
-        },
+        }),
         deleteIcon: {
           width: 18,
           height: 18
         },
-        avatar: {
+        avatar: ({ theme }: OwnerStateThemeType) => ({
           color: theme.palette.text.primary
-        },
-        iconColorDefault: {
-          color: theme.palette.text.primary
-        },
-        deletableColorPrimary: {
+        }),
+        deletableColorPrimary: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-light .MuiChip-deleteIcon': {
             color: hexToRGBA(theme.palette.primary.main, 0.7),
             '&:hover': {
               color: theme.palette.primary.main
             }
           }
-        },
-        deletableColorSecondary: {
+        }),
+        deletableColorSecondary: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-light .MuiChip-deleteIcon': {
             color: hexToRGBA(theme.palette.secondary.main, 0.7),
             '&:hover': {
               color: theme.palette.secondary.main
             }
           }
-        },
-        deletableColorSuccess: {
+        }),
+        deletableColorSuccess: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-light .MuiChip-deleteIcon': {
             color: hexToRGBA(theme.palette.success.main, 0.7),
             '&:hover': {
               color: theme.palette.success.main
             }
           }
-        },
-        deletableColorError: {
+        }),
+        deletableColorError: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-light .MuiChip-deleteIcon': {
             color: hexToRGBA(theme.palette.error.main, 0.7),
             '&:hover': {
               color: theme.palette.error.main
             }
           }
-        },
-        deletableColorWarning: {
+        }),
+        deletableColorWarning: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-light .MuiChip-deleteIcon': {
             color: hexToRGBA(theme.palette.warning.main, 0.7),
             '&:hover': {
               color: theme.palette.warning.main
             }
           }
-        },
-        deletableColorInfo: {
+        }),
+        deletableColorInfo: ({ theme }: OwnerStateThemeType) => ({
           '&.MuiChip-light .MuiChip-deleteIcon': {
             color: hexToRGBA(theme.palette.info.main, 0.7),
             '&:hover': {
               color: theme.palette.info.main
             }
           }
-        }
+        })
       }
     }
   }

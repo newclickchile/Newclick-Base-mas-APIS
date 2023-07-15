@@ -1,14 +1,12 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
-
-// ** Theme Type Import
+// ** Type Imports
+import { OwnerStateThemeType } from './'
 import { Skin } from 'src/@core/layouts/types'
 
-const Card = (theme: Theme, skin: Skin) => {
+const Card = (skin: Skin) => {
   return {
     MuiCard: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           ...(skin === 'bordered' && { border: `1px solid ${theme.palette.divider}` }),
           '& .card-more-options': {
             marginTop: theme.spacing(-1),
@@ -17,7 +15,7 @@ const Card = (theme: Theme, skin: Skin) => {
           '& .MuiTableContainer-root, & .MuiDataGrid-root, & .MuiDataGrid-columnHeaders': {
             borderRadius: 0
           }
-        }
+        })
       },
       defaultProps: {
         elevation: skin === 'bordered' ? 0 : 6
@@ -25,7 +23,7 @@ const Card = (theme: Theme, skin: Skin) => {
     },
     MuiCardHeader: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           padding: theme.spacing(5),
           '& + .MuiCardContent-root, & + .MuiCardActions-root, & + .MuiCollapse-root .MuiCardContent-root': {
             paddingTop: 0
@@ -34,7 +32,7 @@ const Card = (theme: Theme, skin: Skin) => {
             fontSize: '0.875rem',
             color: theme.palette.text.secondary
           }
-        },
+        }),
         title: {
           lineHeight: 1.6,
           fontWeight: 500,
@@ -52,7 +50,7 @@ const Card = (theme: Theme, skin: Skin) => {
     },
     MuiCardContent: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           padding: theme.spacing(5),
           '& + .MuiCardHeader-root, & + .MuiCardContent-root, & + .MuiCardActions-root': {
             paddingTop: 0
@@ -60,12 +58,12 @@ const Card = (theme: Theme, skin: Skin) => {
           '&:last-of-type': {
             paddingBottom: theme.spacing(5)
           }
-        }
+        })
       }
     },
     MuiCardActions: {
       styleOverrides: {
-        root: {
+        root: ({ theme }: OwnerStateThemeType) => ({
           padding: theme.spacing(5),
           '& .MuiButton-text': {
             paddingLeft: theme.spacing(2.5),
@@ -83,7 +81,7 @@ const Card = (theme: Theme, skin: Skin) => {
               paddingTop: 0
             }
           }
-        }
+        })
       }
     }
   }

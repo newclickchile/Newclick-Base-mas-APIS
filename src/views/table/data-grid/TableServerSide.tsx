@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
-import { DataGrid, GridColumns, GridRenderCellParams, GridSortModel } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRenderCellParams, GridSortModel } from '@mui/x-data-grid'
 
 // ** ThirdParty Components
 import axios from 'axios'
@@ -62,7 +62,7 @@ const statusObj: StatusObj = {
   5: { title: 'applied', color: 'info' }
 }
 
-const columns: GridColumns = [
+const columns: GridColDef[] = [
   {
     flex: 0.25,
     minWidth: 290,
@@ -88,9 +88,11 @@ const columns: GridColumns = [
   },
   {
     flex: 0.175,
+    type: 'date',
     minWidth: 120,
     headerName: 'Date',
     field: 'start_date',
+    valueGetter: params => new Date(params.value),
     renderCell: (params: GridRenderCellParams) => (
       <Typography variant='body2' sx={{ color: 'text.primary' }}>
         {params.row.start_date}
@@ -141,17 +143,16 @@ const columns: GridColumns = [
 ]
 
 const TableServerSide = () => {
-  // ** State
-  const [page, setPage] = useState(0)
+  // ** States
   const [total, setTotal] = useState<number>(0)
   const [sort, setSort] = useState<SortType>('asc')
-  const [pageSize, setPageSize] = useState<number>(7)
   const [rows, setRows] = useState<DataGridRowType[]>([])
   const [searchValue, setSearchValue] = useState<string>('')
   const [sortColumn, setSortColumn] = useState<string>('full_name')
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
 
   function loadServerRows(currentPage: number, data: DataGridRowType[]) {
-    return data.slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+    return data.slice(currentPage * paginationModel.pageSize, (currentPage + 1) * paginationModel.pageSize)
   }
 
   const fetchTableData = useCallback(
@@ -166,11 +167,11 @@ const TableServerSide = () => {
         })
         .then(res => {
           setTotal(res.data.total)
-          setRows(loadServerRows(page, res.data.data))
+          setRows(loadServerRows(paginationModel.page, res.data.data))
         })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page, pageSize]
+    [paginationModel]
   )
 
   useEffect(() => {
@@ -203,15 +204,14 @@ const TableServerSide = () => {
         rowCount={total}
         columns={columns}
         checkboxSelection
-        pageSize={pageSize}
         sortingMode='server'
         paginationMode='server'
+        pageSizeOptions={[7, 10, 25, 50]}
+        paginationModel={paginationModel}
         onSortModelChange={handleSortModel}
-        rowsPerPageOptions={[7, 10, 25, 50]}
-        onPageChange={newPage => setPage(newPage)}
-        components={{ Toolbar: ServerSideToolbar }}
-        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-        componentsProps={{
+        slots={{ toolbar: ServerSideToolbar }}
+        onPaginationModelChange={setPaginationModel}
+        slotProps={{
           baseButton: {
             variant: 'outlined'
           },

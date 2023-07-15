@@ -52,8 +52,7 @@ const ChartjsAreaChart = (props: AreaProps) => {
     scales: {
       x: {
         grid: {
-          borderColor,
-          color: 'transparent'
+          color: borderColor
         },
         ticks: { color: labelColor }
       },
@@ -61,8 +60,7 @@ const ChartjsAreaChart = (props: AreaProps) => {
         min: 0,
         max: 400,
         grid: {
-          borderColor,
-          color: 'transparent'
+          color: borderColor
         },
         ticks: {
           stepSize: 100,

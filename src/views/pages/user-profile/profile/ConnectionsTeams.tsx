@@ -1,7 +1,4 @@
-// ** React Imports
-import { SyntheticEvent } from 'react'
-
-// ** Next Imports
+// ** Next Import
 import Link from 'next/link'
 
 // ** MUI Components
@@ -78,7 +75,7 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
               <Typography
                 href='/'
                 component={Link}
-                onClick={(e: SyntheticEvent) => e.preventDefault()}
+                onClick={e => e.preventDefault()}
                 sx={{ color: 'primary.main', textDecoration: 'none' }}
               >
                 View all connections
@@ -120,7 +117,7 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
                     <Box
                       href='/'
                       component={Link}
-                      onClick={(e: SyntheticEvent) => e.preventDefault()}
+                      onClick={e => e.preventDefault()}
                       sx={{ height: 0, textDecoration: 'none', '& .MuiChip-root': { cursor: 'pointer' } }}
                     >
                       <CustomChip size='small' skin='light' color={team.ChipColor} label={team.chipText} />
@@ -132,7 +129,7 @@ const ConnectionsTeams = ({ connections, teams }: Props) => {
               <Typography
                 href='/'
                 component={Link}
-                onClick={(e: SyntheticEvent) => e.preventDefault()}
+                onClick={e => e.preventDefault()}
                 sx={{ color: 'primary.main', textDecoration: 'none' }}
               >
                 View all teams

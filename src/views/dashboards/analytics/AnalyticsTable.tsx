@@ -229,7 +229,7 @@ const columns: GridColDef[] = [
 const AnalyticsTable = () => {
   return (
     <Card>
-      <DataGrid autoHeight hideFooter rows={rows} columns={columns} disableSelectionOnClick pagination={undefined} />
+      <DataGrid autoHeight hideFooter rows={rows} columns={columns} disableRowSelectionOnClick pagination={undefined} />
     </Card>
   )
 }

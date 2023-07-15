@@ -1,45 +1,52 @@
-// ** MUI Imports
-import { Theme } from '@mui/material/styles'
+// ** Type Import
+import { OwnerStateThemeType } from './'
 
 // ** Theme Config Imports
 import themeConfig from 'src/configs/themeConfig'
 
-const Button = (theme: Theme) => {
+const Button = () => {
   return {
     MuiButton: {
       styleOverrides: {
-        root: {
+        root: ({ ownerState, theme }: OwnerStateThemeType) => ({
           fontWeight: 500,
           borderRadius: 5,
           lineHeight: 1.71,
           letterSpacing: '0.3px',
-          padding: `${theme.spacing(1.875, 3)}`
-        },
-        contained: {
+          ...(ownerState.size === 'medium' &&
+            ownerState.variant === 'text' && {
+              padding: `${theme.spacing(1.875, 3)}`
+            })
+        }),
+        contained: ({ theme }: OwnerStateThemeType) => ({
           boxShadow: theme.shadows[3],
           padding: `${theme.spacing(1.875, 5.5)}`
-        },
-        outlined: {
+        }),
+        outlined: ({ theme }: OwnerStateThemeType) => ({
           padding: `${theme.spacing(1.625, 5.25)}`
-        },
-        sizeSmall: {
-          padding: `${theme.spacing(1, 2.25)}`,
-          '&.MuiButton-contained': {
+        }),
+        sizeSmall: ({ ownerState, theme }: OwnerStateThemeType) => ({
+          ...(ownerState.variant === 'text' && {
+            padding: `${theme.spacing(1, 2.25)}`
+          }),
+          ...(ownerState.variant === 'contained' && {
             padding: `${theme.spacing(1, 3.5)}`
-          },
-          '&.MuiButton-outlined': {
+          }),
+          ...(ownerState.variant === 'outlined' && {
             padding: `${theme.spacing(0.75, 3.25)}`
-          }
-        },
-        sizeLarge: {
-          padding: `${theme.spacing(2.125, 5.5)}`,
-          '&.MuiButton-contained': {
+          })
+        }),
+        sizeLarge: ({ ownerState, theme }: OwnerStateThemeType) => ({
+          ...(ownerState.variant === 'text' && {
+            padding: `${theme.spacing(2.125, 5.5)}`
+          }),
+          ...(ownerState.variant === 'contained' && {
             padding: `${theme.spacing(2.125, 6.5)}`
-          },
-          '&.MuiButton-outlined': {
+          }),
+          ...(ownerState.variant === 'outlined' && {
             padding: `${theme.spacing(1.875, 6.25)}`
-          }
-        }
+          })
+        })
       }
     },
     MuiButtonBase: {

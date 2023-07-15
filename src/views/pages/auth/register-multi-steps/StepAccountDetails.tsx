@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, MouseEvent } from 'react'
+import { useState } from 'react'
 
 // ** MUI Components
 import Box from '@mui/material/Box'
@@ -31,15 +31,9 @@ const StepAccountDetails = ({ handleNext }: { handleNext: () => void }) => {
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   const handleClickShowConfirmPassword = () => {
     setValues({ ...values, showConfirmPassword: !values.showConfirmPassword })
-  }
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   return (
@@ -69,7 +63,7 @@ const StepAccountDetails = ({ handleNext }: { handleNext: () => void }) => {
               type={values.showPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position='end'>
-                  <IconButton edge='end' onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                  <IconButton edge='end' onClick={handleClickShowPassword} onMouseDown={e => e.preventDefault()}>
                     <Icon icon={values.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                   </IconButton>
                 </InputAdornment>
@@ -79,18 +73,14 @@ const StepAccountDetails = ({ handleNext }: { handleNext: () => void }) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
-            <InputLabel htmlFor='input-confirm-password'>Password</InputLabel>
+            <InputLabel htmlFor='input-confirm-password'>Confirm Password</InputLabel>
             <OutlinedInput
-              label='Password'
+              label='Confirm Password'
               id='input-confirm-password'
               type={values.showConfirmPassword ? 'text' : 'password'}
               endAdornment={
                 <InputAdornment position='end'>
-                  <IconButton
-                    edge='end'
-                    onClick={handleClickShowConfirmPassword}
-                    onMouseDown={handleMouseDownConfirmPassword}
-                  >
+                  <IconButton edge='end' onMouseDown={e => e.preventDefault()} onClick={handleClickShowConfirmPassword}>
                     <Icon icon={values.showConfirmPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                   </IconButton>
                 </InputAdornment>

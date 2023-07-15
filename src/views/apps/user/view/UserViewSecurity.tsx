@@ -1,11 +1,13 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, useState, SyntheticEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
+
+// ** Next Import
+import Link from 'next/link'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import Link from '@mui/material/Link'
 import Alert from '@mui/material/Alert'
 import Table from '@mui/material/Table'
 import Button from '@mui/material/Button'
@@ -92,9 +94,6 @@ const UserViewSecurity = () => {
   const handleClickShowNewPassword = () => {
     setValues({ ...values, showNewPassword: !values.showNewPassword })
   }
-  const handleMouseDownNewPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   // Handle Confirm Password
   const handleConfirmNewPasswordChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -102,9 +101,6 @@ const UserViewSecurity = () => {
   }
   const handleClickShowConfirmNewPassword = () => {
     setValues({ ...values, showConfirmNewPassword: !values.showConfirmNewPassword })
-  }
-  const handleMouseDownConfirmNewPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   // Handle edit mobile number dialog
@@ -150,8 +146,8 @@ const UserViewSecurity = () => {
                           <IconButton
                             edge='end'
                             onClick={handleClickShowNewPassword}
+                            onMouseDown={e => e.preventDefault()}
                             aria-label='toggle password visibility'
-                            onMouseDown={handleMouseDownNewPassword}
                           >
                             <Icon icon={values.showNewPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                           </IconButton>
@@ -174,9 +170,9 @@ const UserViewSecurity = () => {
                         <InputAdornment position='end'>
                           <IconButton
                             edge='end'
+                            onMouseDown={e => e.preventDefault()}
                             aria-label='toggle password visibility'
                             onClick={handleClickShowConfirmNewPassword}
-                            onMouseDown={handleMouseDownConfirmNewPassword}
                           >
                             <Icon icon={values.showConfirmNewPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                           </IconButton>
@@ -227,10 +223,10 @@ const UserViewSecurity = () => {
 
             <Divider sx={{ mt: '0 !important', mb: theme => `${theme.spacing(4)} !important` }} />
 
-            <Typography variant='body2'>
+            <Typography variant='body2' sx={{ '& a': { color: 'primary.main', textDecoration: 'none' } }}>
               Two-factor authentication adds an additional layer of security to your account by requiring more than just
               a password to log in.{' '}
-              <Link href='/' onClick={(e: SyntheticEvent) => e.preventDefault()}>
+              <Link href='/' onClick={e => e.preventDefault()}>
                 Learn more
               </Link>
               .
@@ -241,17 +237,27 @@ const UserViewSecurity = () => {
             open={openEditMobileNumber}
             onClose={handleCancelClick}
             aria-labelledby='user-view-security-edit-mobile-number'
-            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650, p: [2, 10] } }}
+            sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650 } }}
             aria-describedby='user-view-security-edit-mobile-number-description'
           >
             <DialogTitle
               id='user-view-security-edit-mobile-number'
-              sx={{ textAlign: 'center', fontSize: '1.5rem !important' }}
+              sx={{
+                textAlign: 'center',
+                fontSize: '1.5rem !important',
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
             >
               Enable One Time Password
             </DialogTitle>
 
-            <DialogContent>
+            <DialogContent
+              sx={{
+                px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+              }}
+            >
               <Typography variant='h6'>Verify Your Mobile Number for SMS</Typography>
               <Typography variant='body2' sx={{ mt: 2, mb: 5 }}>
                 Enter your mobile phone number with country code and we will send you a verification code.

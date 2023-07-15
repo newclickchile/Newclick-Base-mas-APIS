@@ -511,209 +511,216 @@ const searchData: AppBarSearchType[] = [
   },
   {
     id: 73,
+    url: '/components/progress',
+    icon: 'mdi:chart-donut',
+    title: 'Progress',
+    category: 'userInterface'
+  },
+  {
+    id: 74,
     url: '/components/ratings',
     icon: 'mdi:star-outline',
     title: 'Ratings',
     category: 'userInterface'
   },
   {
-    id: 74,
+    id: 75,
     url: '/components/snackbar',
     icon: 'mdi:message-processing-outline',
     title: 'Snackbar',
     category: 'userInterface'
   },
   {
-    id: 75,
+    id: 76,
     url: '/components/swiper',
     icon: 'mdi:view-carousel-outline',
     title: 'Swiper',
     category: 'userInterface'
   },
   {
-    id: 76,
+    id: 77,
     url: '/components/tabs',
     icon: 'mdi:tab',
     title: 'Tabs',
     category: 'userInterface'
   },
   {
-    id: 77,
+    id: 78,
     url: '/components/timeline',
     icon: 'mdi:timeline-outline',
     title: 'Timeline',
     category: 'userInterface'
   },
   {
-    id: 78,
+    id: 79,
     url: '/components/toast',
     icon: 'mdi:bell-outline',
     title: 'Toast',
     category: 'userInterface'
   },
   {
-    id: 79,
+    id: 80,
     url: '/components/tree-view',
     icon: 'mdi:file-tree-outline',
     title: 'Tree View',
     category: 'userInterface'
   },
   {
-    id: 80,
+    id: 81,
     url: '/components/more',
     icon: 'mdi:view-grid-plus-outline',
     title: 'More Components',
     category: 'userInterface'
   },
   {
-    id: 81,
+    id: 82,
     url: '/forms/form-elements/text-field',
     icon: 'mdi:lastpass',
     title: 'TextField',
     category: 'formsTables'
   },
   {
-    id: 82,
+    id: 83,
     url: '/forms/form-elements/select',
     icon: 'mdi:format-list-checkbox',
     title: 'Select',
     category: 'formsTables'
   },
   {
-    id: 83,
+    id: 84,
     url: '/forms/form-elements/checkbox',
     icon: 'mdi:checkbox-outline',
     title: 'Checkbox',
     category: 'formsTables'
   },
   {
-    id: 84,
+    id: 85,
     url: '/forms/form-elements/radio',
     icon: 'mdi:radiobox-marked',
     title: 'Radio',
     category: 'formsTables'
   },
   {
-    id: 85,
+    id: 86,
     icon: 'mdi:order-bool-ascending-variant',
     title: 'Custom Inputs',
     category: 'formsTables',
     url: '/forms/form-elements/custom-inputs'
   },
   {
-    id: 86,
+    id: 87,
     url: '/forms/form-elements/textarea',
     icon: 'mdi:card-text-outline',
     title: 'Textarea',
     category: 'formsTables'
   },
   {
-    id: 87,
+    id: 88,
     url: '/forms/form-elements/autocomplete',
     icon: 'mdi:lastpass',
     title: 'Autocomplete',
     category: 'formsTables'
   },
   {
-    id: 88,
+    id: 89,
     url: '/forms/form-elements/pickers',
     icon: 'mdi:calendar-month',
     title: 'Date Pickers',
     category: 'formsTables'
   },
   {
-    id: 89,
+    id: 90,
     url: '/forms/form-elements/switch',
     icon: 'mdi:toggle-switch-outline',
     title: 'Switch',
     category: 'formsTables'
   },
   {
-    id: 90,
+    id: 91,
     url: '/forms/form-elements/file-uploader',
     icon: 'mdi:tray-arrow-up',
     title: 'File Uploader',
     category: 'formsTables'
   },
   {
-    id: 91,
+    id: 92,
     url: '/forms/form-elements/editor',
     icon: 'mdi:square-edit-outline',
     title: 'Editor',
     category: 'formsTables'
   },
   {
-    id: 92,
+    id: 93,
     url: '/forms/form-elements/slider',
     icon: 'mdi:gesture-swipe-horizontal',
     title: 'Slider',
     category: 'formsTables'
   },
   {
-    id: 93,
+    id: 94,
     url: '/forms/form-elements/input-mask',
     icon: 'mdi:lastpass',
     title: 'Input Mask',
     category: 'formsTables'
   },
   {
-    id: 94,
+    id: 95,
     url: '/forms/form-layouts',
     icon: 'mdi:cube-outline',
     title: 'Form Layouts',
     category: 'formsTables'
   },
   {
-    id: 95,
+    id: 96,
     url: '/forms/form-validation',
     icon: 'mdi:checkbox-marked-circle-outline',
     title: 'Form Validation',
     category: 'formsTables'
   },
   {
-    id: 96,
+    id: 97,
     url: '/forms/form-wizard',
     icon: 'mdi:transit-connection-horizontal',
     title: 'Form Wizard',
     category: 'formsTables'
   },
   {
-    id: 97,
+    id: 98,
     url: '/tables/mui',
     icon: 'mdi:grid-large',
     title: 'Table',
     category: 'formsTables'
   },
   {
-    id: 98,
+    id: 99,
     url: '/tables/data-grid',
     icon: 'mdi:grid',
     title: 'Mui DataGrid',
     category: 'formsTables'
   },
   {
-    id: 99,
+    id: 100,
     url: '/charts/apex-charts',
     icon: 'mdi:chart-line',
     title: 'Apex Charts',
     category: 'chartsMisc'
   },
   {
-    id: 100,
+    id: 101,
     url: '/charts/recharts',
     icon: 'mdi:chart-bell-curve-cumulative',
     title: 'Recharts',
     category: 'chartsMisc'
   },
   {
-    id: 101,
+    id: 102,
     url: '/charts/chartjs',
     icon: 'mdi:chart-bell-curve',
     title: 'ChartJS',
     category: 'chartsMisc'
   },
   {
-    id: 102,
+    id: 103,
     url: '/acl',
     icon: 'mdi:shield-outline',
     title: 'Access Control (ACL)',

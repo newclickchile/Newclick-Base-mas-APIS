@@ -105,12 +105,12 @@ const UserViewLeft = () => {
         <Grid item xs={12}>
           <Card>
             <CardContent sx={{ pt: 15, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-              {data.avatar.length ? (
+              {data.avatar ? (
                 <CustomAvatar
                   src={data.avatar}
                   variant='rounded'
                   alt={data.fullName}
-                  sx={{ width: 120, height: 120, fontWeight: 600, mb: 4, fontSize: '3rem' }}
+                  sx={{ width: 120, height: 120, fontWeight: 600, mb: 4 }}
                 />
               ) : (
                 <CustomAvatar
@@ -213,13 +213,26 @@ const UserViewLeft = () => {
               open={openEdit}
               onClose={handleEditClose}
               aria-labelledby='user-view-edit'
-              sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650, p: [2, 10] } }}
               aria-describedby='user-view-edit-description'
+              sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650 } }}
             >
-              <DialogTitle id='user-view-edit' sx={{ textAlign: 'center', fontSize: '1.5rem !important' }}>
+              <DialogTitle
+                id='user-view-edit'
+                sx={{
+                  textAlign: 'center',
+                  fontSize: '1.5rem !important',
+                  px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                  pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+                }}
+              >
                 Edit User Information
               </DialogTitle>
-              <DialogContent>
+              <DialogContent
+                sx={{
+                  pb: theme => `${theme.spacing(8)} !important`,
+                  px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`]
+                }}
+              >
                 <DialogContentText variant='body2' id='user-view-edit-description' sx={{ textAlign: 'center', mb: 7 }}>
                   Updating user details will receive a privacy audit.
                 </DialogContentText>
@@ -306,8 +319,14 @@ const UserViewLeft = () => {
                   </Grid>
                 </form>
               </DialogContent>
-              <DialogActions sx={{ justifyContent: 'center' }}>
-                <Button variant='contained' sx={{ mr: 1 }} onClick={handleEditClose}>
+              <DialogActions
+                sx={{
+                  justifyContent: 'center',
+                  px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                  pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+                }}
+              >
+                <Button variant='contained' sx={{ mr: 2 }} onClick={handleEditClose}>
                   Submit
                 </Button>
                 <Button variant='outlined' color='secondary' onClick={handleEditClose}>
@@ -395,13 +414,23 @@ const UserViewLeft = () => {
               onClose={handlePlansClose}
               aria-labelledby='user-view-plans'
               aria-describedby='user-view-plans-description'
-              sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650, pt: 8, pb: 8 } }}
+              sx={{ '& .MuiPaper-root': { width: '100%', maxWidth: 650 } }}
             >
-              <DialogTitle id='user-view-plans' sx={{ textAlign: 'center', fontSize: '1.5rem !important' }}>
+              <DialogTitle
+                id='user-view-plans'
+                sx={{
+                  textAlign: 'center',
+                  fontSize: '1.5rem !important',
+                  px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                  pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+                }}
+              >
                 Upgrade Plan
               </DialogTitle>
 
-              <DialogContent>
+              <DialogContent
+                sx={{ px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`] }}
+              >
                 <DialogContentText variant='body2' sx={{ textAlign: 'center' }} id='user-view-plans-description'>
                   Choose the best plan for the user.
                 </DialogContentText>
@@ -410,12 +439,11 @@ const UserViewLeft = () => {
               <DialogContent
                 sx={{
                   display: 'flex',
-                  pb: 8,
-                  pl: [6, 15],
-                  pr: [6, 15],
                   alignItems: 'center',
                   flexWrap: ['wrap', 'nowrap'],
-                  pt: theme => `${theme.spacing(2)} !important`
+                  pt: theme => `${theme.spacing(2)} !important`,
+                  pb: theme => `${theme.spacing(8)} !important`,
+                  px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`]
                 }}
               >
                 <FormControl fullWidth size='small' sx={{ mr: [0, 3], mb: [3, 0] }}>
@@ -439,7 +467,13 @@ const UserViewLeft = () => {
 
               <Divider sx={{ m: '0 !important' }} />
 
-              <DialogContent sx={{ pt: 8, pl: [6, 15], pr: [6, 15] }}>
+              <DialogContent
+                sx={{
+                  pt: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(8)} !important`],
+                  px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+                  pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+                }}
+              >
                 <Typography sx={{ fontWeight: 500, mb: 2, fontSize: '0.875rem' }}>
                   User current plan is standard plan
                 </Typography>
@@ -468,8 +502,8 @@ const UserViewLeft = () => {
                   </Box>
                   <Button
                     color='error'
-                    sx={{ mt: 2 }}
                     variant='outlined'
+                    sx={{ mt: 2 }}
                     onClick={() => setSubscriptionDialogOpen(true)}
                   >
                     Cancel Subscription

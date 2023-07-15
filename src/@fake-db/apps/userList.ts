@@ -755,12 +755,9 @@ mock.onPost('/apps/users/add-user').reply(config => {
   // Get event from post data
   const user = JSON.parse(config.data).data
 
-  const { length } = data.users
-  let lastIndex = 0
-  if (length) {
-    lastIndex = data.users[length - 1].id
-  }
-  user.id = lastIndex + 1
+  const lastId = Math.max(...data.users.map(u => u.id), 0)
+
+  user.id = lastId + 1
 
   data.users.unshift({ ...user, avatar: '', avatarColor: 'primary', status: 'active' })
 

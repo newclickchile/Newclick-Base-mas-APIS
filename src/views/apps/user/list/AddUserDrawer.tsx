@@ -24,13 +24,14 @@ import { useForm, Controller } from 'react-hook-form'
 import Icon from 'src/@core/components/icon'
 
 // ** Store Imports
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 // ** Actions Imports
 import { addUser } from 'src/store/apps/user'
 
 // ** Types Imports
-import { AppDispatch } from 'src/store'
+import { RootState, AppDispatch } from 'src/store'
+import { UsersType } from 'src/types/apps/userTypes'
 
 interface SidebarAddUserType {
   open: boolean
@@ -102,10 +103,12 @@ const SidebarAddUser = (props: SidebarAddUserType) => {
 
   // ** Hooks
   const dispatch = useDispatch<AppDispatch>()
+  const store = useSelector((state: RootState) => state.user)
   const {
     reset,
     control,
     setValue,
+    setError,
     handleSubmit,
     formState: { errors }
   } = useForm({
@@ -113,11 +116,25 @@ const SidebarAddUser = (props: SidebarAddUserType) => {
     mode: 'onChange',
     resolver: yupResolver(schema)
   })
-
   const onSubmit = (data: UserData) => {
-    dispatch(addUser({ ...data, role, currentPlan: plan }))
-    toggle()
-    reset()
+    if (store.allData.some((u: UsersType) => u.email === data.email || u.username === data.username)) {
+      store.allData.forEach((u: UsersType) => {
+        if (u.email === data.email) {
+          setError('email', {
+            message: 'Email already exists!'
+          })
+        }
+        if (u.username === data.username) {
+          setError('username', {
+            message: 'Username already exists!'
+          })
+        }
+      })
+    } else {
+      dispatch(addUser({ ...data, role, currentPlan: plan }))
+      toggle()
+      reset()
+    }
   }
 
   const handleClose = () => {

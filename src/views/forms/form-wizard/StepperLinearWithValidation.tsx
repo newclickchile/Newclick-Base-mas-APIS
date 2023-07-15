@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, MouseEvent, useState } from 'react'
+import { Fragment, useState } from 'react'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -85,7 +85,7 @@ const accountSchema = yup.object().shape({
   'confirm-password': yup
     .string()
     .required()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .oneOf([yup.ref('password'), ''], 'Passwords must match')
 })
 const personalSchema = yup.object().shape({
   country: yup.string().required(),
@@ -160,16 +160,10 @@ const StepperLinearWithValidation = () => {
   const handleClickShowPassword = () => {
     setState({ ...state, showPassword: !state.showPassword })
   }
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-  }
 
   // Handle Confirm Password
   const handleClickShowConfirmPassword = () => {
     setState({ ...state, showPassword2: !state.showPassword2 })
-  }
-  const handleMouseDownConfirmPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
   }
 
   const getStepContent = (step: number) => {
@@ -257,7 +251,7 @@ const StepperLinearWithValidation = () => {
                             <IconButton
                               edge='end'
                               onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
+                              onMouseDown={e => e.preventDefault()}
                               aria-label='toggle password visibility'
                             >
                               <Icon icon={state.showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
@@ -298,9 +292,9 @@ const StepperLinearWithValidation = () => {
                           <InputAdornment position='end'>
                             <IconButton
                               edge='end'
+                              onMouseDown={e => e.preventDefault()}
                               aria-label='toggle password visibility'
                               onClick={handleClickShowConfirmPassword}
-                              onMouseDown={handleMouseDownConfirmPassword}
                             >
                               <Icon icon={state.showPassword2 ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
                             </IconButton>

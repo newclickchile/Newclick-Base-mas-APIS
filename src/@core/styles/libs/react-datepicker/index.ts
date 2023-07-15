@@ -215,7 +215,7 @@ const DatePickerWrapper = styled(Box)<BoxProps>(({ theme }) => {
           }
         }
       },
-      '& .react-datepicker__year-text--keyboard-selected': {
+      '& .react-datepicker__year-text--keyboard-selected, & .react-datepicker__quarter-text--keyboard-selected': {
         color: theme.palette.text.primary,
         backgroundColor: `rgba(${theme.palette.customColors.main}, 0.06)`,
         '&:hover': {

@@ -1,10 +1,10 @@
 // ** React Import
 import { useRef, useState } from 'react'
 
-// ** MUI Import
+// ** MUI Imports
 import List from '@mui/material/List'
 import Box, { BoxProps } from '@mui/material/Box'
-import { styled, useTheme } from '@mui/material/styles'
+import { createTheme, responsiveFontSizes, styled, ThemeProvider } from '@mui/material/styles'
 
 // ** Third Party Components
 import PerfectScrollbar from 'react-perfect-scrollbar'
@@ -12,12 +12,16 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
 
+// ** Theme Config
 import themeConfig from 'src/configs/themeConfig'
 
 // ** Component Imports
 import Drawer from './Drawer'
 import VerticalNavItems from './VerticalNavItems'
 import VerticalNavHeader from './VerticalNavHeader'
+
+// ** Theme Options
+import themeOptions from 'src/@core/theme/ThemeOptions'
 
 // ** Util Import
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
@@ -53,6 +57,11 @@ const StyledBoxForShadow = styled(Box)<BoxProps>(({ theme }) => ({
   width: 'calc(100% + 15px)',
   height: theme.mixins.toolbar.minHeight,
   transition: 'opacity .15s ease-in-out',
+  background: `linear-gradient(${theme.palette.background.default} ${theme.direction === 'rtl' ? '95%' : '5%'
+    },${hexToRGBA(theme.palette.background.default, 0.85)} 30%,${hexToRGBA(
+      theme.palette.background.default,
+      0.5
+    )} 65%,${hexToRGBA(theme.palette.background.default, 0.3)} 75%,transparent)`,
   '&.scrolled': {
     opacity: 1
   }
@@ -70,12 +79,26 @@ const Navigation = (props: Props) => {
   // ** Ref
   const shadowRef = useRef(null)
 
-  // ** Hooks
-  const theme = useTheme()
-
   // ** Var
-  const { mode, navCollapsed } = settings
+  const { navCollapsed } = settings
   const { afterVerticalNavMenuContentPosition, beforeVerticalNavMenuContentPosition } = themeConfig
+
+  const navMenuContentProps = {
+    ...props,
+    navHover,
+    groupActive,
+    setGroupActive,
+    currentActiveGroup,
+    setCurrentActiveGroup
+  }
+
+  // ** Create new theme for the navigation menu when mode is `semi-dark`
+  let darkTheme = createTheme(themeOptions(settings, 'dark'))
+
+  // ** Set responsive font sizes to true
+  if (themeConfig.responsiveFontSizes) {
+    darkTheme = responsiveFontSizes(darkTheme)
+  }
 
   // ** Fixes Navigation InfiniteScroll
   const handleInfiniteScroll = (ref: HTMLElement) => {
@@ -109,79 +132,67 @@ const Navigation = (props: Props) => {
     }
   }
 
-  const shadowBgColor = () => {
-    if (mode === 'light') {
-      return `linear-gradient(${theme.palette.customColors.lightBg} 5%,${hexToRGBA(
-        theme.palette.customColors.lightBg,
-        0.85
-      )} 30%,${hexToRGBA(theme.palette.customColors.lightBg, 0.5)} 65%,${hexToRGBA(
-        theme.palette.customColors.lightBg,
-        0.3
-      )} 75%,transparent)`
-    } else {
-      return `linear-gradient(${theme.palette.customColors.darkBg} 5%,${hexToRGBA(
-        theme.palette.customColors.darkBg,
-        0.85
-      )} 30%,${hexToRGBA(theme.palette.customColors.darkBg, 0.5)} 65%,${hexToRGBA(
-        theme.palette.customColors.darkBg,
-        0.3
-      )} 75%,transparent)`
-    }
-  }
-
   const ScrollWrapper = hidden ? Box : PerfectScrollbar
 
   return (
-    <Drawer {...props} navHover={navHover} setNavHover={setNavHover}>
-      <VerticalNavHeader {...props} navHover={navHover} />
-      {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'fixed' ? beforeNavMenuContent(props) : null}
-      {(beforeVerticalNavMenuContentPosition === 'static' || !beforeNavMenuContent) && (
-        <StyledBoxForShadow ref={shadowRef} sx={{ background: shadowBgColor() }} />
-      )}
-      <Box sx={{ position: 'relative', overflow: 'hidden' }}>
-        {/* @ts-ignore */}
-        <ScrollWrapper
-          {...(hidden
-            ? {
+    <ThemeProvider theme={darkTheme}>
+      <Drawer {...props} navHover={navHover} setNavHover={setNavHover}>
+        <VerticalNavHeader {...props} navHover={navHover} />
+        {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'fixed'
+          ? beforeNavMenuContent(navMenuContentProps)
+          : null}
+        {(beforeVerticalNavMenuContentPosition === 'static' || !beforeNavMenuContent) && (
+          <StyledBoxForShadow ref={shadowRef} />
+        )}
+        <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+          {/* @ts-ignore */}
+          <ScrollWrapper
+            {...(hidden
+              ? {
                 onScroll: (container: any) => scrollMenu(container),
                 sx: { height: '100%', overflowY: 'auto', overflowX: 'hidden' }
               }
-            : {
+              : {
                 options: { wheelPropagation: false },
                 onScrollY: (container: any) => scrollMenu(container),
                 containerRef: (ref: any) => handleInfiniteScroll(ref)
               })}
-        >
-          {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'static'
-            ? beforeNavMenuContent(props)
-            : null}
-          {userNavMenuContent ? (
-            userNavMenuContent(props)
-          ) : (
-            <List
-              className='nav-items'
-              sx={{
-                pt: 0,
-                transition: 'padding .25s ease',
-                '& > :first-child': { mt: '0' },
-                pr: !navCollapsed || (navCollapsed && navHover) ? 4.5 : 1.25
-              }}
-            >
-              <VerticalNavItems
-                navHover={navHover}
-                groupActive={groupActive}
-                setGroupActive={setGroupActive}
-                currentActiveGroup={currentActiveGroup}
-                setCurrentActiveGroup={setCurrentActiveGroup}
-                {...props}
-              />
-            </List>
-          )}
-          {afterNavMenuContent && afterVerticalNavMenuContentPosition === 'static' ? afterNavMenuContent(props) : null}
-        </ScrollWrapper>
-      </Box>
-      {afterNavMenuContent && afterVerticalNavMenuContentPosition === 'fixed' ? afterNavMenuContent(props) : null}
-    </Drawer>
+          >
+            {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'static'
+              ? beforeNavMenuContent(navMenuContentProps)
+              : null}
+            {userNavMenuContent ? (
+              userNavMenuContent(navMenuContentProps)
+            ) : (
+              <List
+                className='nav-items'
+                sx={{
+                  pt: 0,
+                  transition: 'padding .25s ease',
+                  // '& > :first-child': { mt: '0' },
+                  pr: !navCollapsed || (navCollapsed && navHover) ? 4.5 : 1.25
+                }}
+              >
+                <VerticalNavItems
+                  navHover={navHover}
+                  groupActive={groupActive}
+                  setGroupActive={setGroupActive}
+                  currentActiveGroup={currentActiveGroup}
+                  setCurrentActiveGroup={setCurrentActiveGroup}
+                  {...props}
+                />
+              </List>
+            )}
+            {afterNavMenuContent && afterVerticalNavMenuContentPosition === 'static'
+              ? afterNavMenuContent(navMenuContentProps)
+              : null}
+          </ScrollWrapper>
+        </Box>
+        {afterNavMenuContent && afterVerticalNavMenuContentPosition === 'fixed'
+          ? afterNavMenuContent(navMenuContentProps)
+          : null}
+      </Drawer>
+    </ThemeProvider>
   )
 }
 
