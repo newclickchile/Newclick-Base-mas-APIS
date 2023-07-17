@@ -1,19 +1,49 @@
 export type ErrCallbackType = (err: { [key: string]: string }) => void
 
 export type LoginParams = {
-  email: string
+  username: string
   password: string
   rememberMe?: boolean
 }
 
-export type UserDataType = {
-  id: number
-  role: string
+export type RegisterParams = {
   email: string
-  fullName: string
   username: string
   password: string
+}
+
+export interface IMailBox {
+  idCasilla: string;
+  username: string;
+  habilitado: boolean;
+};
+
+export interface IPage {
+  id?: number
+  ipPerfil?: string
+  pag: string
+  titulo?: string
+  orden?: number
+  muestraMenuCasilla?: boolean
+}
+
+export type UserDataType = {
+  id?: number
+  role?: string
+  email?: string
+  fullName?: string
+  username?: string
+  password?: string
   avatar?: string | null
+  aclAbilities?: string[]
+
+  userAuthorizedPages?: IPage[];
+  token?: string;
+  csll?: string;
+  mailBoxs?: string;
+  name?: string;
+  profile?: string;
+
 }
 
 export type AuthValuesType = {
@@ -23,4 +53,5 @@ export type AuthValuesType = {
   setLoading: (value: boolean) => void
   setUser: (value: UserDataType | null) => void
   login: (params: LoginParams, errorCallback?: ErrCallbackType) => void
+  setVerify: (params: any, errorCallback?: ErrCallbackType) => void
 }

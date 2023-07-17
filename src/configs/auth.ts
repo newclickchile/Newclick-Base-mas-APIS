@@ -1,6 +1,8 @@
+const urlBase = 'http://localhost:3005';
+
 export default {
   meEndpoint: '/auth/me',
-  loginEndpoint: '/jwt/login',
+  apiUsuario: `${urlBase}/api-usuario`,
   registerEndpoint: '/jwt/register',
   storageTokenKeyName: 'accessToken',
   onTokenExpiration: 'refreshToken' // logout | refreshToken

@@ -10,7 +10,7 @@ interface AppRequest {
 
 axios.interceptors.request.use(
   async (config) => {
-    const userData = JSON.parse(localStorage.getItem('user') || "{}");
+    const userData = JSON.parse(window.localStorage.getItem('user') || "{}");
 
     if (!config.url?.includes("/login/token"))
       if (userData?.token) {
@@ -44,7 +44,7 @@ axios.interceptors.request.use(
 
 export class APIRequest {
   static async post(request: AppRequest): Promise<AxiosResponse<any>> {
-    let url = request.path;
+    const url = request.path;
 
     const res = axios.request({
       url: url,
@@ -63,6 +63,7 @@ export class APIRequest {
       ...(request.headers && { headers: request.headers }),
       ...(request.responseType && { responseType: request.responseType })
     });
-    return res;
+    
+return res;
   }
 }

@@ -61,7 +61,7 @@ export const login = async (username: string, password: string) => {
     const headers = { "CSRFP466": password }
 
     const response = await APIRequest.post({
-      path: `${authConfig.loginEndpoint}?pus3rN4m3=${username}`,
+      path: `${authConfig.apiUsuario}/usuario/login?pus3rN4m3=${username}`,
       headers
     });
 
@@ -89,7 +89,7 @@ export const checkGoogleAuthCode = async (username: string, code: string) => {
     const headers = { "CSRFC0d160": code }
 
     const response = await APIRequest.post({
-      path: `${authConfig.urlUsuario}/usuario/login/token?pus3rN4m3=${username}`,
+      path: `${authConfig.apiUsuario}/usuario/login/token?pus3rN4m3=${username}`,
       headers
     });
 
