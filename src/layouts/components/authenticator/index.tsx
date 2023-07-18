@@ -104,7 +104,7 @@ const Authenticator: React.FC<AuthenticatorProps> = ({ onChangeCode, errors }) =
         options={{ blocks: [1], numeral: true, numeralPositiveOnly: true }}
         sx={{
           [theme.breakpoints.down('sm')]: { px: `${theme.spacing(2)} !important` },
-          border: errors.code && '#FF4C51 1px solid !important'
+          border: errors.code && '#FF4C51 2px solid !important'
         }}
       />
     ))
