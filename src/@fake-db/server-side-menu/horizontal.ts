@@ -597,8 +597,6 @@ const navigation: HorizontalNavItemsType = [
     children: [
       {
         path: '/acl',
-        // action: 'read',
-        // subject: 'acl-page',
         icon: 'mdi:shield-outline',
         title: 'Access Control'
       },

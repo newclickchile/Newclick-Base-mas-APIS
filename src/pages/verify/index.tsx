@@ -53,14 +53,12 @@ const VerifyAuthenticator = () => {
   }
 
   useEffect(() => {
-    console.log('auth.user Verify:', auth.user);
-    if (auth.user) {
-      const pages = getUserAuthorizedPages(auth.user);
-      console.log('pages :', pages);
+    const pages = getUserAuthorizedPages(auth.user);
 
-      if (pages?.length) {
-        router.replace(pages[0].pag as string);
-      }
+    // If the pages do not exist, I redirect to index
+    if (!pages.length) router.replace("/");
+    else if (pages[0].pag !== 'verify') {
+      router.replace(pages[0].pag);
     }
   }, [auth.user])
 
@@ -130,5 +128,7 @@ const VerifyAuthenticator = () => {
 }
 
 VerifyAuthenticator.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+
+VerifyAuthenticator.authGuard = false;
 
 export default VerifyAuthenticator

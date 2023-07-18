@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import authConfig from 'src/configs/auth'
 
 // ** Types
-import { AuthValuesType, LoginParams, UserDataType } from './types'
+import { AuthValuesType, IMailBox, LoginParams, UserDataType } from './types'
 
 import { login } from 'src/utils/middleware'
 
@@ -44,7 +44,6 @@ const AuthProvider = ({ children }: Props) => {
         setUser(JSON.parse(storedToken));
       }
       setLoading(false)
-
     }
 
     initAuth()

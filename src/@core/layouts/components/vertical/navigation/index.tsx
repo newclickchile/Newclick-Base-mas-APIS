@@ -169,6 +169,7 @@ const Navigation = (props: Props) => {
                 sx={{
                   pt: 0,
                   transition: 'padding .25s ease',
+
                   // '& > :first-child': { mt: '0' },
                   pr: !navCollapsed || (navCollapsed && navHover) ? 4.5 : 1.25
                 }}

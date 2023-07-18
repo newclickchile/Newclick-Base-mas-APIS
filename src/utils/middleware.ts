@@ -1,13 +1,6 @@
-import { IPage, IUserData } from "src/configs/interfaces";
 import { APIRequest } from "./APIRequest";
 import authConfig from 'src/configs/auth'
-
-export interface AppResponse {
-  isOk: boolean;
-  errorMessage: string;
-  responseData?: any;
-  responseStatus?: number;
-}
+import { AppResponse, IPage, IUserData } from "src/context/types";
 
 const MESSAGE_OK = "OK";
 const ERROR_RESPONSE = { isOk: false, errorMessage: "Error en servicio" }
@@ -73,7 +66,7 @@ export const login = async (username: string, password: string) => {
   }
 }
 
-export const getUserAuthorizedPages = (user: IUserData) => {
+export const getUserAuthorizedPages = (user: IUserData | null): IPage[]  => {
   console.log('user :', user);
   const pages: IPage[] = [];
 

@@ -1,5 +1,5 @@
 // ** React Imports
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -38,9 +38,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import { Card, CardContent } from '@mui/material'
-import { useRouter } from 'next/router'
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustrationsV1'
-import { getUserAuthorizedPages } from 'src/utils/middleware'
 
 const TypographyStyled = styled(Typography)<TypographyProps>(({ theme }) => ({
   fontWeight: 600,
@@ -83,7 +81,6 @@ const LoginPage = () => {
   // ** Hooks
   const auth = useAuth()
   const theme = useTheme()
-  const router = useRouter()
 
   const {
     control,
@@ -100,18 +97,7 @@ const LoginPage = () => {
 
     // TODO: check error on login
     auth.login({ username, password, rememberMe })
-
-
   }
-
-  useEffect(() => {
-    if (auth.user) {
-      const pages = getUserAuthorizedPages(auth.user);
-      if (pages?.length) {
-        router.replace(pages[0].pag);
-      }
-    }
-  }, [auth.user, router])
 
   return (
     <>

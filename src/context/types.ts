@@ -1,9 +1,26 @@
 export type ErrCallbackType = (err: { [key: string]: string }) => void
 
+export interface IUserData {
+  username?: string;
+  token?: string;
+  csll?: string;
+  mailBoxs?: string;
+  name?: string;
+  profile?: string;
+  password?: string;
+  userAuthorizedPages?: IPage[];
+};
+
 export type LoginParams = {
   username: string
   password: string
   rememberMe?: boolean
+}
+export interface AppResponse {
+  isOk: boolean;
+  errorMessage: string;
+  responseData?: any;
+  responseStatus?: number;
 }
 
 export type RegisterParams = {
