@@ -3,7 +3,8 @@ import authConfig from 'src/configs/auth'
 import { AppResponse, IPage, IUserData } from "src/context/types";
 
 const MESSAGE_OK = "OK";
-const ERROR_RESPONSE = { isOk: false, errorMessage: "Error en servicio" }
+const ERROR_MESSAGE = 'Lo sentimos, ha ocurrido un error'
+const ERROR_RESPONSE = { isOk: false, errorMessage: ERROR_MESSAGE }
 
 const handlerApiResponse = (response: any): AppResponse => {
   // Primera validación
@@ -13,7 +14,7 @@ const handlerApiResponse = (response: any): AppResponse => {
 
   // Segunda validación
   const response2 = JSON.parse(response.data.result);
-  const errorMessage = response2.message || "Error en servicio"
+  const errorMessage = response2.message || ERROR_MESSAGE;
 
   if (response2.status !== 200 || response2.message !== MESSAGE_OK) {
     if (response2.status === 401) {
@@ -77,7 +78,7 @@ export const getUserAuthorizedPages = (user: IUserData | null): IPage[]  => {
   return user.userAuthorizedPages;
 }
 
-export const checkGoogleAuthCode = async (username: string, code: string) => {
+export const checkGoogleAuthCode = async (username: string, code: string): Promise<AppResponse> => {
   try {
     const headers = { "CSRFC0d160": code }
 

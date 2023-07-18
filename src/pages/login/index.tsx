@@ -7,9 +7,7 @@ import Link from 'next/link'
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
-import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 import FormHelperText from '@mui/material/FormHelperText'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -52,13 +50,6 @@ const LinkStyled = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.main
 }))
 
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
-  '& .MuiFormControlLabel-label': {
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary
-  }
-}))
-
 const schema = yup.object().shape({
   username: yup.string().required("Nombre de usuario es requerido"),
   password: yup.string().required("Contraseña es requerida").min(5, "Debe ser mayor a 5 caracteres")
@@ -75,7 +66,6 @@ interface FormData {
 }
 
 const LoginPage = () => {
-  const [rememberMe, setRememberMe] = useState<boolean>(true)
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
   // ** Hooks
@@ -96,7 +86,7 @@ const LoginPage = () => {
     const { username, password } = data
 
     // TODO: check error on login
-    auth.login({ username, password, rememberMe })
+    auth.login({ username, password })
   }
 
   return (
@@ -241,12 +231,8 @@ const LoginPage = () => {
                 )}
               </FormControl>
               <Box
-                sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
+                sx={{ my: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'end' }}
               >
-                <FormControlLabel
-                  label='Remember Me'
-                  control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />}
-                />
                 <LinkStyled href='/forgot-password'>¿Olvidaste tu contraseña?</LinkStyled>
               </Box>
               <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7 }}>

@@ -54,10 +54,6 @@ const AuthProvider = ({ children }: Props) => {
     // TODO: validate error on login
     await login(params.username, params.password);
 
-    // TODO: remember me
-    // params.rememberMe
-    //   ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
-    //   : null
     const returnUrl = router.query.returnUrl
 
     setUser({ username: params.username })
@@ -69,7 +65,7 @@ const AuthProvider = ({ children }: Props) => {
     router.replace(redirectURL as string)
   }
 
-  const handleVerify = async (loguedInUserData: any) => {
+  const handleVerify = (loguedInUserData: any) => {
     const userAuthorizedPages = loguedInUserData[2];
 
     const userData = loguedInUserData[0];

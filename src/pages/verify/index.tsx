@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles'
 
 // ** Third Party Imports
 import { Controller, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
@@ -25,7 +26,7 @@ import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustrationsV1'
 import 'cleave.js/dist/addons/cleave-phone.us'
 import router from 'next/router'
 import { useAuth } from 'src/hooks/useAuth'
-import { getUserAuthorizedPages } from 'src/utils/middleware'
+import { checkGoogleAuthCode, getUserAuthorizedPages } from 'src/utils/middleware'
 
 
 import Authenticator from 'src/layouts/components/authenticator'
@@ -49,8 +50,31 @@ const VerifyAuthenticator = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    console.log('data :', data);
+    const response = await checkGoogleAuthCode(auth.user!.username!, data.code)
+    if (response.isOk) {
+      const data = JSON.parse(response.responseData);
+      const userAuthorizedPages = data[2];
+      if (!userAuthorizedPages.length) {
+        auth.logout();
+
+        return;
+      }
+
+      auth.setVerify(data);
+      router.replace(userAuthorizedPages[0].pag);
+
+    }
+    else {
+      if (response.responseStatus === 510) {
+        router.replace("/");
+
+        return;
+      }
+
+      toast.error(response.errorMessage);
+    }
   }
+
 
   useEffect(() => {
     const pages = getUserAuthorizedPages(auth.user);

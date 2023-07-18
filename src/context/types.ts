@@ -14,7 +14,6 @@ export interface IUserData {
 export type LoginParams = {
   username: string
   password: string
-  rememberMe?: boolean
 }
 export interface AppResponse {
   isOk: boolean;
