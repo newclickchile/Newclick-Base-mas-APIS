@@ -195,4 +195,6 @@ const ForgotPasswordV1 = () => {
 
 ForgotPasswordV1.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
+ForgotPasswordV1.authGuard = false;
+
 export default ForgotPasswordV1
