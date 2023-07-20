@@ -89,7 +89,27 @@ export const checkGoogleAuthCode = async (username: string, code: string): Promi
 
     return handlerApiResponse(response);
   } catch (error) {
-    console.error(error)
+    console.error(error);
+
+    return ERROR_RESPONSE;
+  }
+}
+
+export const forgotPassword = async (username: string, code: string): Promise<AppResponse> => {
+  try {
+      const headers = {
+          "CSRFC0d160": code
+      };
+
+      const response = await APIRequest.post({
+          path: `${authConfig.apiUsuario}/usuario/correo/olvido/clave?pus3rN4m3=${username}`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+  } catch (error) {
+    console.error(error);
 
     return ERROR_RESPONSE;
   }
