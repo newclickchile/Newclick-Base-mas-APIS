@@ -62,6 +62,7 @@ import 'src/iconify-bundle/icons-bundle-react'
 
 // ** Global css styles
 import '../../styles/globals.css'
+import ShowBreakPoint from 'src/components/utils/ShowBreakpoint'
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -136,6 +137,7 @@ const App = (props: ExtendedAppProps) => {
               {({ settings }) => {
                 return (
                   <ThemeComponent settings={settings}>
+                    {settings.showBreakPoint && <ShowBreakPoint />}
                     <Guard authGuard={authGuard} guestGuard={guestGuard}>
                       {getLayout(<Component {...pageProps} />)}
                     </Guard>

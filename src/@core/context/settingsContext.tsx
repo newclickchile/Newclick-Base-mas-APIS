@@ -11,6 +11,7 @@ import themeConfig from 'src/configs/themeConfig'
 import { Skin, Mode, AppBar, Footer, ThemeColor, ContentWidth, VerticalNavToggle } from 'src/@core/layouts/types'
 
 export type Settings = {
+  showBreakPoint: boolean
   skin: Skin
   mode: Mode
   appBar?: AppBar
@@ -54,6 +55,7 @@ interface SettingsProviderProps {
 }
 
 const initialSettings: Settings = {
+  showBreakPoint: true,
   themeColor: 'primary',
   mode: themeConfig.mode,
   skin: themeConfig.skin,
