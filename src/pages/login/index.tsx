@@ -200,18 +200,16 @@ const LoginPage = () => {
   }
 
   return (
-    <>
-      <AuthWrapper>
-        {userIsLock &&
-          <AlertLockUser userEmail={userEmail} />}
+    <AuthWrapper>
+      {userIsLock &&
+        <AlertLockUser userEmail={userEmail} />}
 
-        {userMustUpdatePassword &&
-          <AlertExpiredUserPassword userName={userNameToUpdatePassword} onClick={handleGoToRecoveryPage} />}
+      {userMustUpdatePassword &&
+        <AlertExpiredUserPassword userName={userNameToUpdatePassword} onClick={handleGoToRecoveryPage} />}
 
-        {!userMustUpdatePassword && !userIsLock &&
-          <LoginForm />}
-      </AuthWrapper>
-    </>
+      {!userMustUpdatePassword && !userIsLock &&
+        <LoginForm />}
+    </AuthWrapper>
   )
 }
 
