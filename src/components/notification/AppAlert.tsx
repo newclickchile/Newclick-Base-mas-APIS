@@ -3,19 +3,18 @@ import { Alert, AlertProps, AlertTitle, Grid } from '@mui/material'
 
 export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
-interface AlertCustomProps extends AlertProps {
-  message: ReactNode
-  appTitle: ReactNode
+interface AlertCustomProps extends Omit<AlertProps, 'appTitle' | 'message'> {
+  message?: ReactNode
+  appTitle?: ReactNode
 }
 
 const AppAlert = (props: AlertCustomProps) => {
-  const { message, appTitle, icon, children } = props;
+  const { message, appTitle, children, ...alertProps } = props;
 
   return (
     <>
-      <Alert {...props} icon={false}>
+      <Alert {...alertProps} icon={false}>
         <AlertTitle sx={{ fontWeight: 600, my: '4px !important', textAlign: 'center' }}>
-          {icon}
           {appTitle}
         </AlertTitle>
         <Grid mt={4} justifyContent={'center'}>

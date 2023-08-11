@@ -37,6 +37,7 @@ export const FormInput: React.FC<{
   placeholder?: string,
   searchable?: boolean,
   required?: boolean,
+  autoFocus?: boolean;
   message?: string,
   maxLength?: number,
   size?: number,
@@ -111,7 +112,7 @@ export const FormInput: React.FC<{
               return <TextField
                 fullWidth
                 type={showPassword ? 'text' : 'password'}
-                autoFocus
+                autoFocus={props.autoFocus}
                 value={value}
                 onChange={onChange}
                 error={Boolean(props.errors[props.name])}
@@ -227,7 +228,7 @@ export const FormInput: React.FC<{
                 type={!props.type || props.type === 'number'
                   ? 'text'
                   : props.type}
-                autoFocus
+                autoFocus={props.autoFocus}
                 value={value}
                 onChange={onChange}
                 error={Boolean(props.errors[props.name])}

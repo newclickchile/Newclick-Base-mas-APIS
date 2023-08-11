@@ -8,19 +8,6 @@ export default function AppCardHeader() {
 
   return (
     <>
-      <Typography
-        variant='h6'
-        sx={{
-          ml: 3,
-          lineHeight: 1,
-          fontWeight: 600,
-          textTransform: 'uppercase',
-          fontSize: '1.5rem !important'
-        }}
-      >
-        {themeConfig.templateName}
-      </Typography>
-
       <svg
         width={35}
         height={29}
@@ -80,6 +67,18 @@ export default function AppCardHeader() {
           </g>
         </g>
       </svg>
+      <Typography
+        variant='h6'
+        sx={{
+          ml: 3,
+          lineHeight: 1,
+          fontWeight: 600,
+          textTransform: 'uppercase',
+          fontSize: '1.5rem !important'
+        }}
+      >
+        {themeConfig.templateName}
+      </Typography>
     </>
   )
 }
