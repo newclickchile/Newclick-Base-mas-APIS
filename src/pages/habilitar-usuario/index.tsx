@@ -22,21 +22,15 @@ import { enabledUser, validateTempToken } from 'src/utils/middleware'
 
 interface State {
   currentPassword: string
-  showCurrentPassword: boolean
   newPassword: string
-  showNewPassword: boolean
   newPasswordConfirm: string
-  showNewPasswordConfirm: boolean
   code: string;
 }
 
 const initState = {
   currentPassword: "",
-  showCurrentPassword: false,
   newPassword: "",
-  showNewPassword: false,
   newPasswordConfirm: "",
-  showNewPasswordConfirm: false,
   code: ''
 }
 

@@ -23,17 +23,13 @@ import { recoveryUserPassword, validateTempToken } from 'src/utils/middleware'
 
 interface State {
   newPassword: string
-  showNewPassword: boolean
   confirmNewPassword: string
-  showConfirmNewPassword: boolean
   code: string;
 }
 
 const initState = {
   newPassword: "",
-  showNewPassword: false,
   confirmNewPassword: "",
-  showConfirmNewPassword: false,
   code: ''
 }
 
