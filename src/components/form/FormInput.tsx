@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { Control, Controller, DeepMap, FieldError, RegisterOptions } from 'react-hook-form';
 import Icon from 'src/@core/components/icon';
 import { IKeyValueData } from 'src/interfaces';
+import Authenticator from 'src/layouts/components/authenticator';
 
 // function PasswordRequirement({ meets, label }: { meets: boolean; label: string }) {
 //   return (
@@ -48,6 +49,7 @@ export const FormInput: React.FC<{
   usePasswordPopover?: boolean,
   type?:
   | 'multiple'
+  | 'authenticator'
   | 'select'
   | 'radio'
   | 'number'
@@ -69,6 +71,13 @@ export const FormInput: React.FC<{
 
   // const [popoverOpened, setPopoverOpened] = useState(false);
   // const { useWrapper = true, usePasswordPopover = true } = props;
+
+  const authenticatorRules = {
+    required: 'Código es requerido',
+    validate: {
+      f1: (value: string) => /^\d{6}$/.test(value) || `Debe ingresar el código correctamente`,
+    }
+  }
 
   return (
     <Box my={5} maxWidth={400} minWidth={400}>
@@ -108,6 +117,12 @@ export const FormInput: React.FC<{
             //                 inline />;
             //         })}
             //     </>;
+            case "authenticator":
+              // const rules = [];
+
+              return <Box mt={3}>
+                <Authenticator errors={props.errors} onChangeCode={onChange} />
+              </Box>
             case "password":
               return <TextField
                 fullWidth
@@ -251,8 +266,12 @@ export const FormInput: React.FC<{
         }}
         control={props.control}
         name={props.name}
-        rules={{ ...props.rules }}
+        rules={{
+          ...props.rules,
+          ...(props.type === 'authenticator' && authenticatorRules),
+        }}
       />
+
       <ErrorMessage
         errors={props.errors}
         name={props.name}

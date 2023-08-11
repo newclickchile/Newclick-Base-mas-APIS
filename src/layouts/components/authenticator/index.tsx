@@ -12,8 +12,8 @@ import { styled, useTheme } from '@mui/material/styles'
 import Cleave from 'cleave.js/react'
 
 // ** Styles
+import { Grid } from '@mui/material'
 import 'cleave.js/dist/addons/cleave-phone.us'
-import { FormHelperText } from '@mui/material'
 import { DeepMap, FieldError } from 'react-hook-form'
 
 
@@ -97,7 +97,6 @@ const Authenticator: React.FC<AuthenticatorProps> = ({ onChangeCode, errors }) =
         name={`key-${index}`}
         type='tel'
         maxLength={1}
-
         component={CleaveInput}
         onKeyDown={handleOnKeyDown}
         onChange={(event: ChangeEvent<HTMLInputElement>) => handleChange(index, event)}
@@ -113,12 +112,9 @@ const Authenticator: React.FC<AuthenticatorProps> = ({ onChangeCode, errors }) =
   return (
     <CleaveWrapper>
       <Typography sx={{ fontWeight: 600, color: 'text.secondary' }}>Escriba su código de seguridad de 6 dígitos</Typography>
-      {renderInputs()}
-      {errors.code && (
-        <FormHelperText sx={{ color: 'error.main' }}>
-          {errors.code.message}
-        </FormHelperText>
-      )}
+      <Grid container justifyContent={'space-between'}>
+        {renderInputs()}
+      </Grid>
     </CleaveWrapper>
   )
 }
