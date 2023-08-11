@@ -158,6 +158,7 @@ const LoginPage = () => {
 
         <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           <FormInput
+            autoFocus
             errors={errors}
             control={control}
             placeholder="Usuario"

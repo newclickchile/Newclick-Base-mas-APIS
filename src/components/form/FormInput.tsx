@@ -67,7 +67,7 @@ export const FormInput: React.FC<{
   | 'datetime-local'
   | 'textarea';
 }> = (props) => {
-  const [showPassword, setShowPassword] = useState<boolean>(true);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   // const [popoverOpened, setPopoverOpened] = useState(false);
   // const { useWrapper = true, usePasswordPopover = true } = props;
