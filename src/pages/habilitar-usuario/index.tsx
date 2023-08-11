@@ -107,7 +107,7 @@ const EnabledUnlockUser = () => {
                   control={control}
                   placeholder="Contraseña"
                   label='Contraseña'
-                  rules={{ required: 'Contraseña actual es requerida' }}
+                  rules={{ required: 'Contraseña es requerida' }}
                 />
                 <FormInput
                   name='newPassword'
