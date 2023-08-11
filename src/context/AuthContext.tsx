@@ -12,6 +12,7 @@ import { AuthValuesType, IMailBox, LoginParams, UserDataType } from './types'
 
 import { login } from 'src/utils/middleware'
 
+
 // ** Defaults
 const defaultProvider: AuthValuesType = {
   user: null,
@@ -51,18 +52,9 @@ const AuthProvider = ({ children }: Props) => {
   }, [])
 
   const handleLogin = async (params: LoginParams) => {
-    // TODO: validate error on login
-    await login(params.username, params.password);
+    const response = await login(params.username, params.password);
 
-    const returnUrl = router.query.returnUrl
-
-    setUser({ username: params.username })
-
-    window.localStorage.setItem('userData', JSON.stringify({ username: params.username }))
-
-    const redirectURL = returnUrl && returnUrl !== '/verify' ? returnUrl : '/verify'
-
-    router.replace(redirectURL as string)
+    return response;
   }
 
   const handleVerify = (loguedInUserData: any) => {

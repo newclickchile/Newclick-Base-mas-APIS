@@ -26,6 +26,7 @@
     "@fullcalendar/list": "6.1.6",
     "@fullcalendar/react": "6.1.6",
     "@fullcalendar/timegrid": "6.1.6",
+    "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "3.1.0",
     "@iconify/react": "4.1.0",
     "@mui/lab": "5.0.0-alpha.128",

@@ -50,7 +50,7 @@ const handlerApiResponse = (response: any): AppResponse => {
 }
 
 
-export const login = async (username: string, password: string) => {
+export const login = async (username: string, password: string): Promise<AppResponse> => {
   try {
     const headers = { "CSRFP466": password }
 
@@ -112,5 +112,113 @@ export const forgotPassword = async (username: string, code: string): Promise<Ap
     console.error(error);
 
     return ERROR_RESPONSE;
+  }
+}
+
+export const recoveryUserPassword = async (userName: string, userToken: string, newPassword: string, code: string): Promise<AppResponse> => {
+  try {
+      const headers = {
+          "CSRFC0d160": code,
+          "CSRFPassNueva": newPassword,
+          "CSRFTokenMail": userToken,
+      };
+
+      const response = await APIRequest.post({
+          path: `${authConfig.apiAdmin}/adm/usuario/p4ssw0rd/nologeado/cambiar?usuario=${userName}`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+  } catch (error) {
+    console.error(error)
+
+    return ERROR_RESPONSE;
+  }
+}
+
+export const validateTempToken = async (userName: string, userToken: string):Promise<AppResponse>  => {
+  try {
+      const headers = {
+          "pus3rN4m3": userName,
+          "CSRFTokenMail": userToken,
+      };
+      const response = await APIRequest.post({
+          path: `${authConfig.apiUsuario}/usuario/acceso/validar`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+  } catch (error) {
+      console.error(error)
+
+      return ERROR_RESPONSE;
+  }
+}
+
+export const unlockUser = async (userName: string, userToken: string) => {
+  try {
+      const headers = {
+          "CSRFTokenMail": userToken
+      };
+
+      const response = await APIRequest.post({
+          path: `${authConfig.apiUsuario}/usuario/activar?pus3rN4m3=${userName}`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+  } catch (error) {
+    console.error(error)
+
+    return ERROR_RESPONSE;
+  }
+}
+
+export const enabledUser = async (userName: string, userToken: string, currentPassword: string, newPassword: string, code: string) => {
+  try {
+      const headers = {
+          "CSRFTokenMail": userToken,
+          "CSRFPassAnterior": currentPassword,
+          "CSRFPassNueva": newPassword,
+          "CSRFC0d160": code
+      };
+
+      const response = await APIRequest.post({
+          path: `${authConfig.apiAdmin}/adm/usuario/p4ssw0rd/bloqueado/cambiar?usuario=${userName}`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+    } catch (error) {
+      console.error(error)
+
+      return ERROR_RESPONSE;
+    }
+}
+
+export const updateUserPasswordExpirated = async (userName: string, currentPass: string, newPass: string, code: string) :Promise<AppResponse> => {
+  try {
+      const headers = {
+          "CSRFC0d160": code,
+          "CSRFPassAnterior": currentPass,
+          "CSRFPassNueva": newPass,
+          "userName": userName
+      };
+
+      const response = await APIRequest.post({
+          path: `${authConfig.apiAdmin}/adm/usuario/p4ssw0rd/expirar`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+  } catch (error) {
+      console.error(error)
+
+return ERROR_RESPONSE;
   }
 }

@@ -2,6 +2,8 @@ export type InvoiceStatus = 'Paid' | string
 
 export type InvoiceLayoutProps = {
   id: string | undefined
+
+  // tab?: string | undefined
 }
 
 export type InvoiceClientType = {

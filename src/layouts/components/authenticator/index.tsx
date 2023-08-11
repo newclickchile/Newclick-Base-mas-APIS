@@ -97,7 +97,7 @@ const Authenticator: React.FC<AuthenticatorProps> = ({ onChangeCode, errors }) =
         name={`key-${index}`}
         type='tel'
         maxLength={1}
-        autoFocus={index === 0}
+
         component={CleaveInput}
         onKeyDown={handleOnKeyDown}
         onChange={(event: ChangeEvent<HTMLInputElement>) => handleChange(index, event)}
