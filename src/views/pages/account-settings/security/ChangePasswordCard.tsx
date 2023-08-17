@@ -1,228 +1,140 @@
 // ** React Imports
-import { useState } from 'react'
 
 // ** MUI Imports
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
-import InputLabel from '@mui/material/InputLabel'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
+import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import FormControl from '@mui/material/FormControl'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputAdornment from '@mui/material/InputAdornment'
-import FormHelperText from '@mui/material/FormHelperText'
+import CardHeader from '@mui/material/CardHeader'
 
 // ** Icon Imports
-import Icon from 'src/@core/components/icon'
 
 // ** Third Party Imports
-import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { FormInput } from 'src/components/form/FormInput'
+import { updateUserPassword } from 'src/utils/middleware'
+import { useAuth } from 'src/hooks/useAuth'
+import { Grid, Typography, Box } from '@mui/material'
+import { createPasswordRules } from 'src/@core/utils/functions'
 
 interface State {
-  showNewPassword: boolean
-  showCurrentPassword: boolean
-  showConfirmNewPassword: boolean
+  currentPassword: string
+  newPassword: string
+  newPasswordConfirm: string
+  code: string;
 }
 
-const defaultValues = {
-  newPassword: '',
-  currentPassword: '',
-  confirmNewPassword: ''
+const initState = {
+  currentPassword: "",
+  newPassword: "",
+  newPasswordConfirm: "",
+  code: ''
 }
 
-const schema = yup.object().shape({
-  currentPassword: yup.string().min(8).required(),
-  newPassword: yup
-    .string()
-    .min(8)
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      'Must contain 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special case character'
-    )
-    .required(),
-  confirmNewPassword: yup
-    .string()
-    .required()
-    .oneOf([yup.ref('newPassword')], 'Passwords must match')
-})
+export const PASSWORD_RULES = [
+  { re: /^.{8,16}$/, label: 'Debe ingresar entre 8 y 16 caracteres' },
+  { re: /[0-9]/, label: 'Debe incluir un número' },
+  { re: /[a-z]/, label: 'Debe incluir letra minúscula' },
+  { re: /[A-Z]/, label: 'Debe incluir letra mayúscula' },
+  { re: /[$&+,:;=?@#|'<>.^*()%!-]/, label: 'Debe incluir un caracter especial' },
+];
 
 const ChangePasswordCard = () => {
-  // ** States
-  const [values, setValues] = useState<State>({
-    showNewPassword: false,
-    showCurrentPassword: false,
-    showConfirmNewPassword: false
-  })
-
-  // ** Hooks
   const {
-    reset,
     control,
     handleSubmit,
+    watch,
     formState: { errors }
-  } = useForm({ defaultValues, resolver: yupResolver(schema) })
+  } = useForm({ defaultValues: initState })
 
-  const handleClickShowCurrentPassword = () => {
-    setValues({ ...values, showCurrentPassword: !values.showCurrentPassword })
-  }
+  const { user } = useAuth();
 
-  const handleClickShowNewPassword = () => {
-    setValues({ ...values, showNewPassword: !values.showNewPassword })
-  }
-
-  const handleClickShowConfirmNewPassword = () => {
-    setValues({ ...values, showConfirmNewPassword: !values.showConfirmNewPassword })
-  }
-
-  const onPasswordFormSubmit = () => {
-    toast.success('Password Changed Successfully')
-    reset(defaultValues)
+  const onSubmit = async (data: State) => {
+    const response = await updateUserPassword(user!.username!, data.currentPassword, data.newPassword, data.code);
+    if (response.isOk) {
+      // reset(initState);
+      toast.success("Su contraseña ha sido actualizada con éxito");
+    }
+    else toast.error(response.errorMessage);
   }
 
   return (
     <Card>
-      <CardHeader title='Change Password' />
+      <CardHeader title='Actualizar Contraseña' />
       <CardContent>
-        <form onSubmit={handleSubmit(onPasswordFormSubmit)}>
-          <Grid container spacing={5}>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='input-current-password' error={Boolean(errors.currentPassword)}>
-                  Current Password
-                </InputLabel>
-                <Controller
-                  name='currentPassword'
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { value, onChange } }) => (
-                    <OutlinedInput
-                      value={value}
-                      label='Current Password'
-                      onChange={onChange}
-                      id='input-current-password'
-                      error={Boolean(errors.currentPassword)}
-                      type={values.showCurrentPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            edge='end'
-                            onMouseDown={e => e.preventDefault()}
-                            onClick={handleClickShowCurrentPassword}
-                          >
-                            <Icon icon={values.showCurrentPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                  )}
-                />
-                {errors.currentPassword && (
-                  <FormHelperText sx={{ color: 'error.main' }}>{errors.currentPassword.message}</FormHelperText>
-                )}
-              </FormControl>
-            </Grid>
+        <Grid container>
+          <Grid container item xs={5} sx={{ border: '0px solid red' }}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormInput
+                autoFocus
+                name='currentPassword'
+                type='password'
+                errors={errors}
+                control={control}
+                placeholder="Actual contraseña"
+                label='Actual contraseña'
+                rules={{ required: 'Actual contraseña es requerida' }}
+              />
+              <FormInput
+                name='newPassword'
+                type='password'
+                errors={errors}
+                control={control}
+                placeholder="Nueva contraseña"
+                label='Nueva contraseña'
+                rules={{
+                  required: 'Nueva contraseña es requerida',
+                  validate: {
+                    ...createPasswordRules(PASSWORD_RULES),
+                  }
+                }}
+              />
+
+              <FormInput
+                name='newPasswordConfirm'
+                type='password'
+                errors={errors}
+                control={control}
+                placeholder="Confirmar contraseña"
+                label='Confirmar contraseña'
+                rules={{
+                  required: 'Confirmar contraseña es requerida',
+                  validate: {
+                    ...createPasswordRules(PASSWORD_RULES),
+                    samePass: value => watch('newPassword') === value || "Las contraseñas deben ser iguales"
+                  }
+                }}
+              />
+
+              <FormInput
+                errors={errors}
+                control={control}
+                placeholder="Usuario"
+                name='code'
+                type='authenticator'
+
+              />
+              <Grid item xs={6}>
+                <Button fullWidth variant='contained' type='submit' sx={{ mr: 3 }}>
+                  Actualizar
+                </Button>
+              </Grid>
+            </form>
           </Grid>
-          <Grid container spacing={5} sx={{ mt: 0 }}>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='input-new-password' error={Boolean(errors.newPassword)}>
-                  New Password
-                </InputLabel>
-                <Controller
-                  name='newPassword'
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { value, onChange } }) => (
-                    <OutlinedInput
-                      value={value}
-                      label='New Password'
-                      onChange={onChange}
-                      id='input-new-password'
-                      error={Boolean(errors.newPassword)}
-                      type={values.showNewPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            edge='end'
-                            onClick={handleClickShowNewPassword}
-                            onMouseDown={e => e.preventDefault()}
-                          >
-                            <Icon icon={values.showNewPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                  )}
-                />
-                {errors.newPassword && (
-                  <FormHelperText sx={{ color: 'error.main' }}>{errors.newPassword.message}</FormHelperText>
-                )}
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='input-confirm-new-password' error={Boolean(errors.confirmNewPassword)}>
-                  Confirm New Password
-                </InputLabel>
-                <Controller
-                  name='confirmNewPassword'
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field: { value, onChange } }) => (
-                    <OutlinedInput
-                      value={value}
-                      label='Confirm New Password'
-                      onChange={onChange}
-                      id='input-confirm-new-password'
-                      error={Boolean(errors.confirmNewPassword)}
-                      type={values.showConfirmNewPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            edge='end'
-                            onMouseDown={e => e.preventDefault()}
-                            onClick={handleClickShowConfirmNewPassword}
-                          >
-                            <Icon icon={values.showConfirmNewPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'} />
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                  )}
-                />
-                {errors.confirmNewPassword && (
-                  <FormHelperText sx={{ color: 'error.main' }}>{errors.confirmNewPassword.message}</FormHelperText>
-                )}
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mt: 1, color: 'text.secondary' }}>Password Requirements:</Typography>
-              <Box
-                component='ul'
-                sx={{ pl: 4, mb: 0, '& li': { mb: 4, color: 'text.secondary', '&::marker': { fontSize: '1.25rem' } } }}
-              >
-                <li>Minimum 8 characters long - the more, the better</li>
-                <li>At least one lowercase & one uppercase character</li>
-                <li>At least one number, symbol, or whitespace character</li>
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Button variant='contained' type='submit' sx={{ mr: 3 }}>
-                Save Changes
-              </Button>
-              <Button type='reset' variant='outlined' color='secondary' onClick={() => reset()}>
-                Reset
-              </Button>
-            </Grid>
+          <Grid item xs={4}>
+            <Typography sx={{ mt: 1, color: 'text.secondary' }}>Requirimientos:</Typography>
+            <Box
+              component='ul'
+              sx={{ pl: 4, mb: 0, '& li': { mb: 4, color: 'text.secondary', '&::marker': { fontSize: '1.25rem' } } }}
+            >
+              <li>Entre 8 y 16 caracteres de longitud.</li>
+              <li>Al menos un carácter en minúscula.</li>
+              <li>Al menos un carácter en mayúscula.</li>
+              <li>Al menos un número.</li>
+              <li>Al menos un símbolo.</li>
+            </Box>
           </Grid>
-        </form>
+        </Grid>
       </CardContent>
     </Card>
   )

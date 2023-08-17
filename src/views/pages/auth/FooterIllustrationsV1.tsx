@@ -14,11 +14,11 @@ const MaskImg = styled('img')(() => ({
   position: 'absolute'
 }))
 
-const Tree1Img = styled('img')(({ theme }) => ({
+const Tree1Img = styled('img')(() => ({
   left: 0,
-  width: theme.breakpoints.values.sm,
-  height: theme.breakpoints.values.sm,
-  bottom: 0,
+
+  // [theme.breakpoints.down('xl')]: { height: '20rem' },
+  // [theme.breakpoints.down('md')]: { bottom: 300 },
   position: 'absolute'
 }))
 

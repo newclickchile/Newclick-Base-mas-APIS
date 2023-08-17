@@ -45,7 +45,8 @@ const UserDropdown = (props: Props) => {
 
   // ** Hooks
   const router = useRouter()
-  const { logout } = useAuth()
+  const { user } = useAuth()
+  const auth = useAuth();
 
   // ** Vars
   const { direction } = settings
@@ -77,7 +78,7 @@ const UserDropdown = (props: Props) => {
   }
 
   const handleLogout = () => {
-    logout()
+    auth.logout();
     handleDropdownClose()
   }
 
@@ -94,11 +95,12 @@ const UserDropdown = (props: Props) => {
         }}
       >
         <Avatar
-          alt='John Doe'
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
-          src='/images/avatars/1.png'
-        />
+        >
+          {user?.username?.charAt(0).toUpperCase()}
+        </Avatar>
+
       </Badge>
       <Menu
         anchorEl={anchorEl}
@@ -118,52 +120,23 @@ const UserDropdown = (props: Props) => {
                 horizontal: 'right'
               }}
             >
-              <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
+              <Avatar sx={{ width: '2.5rem', height: '2.5rem' }}>
+                {user?.username?.charAt(0).toUpperCase()}
+              </Avatar>
             </Badge>
             <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
-              <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
-                Admin
+              <Typography sx={{ fontWeight: 600 }}>{user?.username}</Typography>
+              <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled', textTransform: 'capitalize' }}>
+                {user?.profile}
               </Typography>
             </Box>
           </Box>
         </Box>
         <Divider sx={{ mt: '0 !important' }} />
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/user-profile/profile')}>
-          <Box sx={styles}>
-            <Icon icon='mdi:account-outline' />
-            Profile
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/email')}>
-          <Box sx={styles}>
-            <Icon icon='mdi:email-outline' />
-            Inbox
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/apps/chat')}>
-          <Box sx={styles}>
-            <Icon icon='mdi:message-outline' />
-            Chat
-          </Box>
-        </MenuItem>
-        <Divider />
         <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/account-settings/account')}>
           <Box sx={styles}>
             <Icon icon='mdi:cog-outline' />
             Settings
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/pricing')}>
-          <Box sx={styles}>
-            <Icon icon='mdi:currency-usd' />
-            Pricing
-          </Box>
-        </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose('/pages/faq')}>
-          <Box sx={styles}>
-            <Icon icon='mdi:help-circle-outline' />
-            FAQ
           </Box>
         </MenuItem>
         <Divider />

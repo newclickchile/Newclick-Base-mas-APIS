@@ -10,7 +10,8 @@ interface AppRequest {
 
 axios.interceptors.request.use(
   async (config: any) => {
-    const userData = JSON.parse(window.localStorage.getItem('user') || "{}");
+    if (typeof window !== 'undefined') {
+    const userData = JSON.parse(window.localStorage.getItem('userData') || "{}");
 
     if (!config.url?.includes("/login/token"))
       if (userData?.token) {
@@ -33,6 +34,7 @@ axios.interceptors.request.use(
         'csll': userData.csll
       };
     }
+  }
 
     return config;
   },

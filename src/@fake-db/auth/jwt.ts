@@ -40,14 +40,16 @@ type ResponseType = [number, { [key: string]: any }]
 
 mock.onPost('/jwt/login').reply(request => {
   const { email, password } = JSON.parse(request.data)
-  console.log('email, password :', email, password);
+
+  // console.log('email, password :', email, password);
 
   let error = {
     email: ['Something went wrong']
   }
 
   const user = users.find(u => u.email === email && u.password === password)
-  console.log('user :', user);
+
+  // console.log('user :', user);
 
   if (user) {
     const accessToken = jwt.sign({ id: user.id }, jwtConfig.secret as string, { expiresIn: jwtConfig.expirationTime })
@@ -81,7 +83,7 @@ mock.onPost('/jwt/register').reply(request => {
       const { length } = users
       let lastIndex = 0
       if (length) {
-        lastIndex = users[length - 1].id
+        lastIndex = users[length - 1].id || 0
       }
       const userData = {
         id: lastIndex + 1,

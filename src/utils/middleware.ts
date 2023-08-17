@@ -68,7 +68,6 @@ export const login = async (username: string, password: string): Promise<AppResp
 }
 
 export const getUserAuthorizedPages = (user: IUserData | null): IPage[]  => {
-  console.log('user :', user);
   const pages: IPage[] = [];
 
   if (!user || !user?.username) return pages;
@@ -198,6 +197,28 @@ export const enabledUser = async (userName: string, userToken: string, currentPa
 
       return ERROR_RESPONSE;
     }
+}
+
+export const updateUserPassword = async (userName: string, currentPassword: string, newPassword: string, code: string) => {
+  try {
+      const headers = {
+          "CSRFPassAnterior": currentPassword,
+          "CSRFPassNueva": newPassword,
+          "CSRFC0d160": code
+      };
+
+      const response = await APIRequest.post({
+          path: `${authConfig.apiAdmin}/adm/usuario/p4ssw0rd/logeado/cambiar?usuario=${userName}`,
+          headers
+      });
+
+      return handlerApiResponse(response);
+
+  } catch (error) {
+    console.error(error)
+
+    return ERROR_RESPONSE;
+  }
 }
 
 export const updateUserPasswordExpirated = async (userName: string, currentPass: string, newPass: string, code: string) :Promise<AppResponse> => {
