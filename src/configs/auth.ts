@@ -1,4 +1,4 @@
-const urlBase = 'http://localhost:3005';
+const urlBase = process.env.NEXT_PUBLIC_URL_BASE
 
 export default {
   meEndpoint: '/auth/me',

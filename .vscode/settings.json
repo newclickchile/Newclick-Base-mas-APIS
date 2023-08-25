@@ -14,7 +14,6 @@
   "git.enableSmartCommit": true,
   // Extension: Prettier
   "prettier.requireConfig": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   // Extension: ESLint
   "editor.codeActionsOnSave": {
@@ -28,19 +27,9 @@
     "typescriptreact"
   ],
   "eslint.format.enable": true,
-  // Package manager Configs
-  "eslint.packageManager": "yarn",
   "npm.packageManager": "yarn",
-  // Extension: cSpell
-  "cSpell.words": [
-    "Customizer"
-  ],
-  "search-node-modules.path": "typescript-version/full-version/node_modules",
-  "markdown.extension.toc.updateOnSave": false,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+  "diffEditor.maxComputationTime": 0,
+  "notebook.formatOnSave.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
